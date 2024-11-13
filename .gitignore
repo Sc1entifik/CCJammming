@@ -23,6 +23,7 @@
 # misc
 .DS_Store
 *.pem
+/pseudocode.txt
 
 # debug
 npm-debug.log*
