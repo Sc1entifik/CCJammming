@@ -1,12 +1,6 @@
 import Image from "next/image";
 
-import SpotifyOAuth from "./utils/sampleFetch";
-
-export default async function Home() {
-	const spotifyRequestObject = new SpotifyOAuth();
-	const jcole = await spotifyRequestObject.requestArtistIdCode("wu tang clan");
-	const jcoleInfo = await spotifyRequestObject.requestAristData(jcole);
-	const jcoleImages = jcoleInfo.images.map((x, y) => <Image key={y} alt="Picture of J.Cole lost in concentration" height={x.height} width={x.width} src={x.url}/>);
+export default function Home() {
 
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
@@ -27,10 +21,8 @@ export default async function Home() {
             </code>
             .
           </li>
-          <li>Save and see your changes instantly.</li>
-					{jcoleImages}
-					<li>{jcoleInfo.name}</li>
-					<li>{jcoleInfo.popularity}</li>
+          <li className="font-bounce"> Do I look BOUNCY?</li>
+					<li className="font-bounce"> Yeah now we are looking BOUNCY</li>
         </ol>
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">

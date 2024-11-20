@@ -14,6 +14,13 @@
   }
 }
 
+@font-face {
+	font-family: "NiceBounce";
+	src: url("fonts/NiceBounce.otf");
+	font-weight: normal;
+	font-style: normal;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
