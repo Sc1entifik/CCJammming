@@ -21,8 +21,16 @@
 	font-style: normal;
 }
 
+
+@font-face {
+	font-family: "TropiLand";
+	src: url("fonts/TropiLand.ttf");
+	font-weight: normal;
+	font-style: normal;
+}
+
 body {
-  color: var(--foreground);
-  background: var(--background);
+  color: hsl(160, 90%, 55%);
+  background: hsl(340, 60%, 8%);
   font-family: Arial, Helvetica, sans-serif;
 }

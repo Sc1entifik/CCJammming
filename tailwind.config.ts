@@ -11,9 +11,12 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+				headerColor: "hsl(160, 90%, 75%)",
+				textColor: "hsl(340, 60%, 95%)",
       },
 			fontFamily: {
 				bounce: ["NiceBounce", "Geist-MonoVF", "sans-serif"],
+				tropiLand: ["Tropiland", "Geist-MonoVF", "sans-serif"],
 			}
     },
   },
