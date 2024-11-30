@@ -2,7 +2,7 @@ import SpotifyEndpoints from "./endpoints";
 import SpotifyOAuth from "./spotifyOAuth";
 import { validateQueryTerm } from "./helper";
 
-interface Image {
+interface SpotifyImage {
 	url: string
 	height: number
 	width: number
@@ -22,13 +22,13 @@ interface simplifiedArtist {
 }
 
 
-interface Artist extends simplifiedArtist {
+export interface Artist extends simplifiedArtist {
 	followers: {
 		href: string
 		total: number
 	}
 	genres: string[]
-	images: Image[]
+	images: SpotifyImage[]
 	popularity: number
 }
 
@@ -42,7 +42,7 @@ interface Album {
 	}
 	href: string
 	id: string
-	images: Image[]
+	images: SpotifyImage[]
 	name: string
 	release_date: string
 	release_date_precision: string
@@ -52,7 +52,7 @@ interface Album {
 }
 
 
-interface Track {
+export interface Track {
 	album: Album
 	artists: simplifiedArtist[]
 	available_markets: string[]
@@ -82,33 +82,22 @@ interface Track {
 }
 
 
-interface QueryResponse {
-	artists: {
-		items: Artist[]
-	}
-	albums: {
-		items: Album[]
-	}
-	tracks: {
-		items: Track[]
-	}
-}
-
-
-
 export default class SpotifyApi {
 	private authorizationHeader;
+	private accessCode;
 
 
-	constructor(accessCode: string) {
-		this.authorizationHeader = this.obtainAuthorizationHeader(accessCode);
+	constructor(accessCode: string, state: string) {
+		this.accessCode = accessCode;
+		this.authorizationHeader = this.obtainAuthorizationHeader(accessCode, state);
 	}
 
 
-	private obtainAuthorizationHeader(this: SpotifyApi, accessCode: string) {
-		const spotifyAuthorizationObject = new SpotifyOAuth(accessCode);
+	private obtainAuthorizationHeader(this: SpotifyApi, accessCode: string, state: string) {
+		const spotifyAuthorizationObject = new SpotifyOAuth(accessCode, state);
+		const authorizationHeader = this.accessCode ? spotifyAuthorizationObject.readAuthorizationHeaderJson() : spotifyAuthorizationObject.authorizationHeader();
 
-		return spotifyAuthorizationObject.authorizationHeader();
+		return authorizationHeader;
 	} 
 
 
@@ -116,17 +105,19 @@ export default class SpotifyApi {
 		const validatedSearchTerm = validateQueryTerm(queryTerm);
 		const typeQueryString = `&type=${queryType}`;
 		const url = SpotifyEndpoints.QUERY_TERM + validatedSearchTerm + typeQueryString;
-		const options = await this.authorizationHeader;
+		const authObject = await this.authorizationHeader;
+		const options = {headers: authObject[this.accessCode].headers};
 
 		return await fetch(url, options).then(res => res.json());
 	}
 
 
 	private async requestArtistIdCode(this: SpotifyApi, artistName: string): Promise<string> {
-		const artistIdCode = await this.querySearchTermCode(artistName, "artist").then((res: QueryResponse) => res.artists.items[0].id).catch(error => {
+		const artistIdCode = await this.querySearchTermCode(artistName, "artist")
+			.then(res  => res.artists.items[0].id)
+			.catch(error => {
 			console.error(error);
-
-			return this.querySearchTermCode(artistName, "artist");
+			return "7dGJo4pcD2V6oG8kP0tJRR?si=Avzvq2-4SEaloXsfNIJYcg&nd=1&dlsi=a68881c17faa4ca6";
 		});
 
 		if (typeof artistIdCode === "string") {
@@ -141,7 +132,8 @@ export default class SpotifyApi {
 	public async requestArtistData(this: SpotifyApi, artistName: string): Promise<Artist> {
 		const artistIdCode = await this.requestArtistIdCode(artistName);
 		const url = SpotifyEndpoints.ARTISTS_BY_ARTIST_CODE_URI + artistIdCode;
-		const options = await this.authorizationHeader;
+		const authObject = await this.authorizationHeader;
+		const options = {headers: authObject[this.accessCode].headers};
 
 		return await fetch(url, options).then(res => res.json());
 	}
@@ -150,7 +142,8 @@ export default class SpotifyApi {
 	public async requestArtistTopTracks(this: SpotifyApi, artistName: string): Promise<Track[]> {
 		const artistIdCode = await this.requestArtistIdCode(artistName);
 		const url = SpotifyEndpoints.ARTISTS_BY_ARTIST_CODE_URI + artistIdCode + "/top-tracks";
-		const options = await this.authorizationHeader;
+		const authObject = await this.authorizationHeader;
+		const options = {headers: authObject[this.accessCode].headers};
 
 		return await fetch(url, options).then(res => res.json()).then(res => res.tracks);
 	}
@@ -159,19 +152,17 @@ export default class SpotifyApi {
 	public async requestArtistAlbums(this: SpotifyApi, artistName: string): Promise<Album[]> {
 		const artistIdCode = await this.requestArtistIdCode(artistName);
 		const url = SpotifyEndpoints.ARTISTS_BY_ARTIST_CODE_URI + artistIdCode + "/albums";
-		const options = await this.authorizationHeader;
+		const authObject = await this.authorizationHeader;
+		const options = {headers: authObject[this.accessCode].headers};
 
 		return await fetch(url, options).then(res => res.json()).then(res => res.items);
 	}
 
 
 	public async requestAlbums(this: SpotifyApi, albumName: string): Promise<Album[]> {
-		const albums = await this.querySearchTermCode(albumName, "album").then(res => res.items);
+		const albums: Album[] = await this.querySearchTermCode(albumName, "album").then(res => res.items);
 		const filtered_albums: Album[] = albums.filter(x => x !== null);
 
 		return filtered_albums;
 	}
-
-
-
 }

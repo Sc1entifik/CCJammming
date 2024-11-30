@@ -1,3 +1,9 @@
+export enum StorageFilePaths {
+	OAUTH_HEADER_JSON = "./public/oAuthHeader.json",
+}
+
+
+
 enum SpotifyEndpoints {
 	MAIN_TOKEN_URI = "https://accounts.spotify.com",
 	MAIN_API_URI = "https://api.spotify.com",
@@ -9,5 +15,6 @@ enum SpotifyEndpoints {
 	USER_PROFILE_URI = `${SpotifyEndpoints.MAIN_API_URI}/v1/me`,
 	USER_PLAYLISTS = `${SpotifyEndpoints.USER_PROFILE_URI}/playlists`,
 }
+
 
 export default SpotifyEndpoints;

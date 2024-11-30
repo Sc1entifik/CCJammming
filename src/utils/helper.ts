@@ -1,3 +1,10 @@
+export const keySetter = (x=-1) => () => {
+	x += 1;
+
+	return x;
+};
+
+
 export const validateQueryTerm = (queryTerm: string):string => {
 	const capitalizedQuery = toCapitalCase(queryTerm);
 	let validatedInput = "";
