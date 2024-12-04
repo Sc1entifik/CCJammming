@@ -1,24 +1,21 @@
 "use client"
 import Form from "next/form";
 
-type formParams = {
-	code: string
-	state: string
-}
 
-export default function MusicForm({code, state}: formParams) {
+export default function MusicForm() {
 	
 	return (
 			<Form action="/" className="font-tropiLand">
-				<input type="hidden" name="code" value={code}/>
-				<input type="hidden" name="state" value={state}/>
+
 				<input type="text" name="searchTerm" placeholder="Search Term"/>
 				<br/>
-				<input type="radio" name="searchTermType" value="artistTopTracks" defaultChecked/>
-				<label htmlFor="searchTermType">artist top tracks</label>
-				<input type="radio" name="searchTermType" value="Unused"/>
-				<label htmlFor="searchTermType">Unused</label>
-				<br/>
+				<input type="radio" name="searchTermType" value="artistTopTracks" className="mr-0.5" defaultChecked/>
+				<label htmlFor="searchTermType" className="mr-3">artist top tracks</label>
+				<input type="radio" name="searchTermType" value="Albums By Artist" className="mr-0.5"/>
+				<label htmlFor="searchTermType" className="mr-3">Artist Albums</label>
+				<input type="radio" name="searchTermType" value="Album" className="mr-0.5"/>
+				<label htmlFor="searchTermType" className="mr-3">Album</label>
+			<br/>
 			</Form>
 	);
 }

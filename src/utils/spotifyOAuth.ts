@@ -14,7 +14,6 @@ interface AccountAccessToken extends AccessToken {
 
 interface AuthorizationHeader {
 	access_token: string
-	state: string
 	token_type: string
 	expires_in: number
 	scope?: string
@@ -27,15 +26,13 @@ interface AuthorizationHeader {
 
 export default class SpotifyOAuth {
 	private accessCode;
-	private state;
 	private clientId = process.env.CLIENT_ID;
 	private clientSecret = process.env.CLIENT_SECRET;
 	private contentType = "application/x-www-form-urlencoded";
 
 
-	constructor(accessCode: string, state: string) {
+	constructor(accessCode: string) {
 		this.accessCode = accessCode;
-		this.state = state;
 	}
 
 
@@ -69,47 +66,27 @@ export default class SpotifyOAuth {
 	}
 
 
-	public async authorizationHeader(this: SpotifyOAuth): Promise<object> {
-		const accessTokenObject = this.accessCode ? await this.obtainAccountAccessToken(): await this.obtainPublicAccessToken();
-		const finalObject = {};
-		const headerObject: AuthorizationHeader = {
-			access_token: accessTokenObject.access_token,
-			state: this.state,
-			token_type: accessTokenObject.token_type,
-			expires_in: accessTokenObject.expires_in + Date.now(),
-
-			headers: {
-				Authorization: `${accessTokenObject.token_type} ${accessTokenObject.access_token}`
-			}
-		};
-		finalObject[this.accessCode] = headerObject;
-
-		return finalObject;
-	}
+	private accessTokenHeader(accessTokenObject: AccessToken | AccountAccessToken): AuthorizationHeader {
+		const access_token = accessTokenObject.access_token;
+		const token_type = accessTokenObject.token_type;
+		const expires_in = (accessTokenObject.expires_in * 1000) + Date.now();
+		const headers = { Authorization: `${accessTokenObject.token_type} ${accessTokenObject.access_token}` };
 
 
-	public async writeAuthorizationHeaderJson(this: SpotifyOAuth): Promise<void> {
-		const headerJson = await this.authorizationHeader();
-
-		try {
-			let previousHeaderJson = JSON.parse(await Deno.readTextFile(StorageFilePaths.OAUTH_HEADER_JSON));
-			previousHeaderJson[this.accessCode] = headerJson;
-			await Deno.writeTextFile(StorageFilePaths.OAUTH_HEADER_JSON, JSON.stringify(previousHeaderJson));
-
-		} catch(error) {
-			console.error(error);
-			let newJsonFileObject = {};
-			newJsonFileObject[this.accessCode] = headerJson;
-			await Deno.writeTextFile(StorageFilePaths.OAUTH_HEADER_JSON, JSON.stringify(headerJson));
+		if ("scope" in accessTokenObject) {
+			const scope = accessTokenObject.scope;
+			const refresh_token = accessTokenObject.refresh_token;
+			return {access_token, token_type, expires_in, scope, refresh_token, headers};
 		}
 
+		return {access_token, token_type, expires_in, headers};
 	}
 
 
-	public async readAuthorizationHeaderJson(this: SpotifyOAuth): Promise<AuthorizationHeader> {
-		const jsonHeaders = JSON.parse(await Deno.readTextFile(StorageFilePaths.OAUTH_HEADER_JSON));
-		const authorizationHeader = jsonHeaders[this.accessCode];
+	public async authorizationHeader(this: SpotifyOAuth): Promise<AuthorizationHeader> {
+		const accessTokenObject = this.accessCode ? await this.obtainAccountAccessToken(): await this.obtainPublicAccessToken();
 
-		return authorizationHeader
+		return this.accessTokenHeader(accessTokenObject);
 	}
 }
+

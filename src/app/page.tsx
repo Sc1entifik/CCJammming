@@ -1,12 +1,15 @@
 import SpotifyApi from "@/utils/spotifyApi";
 import ArtistTopTracks from "./components/artistTopTracks";
 import MusicForm from "./components/musicForm";
+import { cookies } from "next/headers";
 
 
 export default async function AccessCode({ searchParams }: {searchParams: Promise<{[key: string]: string |  undefined }>}) {
-	const {code="", state="", searchTerm="", searchTermType=""} = await searchParams;
+	const {searchTerm="", searchTermType=""} = await searchParams;
 	let musicElement;
-	const spotifyApifetch = new SpotifyApi(code, state);
+	const cookieStore = await cookies();
+	const spotifyApifetch = cookieStore.has("auth")? new SpotifyApi(cookieStore.get("auth")?.value as string) : new SpotifyApi("");
+
 	
 	switch (searchTermType) {
 		case "artistTopTracks": {
@@ -22,7 +25,7 @@ export default async function AccessCode({ searchParams }: {searchParams: Promis
 
 	return (
 		<div>
-			<MusicForm code={code} state={state} />
+			<MusicForm />
 			{musicElement}
 		</div>
 		)

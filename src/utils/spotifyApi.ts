@@ -82,22 +82,95 @@ export interface Track {
 }
 
 
+interface Owner {
+	external_urls: {
+		spotify: string
+	}
+	followers: {
+		href: string | null
+		total: number
+	}
+	href: string
+	id: string
+	type: string
+	uri: string
+	display_name: string | null
+}
+
+
+interface PlaylistTrackObject {
+	added_at: string
+	added_by: {
+		external_urls: {
+			spotify: string
+		}
+		followers: {
+			href: string
+			total: number
+		}
+		href: string
+		id: string
+		type: string
+		uri: string
+	}
+	is_local: boolean
+	track: Track | object
+}
+
+
+interface PlaylistTracks {
+	href: string
+	limit: number
+	next: string | null
+	offset: number
+	previous: string | null
+	total: number
+	items: PlaylistTrackObject[]
+}
+
+
+interface Playlist {
+	collaborative: boolean
+	description: string | null
+	external_urls: {
+		spotify: string 
+	}
+	followers: {
+		href: string | null
+		total: number
+	}
+	href: string
+	id: string
+	images: SpotifyImage
+	name: string
+	owner: Owner
+	public: boolean
+	snapshot_id: string
+	tracks: PlaylistTracks
+	type: string
+	uri: string
+}
+
+
 export default class SpotifyApi {
 	private authorizationHeader;
-	private accessCode;
 
 
-	constructor(accessCode: string, state: string) {
-		this.accessCode = accessCode;
-		this.authorizationHeader = this.obtainAuthorizationHeader(accessCode, state);
+	constructor(authHeaderJson: string) {
+		this.authorizationHeader = this.obtainAuthorizationHeader(authHeaderJson);
 	}
 
 
-	private obtainAuthorizationHeader(this: SpotifyApi, accessCode: string, state: string) {
-		const spotifyAuthorizationObject = new SpotifyOAuth(accessCode, state);
-		const authorizationHeader = this.accessCode ? spotifyAuthorizationObject.readAuthorizationHeaderJson() : spotifyAuthorizationObject.authorizationHeader();
+	private obtainAuthorizationHeader(this: SpotifyApi, authHeaderJson: string) {
+		if (authHeaderJson) {
 
-		return authorizationHeader;
+			return JSON.parse(authHeaderJson);
+		}
+
+		const emptyAccessCode = "";
+		const spotifyAuthorizationObject = new SpotifyOAuth(emptyAccessCode);
+
+		return spotifyAuthorizationObject.authorizationHeader();
 	} 
 
 
@@ -106,7 +179,7 @@ export default class SpotifyApi {
 		const typeQueryString = `&type=${queryType}`;
 		const url = SpotifyEndpoints.QUERY_TERM + validatedSearchTerm + typeQueryString;
 		const authObject = await this.authorizationHeader;
-		const options = {headers: authObject[this.accessCode].headers};
+		const options = {headers: authObject.headers};
 
 		return await fetch(url, options).then(res => res.json());
 	}
@@ -133,7 +206,7 @@ export default class SpotifyApi {
 		const artistIdCode = await this.requestArtistIdCode(artistName);
 		const url = SpotifyEndpoints.ARTISTS_BY_ARTIST_CODE_URI + artistIdCode;
 		const authObject = await this.authorizationHeader;
-		const options = {headers: authObject[this.accessCode].headers};
+		const options = {headers: authObject.headers};
 
 		return await fetch(url, options).then(res => res.json());
 	}
@@ -143,7 +216,7 @@ export default class SpotifyApi {
 		const artistIdCode = await this.requestArtistIdCode(artistName);
 		const url = SpotifyEndpoints.ARTISTS_BY_ARTIST_CODE_URI + artistIdCode + "/top-tracks";
 		const authObject = await this.authorizationHeader;
-		const options = {headers: authObject[this.accessCode].headers};
+		const options = {headers: authObject.headers};
 
 		return await fetch(url, options).then(res => res.json()).then(res => res.tracks);
 	}
@@ -153,7 +226,7 @@ export default class SpotifyApi {
 		const artistIdCode = await this.requestArtistIdCode(artistName);
 		const url = SpotifyEndpoints.ARTISTS_BY_ARTIST_CODE_URI + artistIdCode + "/albums";
 		const authObject = await this.authorizationHeader;
-		const options = {headers: authObject[this.accessCode].headers};
+		const options = {headers: authObject.headers};
 
 		return await fetch(url, options).then(res => res.json()).then(res => res.items);
 	}
@@ -165,4 +238,14 @@ export default class SpotifyApi {
 
 		return filtered_albums;
 	}
+
+
+	public async userPlaylists(this: SpotifyApi):Promise<Playlist> {
+		const url = SpotifyEndpoints.USER_PLAYLISTS;
+		const authObject = await this.authorizationHeader;
+		const options = {headers: authObject.headers};
+
+		return await fetch(url, options).then(res => res.json());
+	} 
+
 }
