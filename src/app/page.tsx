@@ -1,5 +1,6 @@
-import ArtistTopTracks from "./components/artistTopTracks";
 import MusicForm from "./components/musicForm";
+import ArtistTopTracks from "./components/artistTopTracks";
+import ArtistAlbums from "./components/artistAlbums";
 
 
 export default async function AccessCode({ searchParams }: {searchParams: Promise<{[key: string]: string |  undefined }>}) {
@@ -11,6 +12,11 @@ export default async function AccessCode({ searchParams }: {searchParams: Promis
 	switch (searchTermType) {
 		case "artistTopTracks": {
 			musicElement = <ArtistTopTracks artistName={searchTerm}/>;
+			break;
+		}
+
+		case "artistAlbums": {
+			musicElement = <ArtistAlbums artistName={searchTerm} />
 			break;
 		}
 		

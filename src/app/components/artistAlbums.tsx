@@ -19,8 +19,8 @@ export default async function ArtistAlbums({artistName}: {artistName: string}) {
 	return (
 		<div className="flex flex-col items-center font-tropiLand">
 			<h2 className="text-6xl">{cleanArtistName}</h2>
-			<Image src={artistImageObject.url} height={artistImageObject.height} width={artistImageObject.width} alt="Artist Picture"/>
-			<div className="flex flex-col items-center">
+			<Image className="mb-4" src={artistImageObject.url} height={artistImageObject.height} width={artistImageObject.width} alt="Artist Picture"/>
+			<div className="grid grid-cols-1 gap-16">
 			{albums.items.map(x => <AlbumGrid key={setUniqueKey()} album={x}/> )}
 			</div>
 		</div>
