@@ -9,6 +9,10 @@ const nextConfig: NextConfig = {
 				hostname: "i.scdn.co"
 
 			},
+			{
+				protocol: "https",
+				hostname: "mosaic.scdn.co"
+			},
 		],
 	},
 };
