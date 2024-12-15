@@ -2,13 +2,13 @@ import { redirect } from "next/navigation";
 import querystring from "node:querystring";
 import { cookies } from "next/headers";
 
-import { generateRandomString } from "./components/helper";
+import { generateRandomString } from "@/utils/helper";
 import SpotifyEndpoints from "@/utils/endpoints";
 
-const client_id = process.env.CLIENT_ID;
-const redirect_uri = process.env.REDIRECT_URI;
 const response_type = "code";
+const client_id = process.env.CLIENT_ID;
 const scope = "playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public user-read-playback-state user-modify-playback-state user-read-currently-playing";
+const redirect_uri = process.env.REDIRECT_URI;
 const authorizeUri = SpotifyEndpoints.USER_AUTHORIZE_URI;
 const isProduction = process.env.SERVER_ENVIRONMENT === "Production";
 

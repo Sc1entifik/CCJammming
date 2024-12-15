@@ -1,27 +1,3 @@
-export const keySetter = (x=-1) => () => {
-	x += 1;
-
-	return x;
-};
-
-
-export const validateQueryTerm = (queryTerm: string):string => {
-	const capitalizedQuery = toCapitalCase(queryTerm);
-	let validatedInput = "";
-
-	for (let i=0; i<queryTerm.length; i++) {
-		if (queryTerm[i] === " ") {
-			validatedInput += "+";
-
-		} else {
-			validatedInput += capitalizedQuery[i];
-		}
-	}
-
-	return validatedInput;
-};
-
-
 const toCapitalCase = (queryTerm: string): string => {
 	let validatedInput = "";
 
@@ -40,3 +16,54 @@ const toCapitalCase = (queryTerm: string): string => {
 
 	return validatedInput;
 }
+
+
+export const keySetter = (x=-1) => () => {
+	x += 1;
+
+	return x;
+};
+
+
+const generateCharacterPool = ():string => {
+	const letters = "abcdefghijklmnopqrstuvwxyz";
+	const upperCaseLetters = letters.toUpperCase();
+	const numbers = "1234567890";
+
+	return letters + upperCaseLetters + numbers;
+};
+
+
+
+export const validateQueryTerm = (queryTerm: string):string => {
+	const trimmedInput = queryTerm.trim();
+	const capitalizedQueryTerm = toCapitalCase(trimmedInput);
+	let validatedInput = "";
+
+	for (let i=0; i<capitalizedQueryTerm.length; i++) {
+		if (capitalizedQueryTerm[i] === " ") {
+			validatedInput += "+";
+
+		} else {
+			validatedInput += capitalizedQueryTerm[i];
+		}
+	}
+
+	return validatedInput;
+};
+
+
+export const generateRandomString = (stringLength: number): string => {
+	const characterPool:string = generateCharacterPool();
+	let randomString = "";
+
+	for (let i=0; i<stringLength; i++) {
+		const randomIndex = Math.floor(Math.random() * characterPool.length);
+		randomString += characterPool[randomIndex];
+	}
+
+	return randomString;
+};
+
+
+
