@@ -16,7 +16,7 @@ const mediumArtistImageElement = (x: Artist) => {
 };
 
 
-export default async function ArtistTopTracks({artistTopTracks, artistData}: TopTrackProps) {
+export default function ArtistTopTracks({artistTopTracks, artistData}: TopTrackProps) {
 	const artistImage = mediumArtistImageElement(artistData);
 	const setUniqueKey = keySetter();
 	const artistSongs = artistTopTracks.map(x => [<p key={setUniqueKey()} className="text-textColor max-w-20">{x.name}</p>,  <Image key={setUniqueKey()} src={x.album.images[0].url} width="60" height="60" alt="album photo" />, <p key={setUniqueKey()} className="text-textColor max-w-20">{x.album.name}</p>, <p key={setUniqueKey()} className="text-textColor max-w-20">+</p>]);
