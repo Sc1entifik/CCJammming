@@ -1,0 +1,35 @@
+{
+  "version": "4",
+  "specifiers": {
+    "jsr:@std/assert@*": "1.0.9",
+    "jsr:@std/internal@^1.0.5": "1.0.5"
+  },
+  "jsr": {
+    "@std/assert@1.0.9": {
+      "integrity": "a9f0c611a869cc791b26f523eec54c7e187aab7932c2c8e8bea0622d13680dcd",
+      "dependencies": [
+        "jsr:@std/internal"
+      ]
+    },
+    "@std/internal@1.0.5": {
+      "integrity": "54a546004f769c1ac9e025abd15a76b6671ddc9687e2313b67376125650dc7ba"
+    }
+  },
+  "workspace": {
+    "packageJson": {
+      "dependencies": [
+        "npm:@types/node@20",
+        "npm:@types/react-dom@18",
+        "npm:@types/react@18",
+        "npm:eslint-config-next@15.0.2-canary.9",
+        "npm:eslint@8",
+        "npm:next@15.0.2-canary.9",
+        "npm:postcss@8",
+        "npm:react-dom@19.0.0-rc-1631855f-20241023",
+        "npm:react@19.0.0-rc-1631855f-20241023",
+        "npm:tailwindcss@^3.4.1",
+        "npm:typescript@5"
+      ]
+    }
+  }
+}

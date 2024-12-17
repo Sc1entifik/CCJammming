@@ -6,6 +6,13 @@
 - v-0.6 - Learned how to use cookies to store the header data which is more efficient than writing the JSON method on the server. This streamlined the process greatly. Also removed the now unnecessary oAuthHeader.json file. Added a few more fetch methods and interfaces to the SpotifyApiFetch class.
 
 
+
+Bug Fixes:
+- Search Bar Refresh - Bug triggered when page refresh happened from form submit. This triggered another oAuth header request which results in an invalid header. Fixed this by saving the header to a JSON file and then retrieving it instead
+
+- Underground Artist Data Bug - Bug triggered when looking for a lesser known artist by name which has a similar name to a well known artist thus causing the more well known artist data to get returned instead. Fixed this by filtering for artist name on list with .find() and then returning res.items[0] only when res.items.find() variable is undefined.
+
+
 Things Coming:
 1. Front end.
 2. More search point options.
