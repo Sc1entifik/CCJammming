@@ -1,0 +1,5 @@
+{
+	"tasks": {
+		"test": "deno test --env-file --unstable-sloppy-imports --no-check --allow-net --allow-env"
+	}
+}

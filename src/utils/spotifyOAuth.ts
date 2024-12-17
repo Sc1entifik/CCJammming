@@ -1,4 +1,4 @@
-import SpotifyEndpoints, { StorageFilePaths } from "./endpoints";
+import SpotifyEndpoints from "./endpoints"
 
 interface AccessToken {
 	access_token: string
