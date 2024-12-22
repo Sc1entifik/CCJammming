@@ -4,6 +4,7 @@
 - v-0.3.8 - Refactored authorization and api fetching class to two separate classes with composition having the api fetching class use the authorization class to get the authorization header it needs to make api calls. Made interfaces so objects and list returned from the SpotifyApi class have proper methods and return types. Added custom styling fonts and created color pairs for website. 
 - v-0.5 - Fixed bug where using the search bar resulted in Spotify passing a bad oAuth header. Wrote code for writing to and reading from an oAuthHeader.json file to utilize headers returned from Spotify on page refresh. Added search bar component. 
 - v-0.6 - Learned how to use cookies to store the header data which is more efficient than writing the JSON method on the server. This streamlined the process greatly. Also removed the now unnecessary oAuthHeader.json file. Added a few more fetch methods and interfaces to the SpotifyApiFetch class.
+- v-0.6.8 - Refactored Layout.ts so that the nav bar shows whether or not you are connected to your Spotify account and allows you to connect and disconnect it. Added server action for deleting browser cookie by disconnect link. Refactored client side fetching to use functions instead of classes. Wrote tests for client side fetches. Discovered and fixed Underground Artist Data Bug as detailed below. Refactored various functional components.
 
 
 
@@ -14,7 +15,8 @@ Bug Fixes:
 
 
 Things Coming:
-1. Front end.
-2. More search point options.
+1. More search point options.
+2. Playlist functionality.
+3. Ability to play songs.
 
 

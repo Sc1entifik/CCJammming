@@ -1,4 +1,6 @@
-import Image from "next/image"
+import { fetchArtistDataByName } from "@/utils/commonFetches";
+import SpotifyEndpoints from "@/utils/endpoints";
+import Image from "next/image";
 
 interface ArtistObject {
 	name: string
@@ -15,6 +17,6 @@ const mediumArtistImage = (x: ArtistObject) => {
 	return <Image alt={`${x.name} portrait`} src={mediumSizeImage.url} height={mediumSizeImage.height} width={mediumSizeImage.width} />
 }
 
-export default async function ArtistNameAndImage({authHeader}) {
-
+export default async function ArtistNameAndImage({ artistName, authHeader }: { artistIdCode: string, authHeader: string }) {
+	const artist: ArtistObject = await fetchArtistDataByName(artistName, authHeader);
 }

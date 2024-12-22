@@ -1,8 +1,6 @@
 import SpotifyEndpoints from "./endpoints";
 import { validateQueryTerm } from "./helper";
 import { Artist } from "./fetchInterfaces";
-import { publicAccessHeader } from "./spotifyOAuth2";
-import SpotifyOAuth from "./spotifyOAuth";
 
 enum QueryTermTypes {
 	ALBUM = "album",

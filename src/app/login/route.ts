@@ -12,6 +12,7 @@ const redirect_uri = process.env.REDIRECT_URI;
 const authorizeUri = SpotifyEndpoints.USER_AUTHORIZE_URI;
 const isProduction = process.env.SERVER_ENVIRONMENT === "Production";
 
+
 export async function GET() {
 	const state = generateRandomString(16);
 	const cookieStore = await cookies();

@@ -5,6 +5,7 @@ import { cookies } from "next/headers";
 
 
 export default async function AccessCode({ searchParams }: {searchParams: Promise<{[key: string]: string |  undefined }>}) {
+
 	const {searchTerm="", searchTermType=""} = await searchParams;
 	let musicElement;
 	const cookieStore = await cookies();
@@ -28,5 +29,5 @@ export default async function AccessCode({ searchParams }: {searchParams: Promis
 			<MusicForm />
 			{musicElement}
 		</div>
-		)
+		);
 }

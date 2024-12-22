@@ -27,7 +27,7 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
 			<header className="font-bounce mx-3 mt-6 mb-10 tracking-wider flex flex-auto justify-between">
 				<p className="font-extrabold text-6xl">jaMMMing</p>
 				<NavBar />
-			</header>
+		</header>
 
         {children}
       </body>

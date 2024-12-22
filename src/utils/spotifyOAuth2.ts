@@ -11,7 +11,7 @@ interface AccountAccessToken extends AccessToken {
 	refresh_token: string
 }
 
-interface AuthorizationHeader {
+interface AuthorizationObject {
 	access_token: string
 	token_type: string
 	expires_in: number
@@ -55,7 +55,7 @@ const accountAccessToken = async (accessCode: string): Promise<AccountAccessToke
 };
 
 
-const accessTokenHeader = (accessToken: AccessToken | AccountAccessToken): AuthorizationHeader => {
+const accessTokenObject = (accessToken: AccessToken | AccountAccessToken): AuthorizationObject => {
 	const access_token = accessToken.access_token;
 	const token_type = accessToken.token_type;
 	const expires_in = (accessToken.expires_in * 1000) + Date.now();
@@ -71,8 +71,10 @@ const accessTokenHeader = (accessToken: AccessToken | AccountAccessToken): Autho
 		const refresh_token = accessToken.refresh_token;
 		return {access_token, token_type, expires_in, scope, refresh_token, authHeader};
 	}
-return {access_token, token_type, expires_in, authHeader}; }
+	
+return {access_token, token_type, expires_in, authHeader}; 
+}
 
 
-export const publicAccessHeader = async () => accessTokenHeader(await publicAccessTestingToken());
-export const accountAccessHeader = async (accessCode: string) => accessTokenHeader(await accountAccessToken(accessCode));
+export const publicAccessObject = async () => accessTokenObject(await publicAccessTestingToken());
+export const accountAccessObject = async (accessCode: string) => accessTokenObject(await accountAccessToken(accessCode));
