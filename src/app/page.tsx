@@ -14,7 +14,7 @@ export default async function AccessCode({ searchParams }: {searchParams: Promis
 	
 	switch (searchTermType) {
 		case "artistTopTracks": {
-			musicElement = <ArtistTopTracks artistTopTracks={await spotifyApifetch.requestArtistTopTracks(searchTerm)} artistData={await spotifyApifetch.requestArtistData(searchTerm)} />;
+			musicElement = <ArtistTopTracks artistName={searchTerm}/>;
 			break;
 		}
 		

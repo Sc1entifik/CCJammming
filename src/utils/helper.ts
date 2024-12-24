@@ -66,4 +66,4 @@ export const generateRandomString = (stringLength: number): string => {
 };
 
 
-
+export const parseAuthHeaderFromCookieStore = (cookieStore: object) => JSON.parse(cookieStore.get("auth").value).authHeader;
