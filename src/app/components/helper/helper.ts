@@ -44,6 +44,7 @@ export const artistIdCodeByName = async (artistName: string, stringifiedAuthHead
 
 export const artistNameAndImageById = async (artistId: string, stringifiedAuthHeader: string): Promise<[string, SpotifyImage]> => {
 	const url = SpotifyEndpoints.ARTISTS_BY_ARTIST_CODE_URI + artistId;
+	console.log(url);
 	const artistData = await fetchSpotifyApi(url, stringifiedAuthHeader);
 	const middleImage: SpotifyImage = artistData.images[1];
 	const nameAndImage: [string, SpotifyImage] = [artistData.name, middleImage];

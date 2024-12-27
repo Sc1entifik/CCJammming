@@ -1,6 +1,6 @@
 import SpotifyEndpoints from "./endpoints";
 import { validateQueryTerm } from "./helper";
-import { Artist, Track } from "./fetchInterfaces";
+import { Artist, Track, Album } from "./fetchInterfaces";
 
 enum QueryTermTypes {
 	ALBUM = "album",
@@ -59,3 +59,19 @@ export const fetchArtistTopTracks = (artistName: string, authHeader: AuthHeader)
 
 		return fetch(url, authHeader).then(res => res.json()).then(res => res.tracks);
 	});
+
+
+export const fetchArtistAlbums = (artistName: string, authHeader: AuthHeader): Promise<Album[]> => artistIdCodeByName(artistName, authHeader)
+	.then(idCode => {
+		const url = SpotifyEndpoints.ARTISTS_BY_ARTIST_CODE_URI + idCode + "/albums";
+
+		return fetch(url, authHeader).then(res => res.json()).then(res => res.items);
+	});
+
+
+export const fetchAlbumTracksById = (albumId: string, authHeader: AuthHeader): Promise<Track[]> => {
+	const url = SpotifyEndpoints.ALBUM_BY_ALBUM_CODE_URI + albumId + "/tracks";
+
+	return fetch(url, authHeader).then(res => res.json()).then(res => res.items);
+}
+

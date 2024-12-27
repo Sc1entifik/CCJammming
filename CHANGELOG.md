@@ -7,6 +7,7 @@
 - v-0.6.3 - Added Artist album component which is a collapsable component that shows the looked up artist albums and then expands and shows the album track when clicked on.
 - v-0.6.6 - Added Playlist component which shows each playlist that the user can modify by filtering the user's playlists by the playlists that they can modify. 
 - v-0.7 - Refactored Layout.ts so that the nav bar shows whether or not you are connected to your Spotify account and allows you to connect and disconnect it. Added server action for deleting browser cookie by disconnect link. Refactored Spotify Login Authorization to a server action instead of an API endpoint. Refactored client side fetching to use functions instead of classes. Wrote tests for client side fetches. Discovered and fixed Underground Artist Data Bug as detailed below.  Refactored various functional components.
+- v-0.7.2 - Refactored all elements to use new fetching system. Removed old fetching system. Removed unnecessary helper component files.
 
 
 
