@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { NextRequest } from "next/server";
 
-import { accountAccessObject } from "@/utils/spotifyOAuth2";
+import { accountAccessObject } from "@/utils/spotifyOAuth";
 
 const isProduction = process.env.SERVER_ENVIRONMENT === "Production";
 

@@ -1,7 +1,7 @@
 import { assertEquals } from "jsr:@std/assert";
 
 import { fetchArtistDataByName } from "./commonFetches";
-import { publicAccessObject } from "./spotifyOAuth2";
+import { publicAccessObject } from "./spotifyOAuth";
 
 //deno test --env-file --unstable-sloppy-imports --no-check --allow-read --allow-net --allow-env needs to be ran to get test to function
 Deno.test("Public Access Header: Fields Exist", async () => {
