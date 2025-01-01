@@ -13,8 +13,8 @@ export default function MusicForm() {
 				<label htmlFor="artistTopTracks" className="mr-3">artist top tracks</label>
 				<input id="albumsByArtist" type="radio" name="searchTermType" value="albumsByArtist" className="mr-0.5"/>
 				<label htmlFor="albumsByArtist" className="mr-3">Artist Albums</label>
-				<input id="album" type="radio" name="searchTermType" value="album" className="mr-0.5"/>
-				<label htmlFor="album" className="mr-3">Album</label>
+				<input id="albums" type="radio" name="searchTermType" value="albums" className="mr-0.5"/>
+				<label htmlFor="albums" className="mr-3">Album</label>
 				<br/>
 			</Form>
 	);

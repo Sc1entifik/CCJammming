@@ -19,6 +19,11 @@ export default async function AccessCode({ searchParams }: {searchParams: Promis
 			musicElement = <ArtistAlbums artistName={searchTerm} />
 			break;
 		}
+
+		case "albums": {
+			musicElement = <Albums albumName={searchTerm}/>
+			break;
+		}
 		
 		default: {
 			musicElement = <p></p>
