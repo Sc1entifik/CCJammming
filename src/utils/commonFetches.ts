@@ -78,3 +78,6 @@ export const fetchAlbumTracksById = (albumId: string, authHeader: AuthHeader): P
 	return fetch(url, authHeader).then(res => res.json()).then(res => res.items);
 }
 
+
+export const fetchAlbumsByName = (albumName: string, authHeader: AuthHeader): Promise<Album[]> => querySearch(albumName, "album", authHeader).then(res => res.albums).then(res => res.items);
+

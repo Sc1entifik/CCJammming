@@ -1,6 +1,6 @@
 import { assertEquals } from "jsr:@std/assert";
 
-import { fetchAlbumTracksById, fetchArtistAlbums, fetchArtistDataByName, fetchArtistTopTracks } from "./commonFetches";
+import { fetchAlbumsByName, fetchAlbumTracksById, fetchArtistAlbums, fetchArtistDataByName, fetchArtistTopTracks } from "./commonFetches";
 import { publicAccessObject } from "./spotifyOAuth";
 import { Album } from "./fetchInterfaces";
 
@@ -83,4 +83,20 @@ Deno.test("Fetch Album Tracks By ID: Make Sure Album Traks Get Fetched", async()
 
 		assertEquals(albumTrackList, fetchedTracksFromAlbum);
 	}
+});
+
+
+Deno.test("Fetch Abums Query Search: Fetch Albums By Name", async() => {
+	type ArtistAndAlbum = [artist: string, album: string];
+	const accessHeader = await publicAccessObject().then(res => res.authHeader);
+	const albumList: ArtistAndAlbum[] = [["Deftones", "Gore"], ["Kendrick Lamar", "DAMN."], ["Korn", "Life Is Peachy"], ["J. Cole", "2014 Forest Hills Drive"], ["Nas", "Illmatic"], ["Killswitch Engage", "The End of Heartache (Special Edition)"]];
+
+	for (let i=0; i<albumList.length; i++) {
+		const [artist, album] = albumList[i];
+		const albumFetch = await fetchAlbumsByName(album, accessHeader);
+		const targetAlbum = albumFetch.find(x => x.artists.find(x => x.name === artist));
+
+		assertEquals(targetAlbum?.name, album);
+	}
+
 });
