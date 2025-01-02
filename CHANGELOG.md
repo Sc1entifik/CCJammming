@@ -8,14 +8,14 @@
 - v-0.6.6 - Added Playlist component which shows each playlist that the user can modify by filtering the user's playlists by the playlists that they can modify. 
 - v-0.7 - Refactored Layout.ts so that the nav bar shows whether or not you are connected to your Spotify account and allows you to connect and disconnect it. Added server action for deleting browser cookie by disconnect link. Refactored Spotify Login Authorization to a server action instead of an API endpoint. Refactored client side fetching to use functions instead of classes. Wrote tests for client side fetches. Discovered and fixed Underground Artist Data Bug as detailed below.  Refactored various functional components.
 - v-0.7.2 - Refactored all elements to use new fetching system. Removed old fetching system. Removed unnecessary helper component files. Wrote more tests for fetching system.
+- v-0.7.5 - Wrote fetch and test for album form query. Added Album fetch to form radio button. Refactored albumCollapse.tsx to show artist for every album. Renamed ArtistAlbumSongGrid to AlbumSongGrid and renamed artistAlbumGrid.tsx to albumGrid.tsx.
 
 
 
 Bug Fixes:
-- Search Bar Refresh - Bug triggered when page refresh happened from form submit. This triggered another oAuth header request which results in an invalid header. Fixed this by saving the header to a JSON file and then retrieving it instead. Later switched to a cookie based system.
+- Search Bar Refresh - Bug triggered when page refresh happened from form submit. This triggered another oAuth header request which results in an invalid header. Fixed this by saving the header to a JSON file and then retrieving it. Later switched to a cookie based system.
 
 - Underground Artist Data Bug - Bug triggered when looking for a lesser known artist by name which has a similar name to a well known artist thus causing the more well known artist data to get returned instead. Fixed this by filtering for artist name on list with .find() and then returning res.items[0] only when res.items.find() variable is undefined.
-=======
 
 
 Things Coming:

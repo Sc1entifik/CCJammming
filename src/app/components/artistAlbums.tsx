@@ -1,7 +1,6 @@
-import ArtistAlbumSongGrid from "./artistAlbumGrid";
+import AlbumSongGrid from "./albumGrid";
 import ArtistNameAndImage from "./artistNameAndImage";
 
-const lastIndex = (arr: any[]): number => arr.length - 1;
 
 export default function ArtistAlbums({artistName}: {artistName: string}) {
 
@@ -10,7 +9,7 @@ export default function ArtistAlbums({artistName}: {artistName: string}) {
 			<ArtistNameAndImage artistName={artistName}/>
 			<h3>Click Album To Expand</h3>
 			<h3>Click Song To Add To Playlist</h3>
-			<ArtistAlbumSongGrid artistName={artistName}/>
+			<AlbumSongGrid artistName={artistName} fetchType="artist name"/>
 		</div>
 	);
 }

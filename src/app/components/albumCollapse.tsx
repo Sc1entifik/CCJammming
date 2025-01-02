@@ -19,11 +19,13 @@ export default function AlbumTracksCollapse({album, tracks}: {album: Album, trac
 	function expandAccordian() {
 		albumTracks ? setAlbumTracks(null) : setAlbumTracks(() => tracks.map(x => [<Image key={setUniqueKey()} alt="tiny album cover" src={album.images[0].url} height={tinyAlbumCoverSize} width={tinyAlbumCoverSize} />,<p className="col-span-8 tracking-wide" key={setUniqueKey()}>{x.name}</p>])); 
 	}
+	const albumArtists = album.artists.map(x => x.name);
 
 	return (
 		<div>
 			<div className="flex gap-9 items-center justify-center tracking-widest">
 				<button className="col-span-2" onClick={expandAccordian}>
+					{albumArtists}
 					<AlbumNameAndCover album={album} albumCoverSize={90}/>
 				</button>
 				<p>add album to playlist </p>
