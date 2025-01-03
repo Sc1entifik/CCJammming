@@ -2,6 +2,7 @@ import MusicForm from "./components/musicForm";
 import ArtistTopTracks from "./components/artistTopTracks";
 import ArtistAlbums from "./components/artistAlbums";
 import Albums from "./components/albums";
+import Songs from "./components/songs";
 
 
 export default async function AccessCode({ searchParams }: {searchParams: Promise<{[key: string]: string |  undefined }>}) {
@@ -23,6 +24,11 @@ export default async function AccessCode({ searchParams }: {searchParams: Promis
 
 		case "albums": {
 			musicElement = <Albums albumName={searchTerm}/>
+			break;
+		}
+
+		case "songs": {
+			musicElement = <Songs songName={searchTerm}/>
 			break;
 		}
 		
