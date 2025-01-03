@@ -1,8 +1,8 @@
 import { assertEquals } from "jsr:@std/assert";
 
-import { fetchAlbumsByName, fetchAlbumTracksById, fetchArtistAlbums, fetchArtistDataByName, fetchArtistTopTracks } from "./commonFetches";
+import { fetchAlbumsByName, fetchAlbumTracksById, fetchArtistAlbums, fetchArtistDataByName, fetchArtistTopTracks, fetchTracksByName } from "./commonFetches";
 import { publicAccessObject } from "./spotifyOAuth";
-import { Album } from "./fetchInterfaces";
+import { Album, Track } from "./fetchInterfaces";
 
 
 const daftPunkAlbumAndTrackList = () => {
@@ -98,5 +98,19 @@ Deno.test("Fetch Abums Query Search: Fetch Albums By Name", async() => {
 
 		assertEquals(targetAlbum?.name, album);
 	}
-
 });
+
+
+Deno.test("Fetch Track Query Search: Fetch Tracks By Name", async() => {
+	type ArtistAndTracks = [artist: string, track: string];
+	const accessHeader = await publicAccessObject().then(res => res.authHeader);
+	const artistsAndTracks: ArtistAndTracks[] = [["Eminem", "Role Model"], ["Cage", "Underground Rapstar"], ["Metallica", "Ride The Lightning (Remastered)"], ["Tracy Chapman", "Fast Car"], ["Taylor Swift", "Shake It Off"], ["Marilyn Manson", "The Beautiful People"], ["Alanis Morissette", "Ironic"]]; 
+
+	for (const songAndArtist of artistsAndTracks) {
+		const [artistName, trackName] = songAndArtist;
+		const trackFetch = await fetchTracksByName(trackName, accessHeader);
+		const targetTrack = trackFetch.find((x: Track) => x.artists.find(y => y.name === artistName));
+
+		assertEquals(targetTrack.name, trackName);
+	}
+}); 
