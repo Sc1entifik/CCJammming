@@ -1,4 +1,4 @@
-import SpotifyImage from "./helper/interfaces/spotifyImage"
+import { SpotifyImage } from "@/utils/fetchInterfaces"
 
 interface Owner {
 	external_urls: { spotify: string }

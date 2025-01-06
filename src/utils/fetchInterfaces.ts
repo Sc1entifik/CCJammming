@@ -1,8 +1,4 @@
-interface SpotifyImage {
-	url: string
-	height: number
-	width: number
-}
+
 
 interface simplifiedArtist {
 	external_urls: {
@@ -14,6 +10,12 @@ interface simplifiedArtist {
 	name: string
 	type: string
 	uri: string
+}
+
+export interface SpotifyImage {
+	url: string
+	height: number
+	width: number
 }
 
 export interface AuthHeader {

@@ -1,5 +1,6 @@
-import SpotifyEndpoints from "@/utils/endpoints";
 import { cookies } from "next/headers";
+
+import SpotifyEndpoints from "@/utils/endpoints";
 import SimplifiedPlaylistObject from "./userPlaylistInterfaces";
 import SpotifyImage from "./helper/interfaces/spotifyImage";
 import Image from "next/image";
