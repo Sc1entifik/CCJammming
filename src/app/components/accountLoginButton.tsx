@@ -1,16 +1,10 @@
-"use client";
-import { useState } from "react";
-import { deleteAuthCookie, spotifyAccountLoginAuthorization } from "@/utils/serverActions";
+import { spotifyAccountLoginAuthorization } from "@/utils/serverActions";
 
-export default function AccountLoginButton({connectionStatus}: {connectionStatus: boolean}) {
-	const [isAccountConnected, setIsAccountConnected] = useState(connectionStatus);
-	
+type HandleClick = () => void;
+
+export default function AccountLoginButton({connectionStatus, handleClick}: {connectionStatus: boolean, handleClick: HandleClick}) {
 	const loginButton = <button onClick={spotifyAccountLoginAuthorization}>Connect Spotify Account</button>;
-	const logoutButton = <button onClick={() => {
-		setIsAccountConnected(false);
-		deleteAuthCookie();
-		}
-	}>Disconnect Spotify Account</button>;
+	const logoutButton = <button onClick={handleClick}>Disconnect Spotify Account</button>;
 
-	return isAccountConnected ? logoutButton : loginButton;
+	return <p>{connectionStatus ? logoutButton : loginButton}</p>;
 }

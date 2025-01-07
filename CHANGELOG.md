@@ -10,6 +10,7 @@
 - v-0.7.2 - Refactored all elements to use new fetching system. Removed old fetching system. Removed unnecessary helper component files. Wrote more tests for fetching system.
 - v-0.7.5 - Wrote fetch and test for album form query. Added Album fetch to form radio button. Refactored albumCollapse.tsx to show artist for every album. Renamed ArtistAlbumSongGrid to AlbumSongGrid and renamed artistAlbumGrid.tsx to albumGrid.tsx. 
 - v-0.7.6 - Wrote fetch and test for song form query. Wrote Functional components for song lookup.
+- v-0.7.8 - Wrote fetch for user playlists. Wrote fetch for user account. Filtered playlists for only playlists the user owns and can modify. Created a separate page route for selecting playlists. Created a hidden link in layout.ts that shows up after user connects their spotify account which links to the setCurrentPlaylist route.
 
 
 Bug Fixes:

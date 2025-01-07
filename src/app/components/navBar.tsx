@@ -1,6 +1,7 @@
 import Link from "next/link";
-import AccountLoginButton from "./accountLoginButton";
 import { cookies } from "next/headers";
+import AuthCookieElements from "./authCookieElements";
+
 
 export default async function NavBar() { 
 	const cookieStore = await cookies();
@@ -11,9 +12,7 @@ export default async function NavBar() {
 				<Link href="/tutorial">Site Tutorial</Link>
 			</p>
 			<p className="mr-3 text-2xl"> {">"} </p>
-			<p className="mr-3">
-				<AccountLoginButton connectionStatus={cookieStore.has("auth")}/>
-			</p>
+			<AuthCookieElements connectionStatus={cookieStore.has("auth")}/>
 		</div>
 	);
 }

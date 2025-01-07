@@ -1,34 +1,32 @@
 import { cookies } from "next/headers";
-
-import SpotifyEndpoints from "@/utils/endpoints";
-import SimplifiedPlaylistObject from "./userPlaylistInterfaces";
-import SpotifyImage from "./helper/interfaces/spotifyImage";
 import Image from "next/image";
-import { keySetter } from "@/utils/helper";
+
+import SimplifiedPlaylistObject from "./userPlaylistInterfaces";
+import SpotifyEndpoints from "@/utils/endpoints";
+import { keySetter, parseAuthHeaderFromCookieStore } from "@/utils/helper";
+import { fetchUserProfile } from "@/utils/commonFetches";
+
+const mosaicImageSize = 200;
 
 export default async function UserPlaylists() {
 	const url = SpotifyEndpoints.USER_PLAYLISTS;
-	const authHeader = await cookies().then(res => res.get("auth").value);
-	const userPlaylists: SimplifiedPlaylistObject[] = await fetch(url, { headers: JSON.parse(authHeader).headers }).then(res => res.json()).then(res => res.items);
-	const currentUserId = await fetch(SpotifyEndpoints.USER_PROFILE_URI, { headers: JSON.parse(authHeader).headers }).then(res => res.json()).then(res => res.id);
-	const smallestImage = (img: SpotifyImage[]): SpotifyImage => img[img.length -1]
+	const authHeader = parseAuthHeaderFromCookieStore(await cookies());
+	const userPlaylists: SimplifiedPlaylistObject[] = await fetch(url, authHeader).then(res => res.json()).then(res => res.items); 
+	const userId = await fetchUserProfile(authHeader).then(x => x.id); 
 	const uniqueKeyGenerator = keySetter();
 	const userOwnedPlaylists = userPlaylists
-		.filter(x => x.images !== null && x.owner.id === currentUserId)
+		.filter(x => x.owner.id === userId)
 		.map(x => (
 			<div key={uniqueKeyGenerator()} className="font-tropiLand flex gap-5 mt-4">
-				<Image key={uniqueKeyGenerator()} alt="Mosaic of playlist album covers" src={smallestImage(x.images).url} height={smallestImage(x.images).height} width={smallestImage(x.images).width} />
+				{x.images && <Image key={uniqueKeyGenerator()} alt="Mosaic of playlist album covers" src={x.images[0].url} height={mosaicImageSize} width={mosaicImageSize} />}
 				<h2 key={uniqueKeyGenerator()}>{x.name}</h2>
 				<p key={uniqueKeyGenerator()}>{x.description}</p>
 			</div>
-			
 	));
-
 
 	return (
 		<div>
 			{userOwnedPlaylists}
 		</div>
 	);
-	
 }

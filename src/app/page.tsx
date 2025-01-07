@@ -3,6 +3,7 @@ import ArtistTopTracks from "./components/artistTopTracks";
 import ArtistAlbums from "./components/artistAlbums";
 import Albums from "./components/albums";
 import Songs from "./components/songs";
+import { cookies } from "next/headers";
 
 
 export default async function AccessCode({ searchParams }: {searchParams: Promise<{[key: string]: string |  undefined }>}) {

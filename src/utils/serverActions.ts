@@ -11,13 +11,22 @@ import { generateRandomString } from "./helper";
 const createStateCookie = async (state: string) => {
 	const isProduction = Deno.env.get("SERVER_ENVIRONMENT") === "Production";
 	const cookieStore = await cookies();
-	cookieStore.set("state", state, { httpOnly: true, secure: isProduction, expires: Date.now() +7500 });
+
+	cookieStore.set("state", state, { httpOnly: true, secure: isProduction, expires: Date.now() + 7500 });
 };
 
 
 export const deleteAuthCookie = async () => {
 	await cookies().then(res => res.delete("auth"));
 };
+
+
+export const createCurrentPlaylistCookie = async (playlistId: string) => {
+	const isProduction = Deno.env.get("SERVER_ENVIRONMENT") === "Production";
+	const cookieStore = await cookies();
+
+	cookieStore.set("currentPlaylist", playlistId, {httpOnly: true, secure: isProduction, expires: Date.now() + 60000});
+}
 
 
 export const spotifyAccountLoginAuthorization = async () => {

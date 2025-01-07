@@ -1,6 +1,6 @@
 import SpotifyEndpoints from "./endpoints";
 import { validateQueryTerm } from "./helper";
-import { Artist, Track, Album } from "./fetchInterfaces";
+import { Artist, Track, Album, UserProfile } from "./fetchInterfaces";
 
 enum QueryTermTypes {
 	ALBUM = "album",
@@ -83,3 +83,6 @@ export const fetchAlbumsByName = (albumName: string, authHeader: AuthHeader): Pr
 
 
 export const fetchTracksByName = (trackName: string, authHeader: AuthHeader): Promise<Track[]> => querySearch(trackName, "track", authHeader).then(res => res.tracks).then(res => res.items);
+
+
+export const fetchUserProfile = (authHeader: AuthHeader): Promise<UserProfile> => fetch(SpotifyEndpoints.USER_PROFILE_URI, authHeader).then(res => res.json());
