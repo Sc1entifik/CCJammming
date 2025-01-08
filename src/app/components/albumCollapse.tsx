@@ -1,9 +1,9 @@
 "use client";
 import Image from "next/image";
-import Album from "./helper/albumInterfaces";
 import { keySetter } from "@/utils/helper";
 import { useState } from "react";
 import AlbumNameAndCover from "./albumNameAndCover";
+import { Album } from "@/utils/fetchInterfaces";
 
 interface SimplifiedTrackObject {
 	name: string

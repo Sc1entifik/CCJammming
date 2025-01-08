@@ -1,6 +1,7 @@
 import SpotifyEndpoints from "./endpoints";
 import { validateQueryTerm } from "./helper";
-import { Artist, Track, Album, UserProfile } from "./fetchInterfaces";
+import { Artist, Track, Album, UserProfile, PlaylistTrackObject } from "./fetchInterfaces";
+import { headers } from "next/headers";
 
 enum QueryTermTypes {
 	ALBUM = "album",
@@ -86,3 +87,21 @@ export const fetchTracksByName = (trackName: string, authHeader: AuthHeader): Pr
 
 
 export const fetchUserProfile = (authHeader: AuthHeader): Promise<UserProfile> => fetch(SpotifyEndpoints.USER_PROFILE_URI, authHeader).then(res => res.json());
+
+
+export const fetchPlaylistItems = (playlistId: string, authHeader: AuthHeader): Promise<PlaylistTrackObject[]> => fetch(SpotifyEndpoints.PLAYLIST_URI + playlistId + "/tracks", authHeader).then(res => res.json).then(res => res.items);
+
+
+export const fetchAddTracksToPlaylist = (playlistId: string, trackUris: string, authHeader: AuthHeader) => {
+	const url = SpotifyEndpoints.PLAYLIST_URI + playlistId + "/tracks";
+	const options = {
+		method: "post",
+		headers: {
+			Authorization: authHeader.headers.Authorization,
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({uris: [trackUris]}), 
+	};
+
+	fetch(url, options).then(res => res.json());
+};

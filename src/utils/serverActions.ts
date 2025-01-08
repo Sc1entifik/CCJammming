@@ -16,20 +16,6 @@ const createStateCookie = async (state: string) => {
 };
 
 
-export const setCurrentPlaylistClosure = async(playlistId: string) => {
-	
-	const createCurrentPlaylistCookie = async () => {
-		const isProduction = Deno.env.get("SERVER_ENVIRONMENT") === "Production";
-		const cookieStore = await cookies();
-
-		cookieStore.set("currentPlaylist", playlistId, {httpOnly: true, secure: isProduction, expires: Date.now() + 60000});
-		}
-
-	return createCurrentPlaylistCookie;
-}
-
-
-
 export const deleteAuthCookie = async () => {
 	await cookies().then(res => res.delete("auth"));
 };
