@@ -1,5 +1,3 @@
-
-
 interface simplifiedArtist {
 	external_urls: {
 		spotify: string
@@ -41,7 +39,7 @@ interface PodcastShow {
 
 interface TrackObject {
 	album: Album
-	artists: simplifiedArtist
+	artists: simplifiedArtist[]
 	available_markets: string[]
 	disc_number: number
 	duration_ms: number
@@ -227,7 +225,7 @@ export interface Playlist {
 	}
 	href: string
 	id: string
-	images: SpotifyImage
+	images: SpotifyImage[]
 	name: string
 	owner: Owner
 	public: boolean
