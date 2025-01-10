@@ -6,6 +6,7 @@ import { keySetter, parseAuthHeaderFromCookieStore } from "@/utils/helper";
 import { fetchUserProfile } from "@/utils/commonFetches";
 import CurrentPlaylist from "@/app/components/currentPlaylist";
 import Playlist from "./playlist";
+import UnfollowPlaylistButton from "./unfollowPlaylistButton";
 
 const oneHour = 60000 * 60;
 
@@ -33,7 +34,7 @@ export default async function UserPlaylists() {
 	);
 
 	return (
-		<div className="flex justify-evenly">
+		<div className="flex justify-between">
 			<div className="flex flex-col mx-4">
 			{userOwnedPlaylists}
 			</div>
@@ -41,9 +42,10 @@ export default async function UserPlaylists() {
 			<div className="font-tropiLand">
 				<h2 className="text-center">Current Playlist</h2>
 				<br/>
-				<CurrentPlaylist playlistId={cookieStore.get("currentPlaylist").value}/>
+				<CurrentPlaylist/>
 			</div>
 			}
+			{cookieStore.has("currentPlaylist") && <UnfollowPlaylistButton/>}
 		</div>
 	);
 }

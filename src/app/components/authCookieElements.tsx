@@ -15,7 +15,7 @@ export default function AuthCookieElements({connectionStatus}: {connectionStatus
 	return (
 		<div className="flex">
 			<HiddenLink connectionStatus={isAccountConnected} />
-				<AccountLoginButton connectionStatus={isAccountConnected} handleClick={handleClick}/>
+			<AccountLoginButton connectionStatus={isAccountConnected} handleClick={handleClick}/>
 		</div>
 	);
 }

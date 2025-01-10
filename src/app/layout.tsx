@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import NavBar from "./components/navBar";
+import Link from "next/link";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -25,7 +26,7 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
 
 			<header className="font-bounce mx-3 mt-6 mb-10 tracking-wider flex flex-auto justify-between">
-				<p className="font-extrabold text-6xl">jaMMMing</p>
+				<Link className="font-extrabold text-6xl" href="/">jaMMMing</Link>
 				<NavBar />
 		</header>
 

@@ -1,11 +1,12 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import querystring from "node:querystring";
 
 import SpotifyEndpoints from "./endpoints";
-import { generateRandomString } from "./helper";
+import { generateRandomString, parseAuthHeaderFromCookieStore } from "./helper";
+import { AuthHeader } from "./fetchInterfaces";
 
 
 const createStateCookie = async (state: string) => {
@@ -41,3 +42,19 @@ export const spotifyAccountLoginAuthorization = async () => {
 };
 
 
+export const unfollowCurrentPlaylist = async() => {
+	const cookieStore = await cookies();
+	const authHeader: AuthHeader = parseAuthHeaderFromCookieStore(cookieStore);
+	const currentPlaylist = cookieStore.get("currentPlaylist").value;
+	const url = SpotifyEndpoints.PLAYLIST_URI + currentPlaylist + "/followers";
+	const options = {
+		method: "delete",
+		headers: {
+			Authorization: authHeader.headers.Authorization,
+		},
+	};
+
+	await fetch(url, options);
+	cookieStore.delete("currentPlaylist");
+	redirect("/setCurrentPlaylist")
+}

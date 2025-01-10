@@ -1,15 +1,18 @@
+import { cookies } from "next/headers";
+import Image from "next/image";
+
 import { fetchPlaylistById } from "@/utils/commonFetches";
 import { PlaylistTrackObject } from "@/utils/fetchInterfaces";
 import { keySetter, parseAuthHeaderFromCookieStore } from "@/utils/helper";
-import { cookies } from "next/headers";
-import Image from "next/image";
 
 const playlistImageSize = 200;
 const trackAlbumImageSize = 60;
 
 
-export default async function CurrentPlaylist({playlistId}: {playlistId: string}) {
-	const authHeader = parseAuthHeaderFromCookieStore(await cookies());
+export default async function CurrentPlaylist() {
+	const cookieStore = await cookies();
+	const playlistId = cookieStore.get("currentPlaylist")?.value;
+	const authHeader = parseAuthHeaderFromCookieStore(cookieStore);
 	const currentPlaylist = await fetchPlaylistById(playlistId, authHeader);
 	const setUniqueKey = keySetter();
 	const playlistTracks = currentPlaylist.tracks.items
@@ -51,8 +54,6 @@ export default async function CurrentPlaylist({playlistId}: {playlistId: string}
 				<p>Artists</p>
 				{playlistTracks}
 			</div>
-
 		</div>
 	);
-
 }

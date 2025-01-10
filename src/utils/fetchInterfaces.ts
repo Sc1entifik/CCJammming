@@ -105,7 +105,7 @@ export interface SpotifyImage {
 }
 
 export interface AuthHeader {
-	headers: {headers: string}
+	headers: {Authorization: string}
 }
 
 export interface Artist extends simplifiedArtist {
