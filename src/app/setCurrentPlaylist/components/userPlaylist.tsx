@@ -7,6 +7,7 @@ import { fetchUserProfile } from "@/utils/commonFetches";
 import CurrentPlaylist from "@/app/components/currentPlaylist";
 import Playlist from "./playlist";
 import UnfollowPlaylistButton from "./unfollowPlaylistButton";
+import NewPlaylistForm from "./newPlaylistForm";
 
 const oneHour = 60000 * 60;
 
@@ -34,8 +35,11 @@ export default async function UserPlaylists() {
 	);
 
 	return (
-		<div className="flex justify-between">
+		<div className="flex justify-evenly">
 			<div className="flex flex-col mx-4">
+			<h2 className="font-tropiLand tracking-widest">Add New Playlist</h2>
+			<NewPlaylistForm />
+			<h2 className="font-tropiLand tracking-widest">Choose Current Playlist</h2>
 			{userOwnedPlaylists}
 			</div>
 			{cookieStore.has("currentPlaylist") && 

@@ -1,3 +1,5 @@
+import { AuthHeader } from "./fetchInterfaces";
+
 const toCapitalCase = (queryTerm: string): string => {
 	let validatedInput = "";
 
@@ -66,4 +68,4 @@ export const generateRandomString = (stringLength: number): string => {
 };
 
 
-export const parseAuthHeaderFromCookieStore = (cookieStore: object) => JSON.parse(cookieStore.get("auth").value).authHeader;
+export const parseAuthHeaderFromCookieStore = (cookieStore: object): AuthHeader => JSON.parse(cookieStore.get("auth").value).authHeader;

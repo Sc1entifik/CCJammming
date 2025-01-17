@@ -7,6 +7,7 @@ import querystring from "node:querystring";
 import SpotifyEndpoints from "./endpoints";
 import { generateRandomString, parseAuthHeaderFromCookieStore } from "./helper";
 import { AuthHeader } from "./fetchInterfaces";
+import { fetchUserProfile } from "./commonFetches";
 
 
 const createStateCookie = async (state: string) => {
@@ -57,4 +58,27 @@ export const unfollowCurrentPlaylist = async() => {
 	await fetch(url, options);
 	cookieStore.delete("currentPlaylist");
 	redirect("/setCurrentPlaylist")
+}
+
+
+export const addPlaylist = async(formData: FormData) => {
+	const authHeader = parseAuthHeaderFromCookieStore(await cookies());
+	const userId = await fetchUserProfile(authHeader).then(x => x.id);
+	const url = SpotifyEndpoints.USERS_URI + userId + "/playlists";
+	const body = JSON.stringify({
+		name: formData.get("newPlaylistName")?.toString().trim(),
+		description: formData.get("newPlaylistDescription")?.toString().trim(),
+		"public": formData.get("playlistType")?.toString() === "public",
+	});
+	const options = {
+		method: "post",
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": authHeader.headers.Authorization,
+		},
+		body,
+	};
+	await fetch(url, options);
+
+	redirect("/setCurrentPlaylist");
 }

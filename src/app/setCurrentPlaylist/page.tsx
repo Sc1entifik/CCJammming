@@ -1,5 +1,5 @@
-import UserPlaylists from "./components/userPlaylist"
+import UserPlaylists from "./components/userPlaylist";
 
 export default function SetCurrentPlaylist() {
-	return <UserPlaylists />
+	return <UserPlaylists/>
 }

@@ -16,6 +16,7 @@ enum SpotifyEndpoints {
 	USER_PLAYLISTS = `${SpotifyEndpoints.USER_PROFILE_URI}/playlists`,
 	TRACK_BY_TRACK_ID = `${SpotifyEndpoints.MAIN_API_URI}/v1/tracks/`,
 	PLAYLIST_URI = `${SpotifyEndpoints.MAIN_API_URI}/v1/playlists/`,
+	USERS_URI = `${SpotifyEndpoints.MAIN_API_URI}/v1/users/`
 }
 
 
