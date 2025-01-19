@@ -3,18 +3,8 @@ import { cookies } from "next/headers";
 
 import AlbumNameAndCover from "./albumNameAndCover";
 import { keySetter, parseAuthHeaderFromCookieStore } from "@/utils/helper";
-
-interface Track {
-	name: string
-	album: {
-		name: string
-		images: {
-			url: string
-			height: number
-			width: number
-		}[]
-	}
-}
+import AddTrackToPlaylist from "./addTrackToPlaylist";
+import { Track } from "@/utils/fetchInterfaces";
 
 
 export default async function SongGrid({queryTerm, gridType}: {queryTerm: string, gridType: string}) {
@@ -29,7 +19,7 @@ export default async function SongGrid({queryTerm, gridType}: {queryTerm: string
 	}
 
 	const setUniqueKey = keySetter();
-	const songGrid = tracks.map((x: Track) => [<AlbumNameAndCover key={setUniqueKey()} album={x.album} albumCoverSize={90} />, <p key={setUniqueKey()} className={"text-textColor max-w-32"}>{x.name}</p>, <p key={setUniqueKey()} className="text-textColor">+</p>]);
+	const songGrid = tracks.map((x: Track) => [<AlbumNameAndCover key={setUniqueKey()} album={x.album} albumCoverSize={90} />, <p key={setUniqueKey()} className={"text-textColor max-w-32"}>{x.name}</p>, <AddTrackToPlaylist key={setUniqueKey()} trackUri={x.uri}/>]);
 
 	return (
 		<div className="font-tropiLand grid grid-cols-3 items-center justify-items-start gap-10 mt-6 tracking-widest">
