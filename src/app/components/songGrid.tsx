@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 
 import AlbumNameAndCover from "./albumNameAndCover";
 import { keySetter, parseAuthHeaderFromCookieStore } from "@/utils/helper";
-import AddTrackToPlaylist from "./addTrackToPlaylist";
+import AddTracksToPlaylist from "./addTracksToPlaylist";
 import { Track } from "@/utils/fetchInterfaces";
 
 
@@ -19,7 +19,7 @@ export default async function SongGrid({queryTerm, gridType}: {queryTerm: string
 	}
 
 	const setUniqueKey = keySetter();
-	const songGrid = tracks.map((x: Track) => [<AlbumNameAndCover key={setUniqueKey()} album={x.album} albumCoverSize={90} />, <p key={setUniqueKey()} className={"text-textColor max-w-32"}>{x.name}</p>, <AddTrackToPlaylist key={setUniqueKey()} trackUri={x.uri}/>]);
+	const songGrid = tracks.map((x: Track) => [<AlbumNameAndCover key={setUniqueKey()} album={x.album} albumCoverSize={90} />, <p key={setUniqueKey()} className={"text-textColor max-w-32"}>{x.name}</p>, <AddTracksToPlaylist key={setUniqueKey()} trackUris={[x.uri]}><p>Add Track To Playlist</p></AddTracksToPlaylist>]);
 
 	return (
 		<div className="font-tropiLand grid grid-cols-3 items-center justify-items-start gap-10 mt-6 tracking-widest">

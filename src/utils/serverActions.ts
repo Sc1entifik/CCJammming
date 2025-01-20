@@ -82,3 +82,27 @@ export const addPlaylist = async(formData: FormData) => {
 
 	redirect("/setCurrentPlaylist");
 }
+
+
+export const addItemsToCurrentPlaylist = async (uris: string[]) => {
+	const cookieStore = await cookies();
+	const authHeader = parseAuthHeaderFromCookieStore(cookieStore);
+	const playlistId = cookieStore.get("currentPlaylist")?.value;
+	const url = SpotifyEndpoints.PLAYLIST_URI + playlistId + "/tracks";
+	const body = JSON.stringify({uris});
+	const options = {
+		method: "post",
+		headers: {
+			Authorization: authHeader.headers.Authorization,
+			"Content-Type": "application/json",
+		},
+		body,
+	};
+
+	if (playlistId) {
+		await fetch(url, options);
+
+	} else {
+		console.log("Could not add track! No playlist chosen!!");
+	}
+};

@@ -1,26 +1,27 @@
 "use client";
-import Image from "next/image";
 import { keySetter } from "@/utils/helper";
 import { useState } from "react";
 import AlbumNameAndCover from "./albumNameAndCover";
 import { Album } from "@/utils/fetchInterfaces";
+import AlbumTrack from "./albumTracks";
 
 interface SimplifiedTrackObject {
 	name: string
 	id: string
 	is_playable: boolean
+	uri: string
 }
 
-export default function AlbumTracksCollapse({album, tracks}: {album: Album, tracks: SimplifiedTrackObject[]}) {
-	const [albumTracks, setAlbumTracks] = useState(null);
-	const tinyAlbumCoverSize = 22;
-	const setUniqueKey = keySetter();
 
+export default function AlbumTracksCollapse({album, tracks}: {album: Album, tracks: SimplifiedTrackObject[]}) {
+	const [isExpanded, setIsExpanded] = useState(false);
+	const setUniqueKey = keySetter();
+	const albumCover = album.images[0];
+	const albumTracks = tracks.map(x => <AlbumTrack key={setUniqueKey()} track={x} albumCover={albumCover}/>);
 
 	function expandAccordian() {
-		albumTracks ? setAlbumTracks(null) : setAlbumTracks(() => tracks.map(x => [<Image key={setUniqueKey()} alt="tiny album cover" src={album.images[0].url} height={tinyAlbumCoverSize} width={tinyAlbumCoverSize} />,<p className="col-span-8 tracking-wide" key={setUniqueKey()}>{x.name}</p>])); 
+		setIsExpanded(() => !isExpanded);
 	}
-
 	
 	const albumArtists = album.artists.map(x => x.name);
 
@@ -33,9 +34,7 @@ export default function AlbumTracksCollapse({album, tracks}: {album: Album, trac
 				</button>
 				<p>add album to playlist </p>
 			</div>
-			<div className="grid grid-cols-9 gap-y-1 my-4">
-				{albumTracks}
-			</div>
+				{isExpanded && albumTracks}
 		</div>
 
 
