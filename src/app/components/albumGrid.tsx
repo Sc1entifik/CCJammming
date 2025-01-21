@@ -11,12 +11,12 @@ export default async function AlbumSongGrid({artistName, fetchType}: {artistName
 	let albumFetch;
 
 	switch (fetchType) {
-		case "artist name":
-			albumFetch = await fetchArtistAlbums(artistName, authHeader);
-			break;
-
 		case "album name":
 			albumFetch = await fetchAlbumsByName(artistName, authHeader);
+			break;
+
+		default:
+			albumFetch = await fetchArtistAlbums(artistName, authHeader);
 			break;
 	}
 

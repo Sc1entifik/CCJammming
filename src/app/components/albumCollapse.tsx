@@ -4,6 +4,7 @@ import { useState } from "react";
 import AlbumNameAndCover from "./albumNameAndCover";
 import { Album } from "@/utils/fetchInterfaces";
 import AlbumTrack from "./albumTracks";
+import AddTracksToPlaylist from "./addTracksToPlaylist";
 
 interface SimplifiedTrackObject {
 	name: string
@@ -17,7 +18,6 @@ export default function AlbumTracksCollapse({album, tracks}: {album: Album, trac
 	const [isExpanded, setIsExpanded] = useState(false);
 	const setUniqueKey = keySetter();
 	const albumCover = album.images[0];
-	const albumTracks = tracks.map(x => <AlbumTrack key={setUniqueKey()} track={x} albumCover={albumCover}/>);
 
 	function expandAccordian() {
 		setIsExpanded(() => !isExpanded);
@@ -32,9 +32,11 @@ export default function AlbumTracksCollapse({album, tracks}: {album: Album, trac
 					{albumArtists}
 					<AlbumNameAndCover album={album} albumCoverSize={90}/>
 				</button>
+				<AddTracksToPlaylist trackUris={tracks.map(x => x.uri)}>
 				<p>add album to playlist </p>
+				</AddTracksToPlaylist>
 			</div>
-				{isExpanded && albumTracks}
+				{isExpanded && tracks.map(x => <AlbumTrack key={setUniqueKey()} track={x} albumCover={albumCover} />)}
 		</div>
 
 
