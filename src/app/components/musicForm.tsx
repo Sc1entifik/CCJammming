@@ -1,11 +1,12 @@
 "use client"
+import { createRedirectCookie } from "@/utils/serverActions";
 import Form from "next/form";
 
 
 export default function MusicForm() {
 	
 	return (
-			<Form action="/" className="font-tropiLand">
+			<Form action={createRedirectCookie} className="font-tropiLand">
 
 				<input type="text" name="searchTerm" placeholder="Search Term"/>
 				<br/>

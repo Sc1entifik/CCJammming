@@ -14,6 +14,7 @@
 - v-0.8 - Created new fetches that can look up playlists by playlist id. Created functional components to display the current playlist and it's contents. The setCurrentPlaylist route now displays current playlist once chosen. 
 - v-0.82 - Added unfollowCurrentPlaylist server function which uses a delete fetch to unfollow the "current playlist", deletes the "currentPlaylist" cookie and then redirects the user back to the set CurrentPlaylist page which keeps the page from erroring out due to the "currentPlaylist" cookie returning undefined to the fetch playlistId variable sent to the fetchPlaylistById function. Added functional component for a button to unfollow current playlist from the setCurrentPlaylist route. Changed Jammming header at the top of the page to a clickable link to the home page.
 - v-0.83 - Added form for adding playlists to your list of playlists. Added AddTracksToPlaylist functional component which allows adding of songs to current playlist. Added AddTracksToPlaylist to songsGrid.tsx. Song lookup now can add tracks to playlist. 
+- v-0.84 - Adding tracks now displays inside of playlist in real time using redirect from the server action. Fixed bottom margin on current playlist so there is now space between the last item of the playlist and the bottom of the page.
 
 
 Bug Fixes:

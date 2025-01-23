@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { deleteAuthCookie, spotifyAccountLoginAuthorization } from "@/utils/serverActions";
+import { deleteAuthCookie } from "@/utils/serverActions";
 import HiddenLink from "./hiddenLink";
 import AccountLoginButton from "./accountLoginButton";
 

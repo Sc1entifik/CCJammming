@@ -1,47 +1,17 @@
-import MusicForm from "./components/musicForm";
-import ArtistTopTracks from "./components/artistTopTracks";
-import ArtistAlbums from "./components/artistAlbums";
-import Albums from "./components/albums";
-import Songs from "./components/songs";
+import { cookies } from "next/headers"
+import MainAppDisplay from "./components/mainAppDisplay";
+import ConnectSpotifyAccountMessage from "./components/connectSpotifyAccountMessage";
 
+export default async function MainApp({ searchParams }: { searchParams: Promise<{[key: string]: string | undefined}> }) {
+	const cookieStore = await cookies();
 
-export default async function AccessCode({ searchParams }: {searchParams: Promise<{[key: string]: string |  undefined }>}) {
+	if (cookieStore.has("auth") && cookieStore.has("currentPlaylist")) {
+		const {searchTerm="", searchTermType=""} = await searchParams;
 
-	const {searchTerm="", searchTermType=""} = await searchParams;
-	let musicElement;
+		return <MainAppDisplay searchTerm={searchTerm} searchTermType={searchTermType}/>
 
-	
-	switch (searchTermType) {
-		case "artistTopTracks": {
-			musicElement = <ArtistTopTracks artistName={searchTerm}/>;
-			break;
-		}
-
-		case "albumsByArtist": {
-			musicElement = <ArtistAlbums artistName={searchTerm} />
-			break;
-		}
-
-		case "albums": {
-			musicElement = <Albums albumName={searchTerm}/>
-			break;
-		}
-
-		case "songs": {
-			musicElement = <Songs songName={searchTerm}/>
-			break;
-		}
-		
-		default: {
-			musicElement = <p></p>
-			break;
-		}
+	} else {
+		return <ConnectSpotifyAccountMessage/>
 	}
 
-	return (
-		<div>
-			<MusicForm />
-			{musicElement}
-		</div>
-		);
 }

@@ -22,7 +22,7 @@ export default async function CurrentPlaylist() {
 			const trackArtistNames = x.track.artists.map(y => y.name).join(", ");
 
 			return (
-				<div key={setUniqueKey()} className="grid grid-cols-subgrid col-span-3 justify-items-start">
+				<div key={setUniqueKey()} className="grid grid-cols-subgrid col-span-3 justify-items-start my-5">
 					<Image alt="Track album photo" src={trackAlbumImage} height={trackAlbumImageSize} width={trackAlbumImageSize}/>
 					<p>{x.track.name}</p>
 					<p>{trackArtistNames}</p>
@@ -35,7 +35,7 @@ export default async function CurrentPlaylist() {
 			const episodeName = x.track.show.name;
 
 			return (
-				<div key={setUniqueKey()} className="grid grid-cols-subgrid col-span-3 justify-items-start">
+				<div key={setUniqueKey()} className="grid grid-cols-subgrid col-span-3 justify-items-start my-5">
 					<Image alt="Podcast episode photo" src={podcastImage} height={trackAlbumImageSize} width={trackAlbumImageSize}/>
 					<p>{episodeName}</p>
 					<p>{podcastPublisher}</p>

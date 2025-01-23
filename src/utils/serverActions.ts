@@ -1,20 +1,42 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { cookies, headers } from "next/headers";
+import { cookies } from "next/headers";
 import querystring from "node:querystring";
 
 import SpotifyEndpoints from "./endpoints";
-import { generateRandomString, parseAuthHeaderFromCookieStore } from "./helper";
+import { generateRandomString, parseAuthHeaderFromCookieStore, validateQueryTerm } from "./helper";
 import { AuthHeader } from "./fetchInterfaces";
 import { fetchUserProfile } from "./commonFetches";
 
 
-const createStateCookie = async (state: string) => {
+const createNamedCookie = async (cookieName: string, value: string, expires: number) => {
 	const isProduction = Deno.env.get("SERVER_ENVIRONMENT") === "Production";
 	const cookieStore = await cookies();
 
-	cookieStore.set("state", state, { httpOnly: true, secure: isProduction, expires: Date.now() + 7500 });
+	cookieStore.set(cookieName, value, { httpOnly: true, secure: isProduction, expires });
+};
+
+
+const createStateCookie = async(state: string) => {
+	const cookieName = "state";
+	const expires = Date.now() + 7500;
+	
+	await createNamedCookie(cookieName, state, expires);
+}
+
+
+export const createRedirectCookie = async (formData: FormData) => {
+	const [searchTerm="", searchTermType=""] = formData.values();
+	const redirectUrl = validateQueryTerm(`/?searchTerm=${searchTerm}&searchTermType=${searchTermType}`);
+	const cookieName = "redirectUrl";
+	const oneMinute = 60000;
+	const tenMinutes = oneMinute * 10;
+	const oneHour = oneMinute * 60;
+	const expires = Date.now() + oneHour + tenMinutes;
+	await createNamedCookie(cookieName, redirectUrl, expires);
+
+	redirect(redirectUrl);
 };
 
 
@@ -87,6 +109,7 @@ export const addPlaylist = async(formData: FormData) => {
 export const addItemsToCurrentPlaylist = async (uris: string[]) => {
 	const cookieStore = await cookies();
 	const authHeader = parseAuthHeaderFromCookieStore(cookieStore);
+	const redirectUrl = cookieStore.get("redirectUrl")?.value;
 	const playlistId = cookieStore.get("currentPlaylist")?.value;
 	const url = SpotifyEndpoints.PLAYLIST_URI + playlistId + "/tracks";
 	const body = JSON.stringify({uris});
@@ -104,5 +127,9 @@ export const addItemsToCurrentPlaylist = async (uris: string[]) => {
 
 	} else {
 		console.log("Could not add track! No playlist chosen!!");
+	}
+
+	if (typeof redirectUrl === "string") {
+		redirect(redirectUrl);
 	}
 };
