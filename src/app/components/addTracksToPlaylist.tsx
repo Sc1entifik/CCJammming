@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { addItemsToCurrentPlaylist } from "@/utils/serverActions";
 

@@ -1,4 +1,3 @@
-import { validateQueryTerm } from "@/utils/helper";
 import Albums from "./albums";
 import ArtistAlbums from "./artistAlbums";
 import ArtistTopTracks from "./artistTopTracks";
@@ -40,7 +39,7 @@ export default async function MainAppDisplay({searchTerm, searchTermType}: {sear
 		<div className="flex justify-evenly max-h-7">
 			<MusicForm />
 			{musicElement}
-			<CurrentPlaylist/>
+			<CurrentPlaylist searchTerm={searchTerm} searchTermType={searchTermType}/>
 		</div>
 	);
 }
