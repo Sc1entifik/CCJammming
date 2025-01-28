@@ -27,8 +27,12 @@ const createStateCookie = async(state: string) => {
 
 
 export const createRedirectCookie = async (formData: FormData) => {
-	const [searchTerm="", searchTermType=""] = formData.values();
-	const redirectUrl = validateQueryTerm(`/?searchTerm=${searchTerm}&searchTermType=${searchTermType}`);
+	const [searchTerm="", searchTermType="", urlBase=""] = formData.values();
+	console.log(`urlBase: ${urlBase}`);
+	formData.keys().forEach(x => console.log(`formData key: ${x}`));
+	formData.values().forEach(x => console.log(`formData value: ${x}`));
+	const redirectUrl = searchTerm && searchTermType ? validateQueryTerm(`/${urlBase}?searchTerm=${searchTerm}&searchTermType=${searchTermType}`) : `/${urlBase}`;
+	console.log(`redirectUrl: ${redirectUrl}`)
 	const cookieName = "redirectUrl";
 	const oneMinute = 60000;
 	const tenMinutes = oneMinute * 10;
@@ -127,6 +131,33 @@ export const addItemsToCurrentPlaylist = async (uris: string[]) => {
 
 	} else {
 		console.log("Could not add track! No playlist chosen!!");
+	}
+
+	if (typeof redirectUrl === "string") {
+		redirect(redirectUrl);
+	}
+};
+
+
+export const deleteItemsFromCurrentPlaylist = async (tracks: object[], urlBase: string) => {
+	const cookieStore = await cookies();
+	const authHeader = parseAuthHeaderFromCookieStore(cookieStore);
+	const redirectUrl = cookieStore.has("redirectUrl") ? cookieStore.get("redirectUrl")?.value : `/${urlBase}`;
+	const playlistId = cookieStore.get("currentPlaylist")?.value;
+	const snapshot_id = await fetch(SpotifyEndpoints.PLAYLIST_URI + playlistId, authHeader).then(res => res.json()).then(res => res.snapshot_id);
+	const url = SpotifyEndpoints.PLAYLIST_URI + playlistId + "/tracks";
+	const body = JSON.stringify({tracks, snapshot_id});
+	const options = {
+		method: "delete",
+		headers: {
+			Authorization: authHeader.headers.Authorization,
+			"Content-type": "application/json",
+		},
+		body,
+	};
+	
+	if (playlistId) {
+		await fetch(url, options);
 	}
 
 	if (typeof redirectUrl === "string") {

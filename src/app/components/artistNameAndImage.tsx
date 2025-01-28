@@ -2,8 +2,6 @@ import { cookies } from "next/headers";
 import Image from "next/image";
 
 import { fetchArtistDataByName } from "@/utils/commonFetches";
-import SpotifyEndpoints from "@/utils/endpoints";
-import ArtistTopTracks from "./artistTopTracks";
 import { parseAuthHeaderFromCookieStore } from "@/utils/helper";
 
 interface ArtistObject {
@@ -15,10 +13,11 @@ interface ArtistObject {
 	}[]
 }
 
+const artistImageSize = "14rem";
 const MediumArtistImage = ({artist}: {artist: ArtistObject}) => {
 	const mediumSizeImage = artist.images[1];
 
-	return <Image alt={`${artist.name} portrait`} src={mediumSizeImage.url} height={mediumSizeImage.height} width={mediumSizeImage.width} />
+	return <Image alt={`${artist.name} portrait`} src={mediumSizeImage.url} style={{width: artistImageSize, height: artistImageSize}} width={5000} height={5000} />
 }
 
 export default async function ArtistNameAndImage({ artistName }: { artistName: string }) {

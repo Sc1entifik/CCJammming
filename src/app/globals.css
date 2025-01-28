@@ -29,6 +29,14 @@
 	font-style: normal;
 }
 
+
+@layer utilities {
+	.no-scrollbar {
+		scrollbar-width: none;
+	}
+}
+
+
 body {
   color: hsl(160, 90%, 55%);
   background: hsl(340, 60%, 8%);

@@ -7,6 +7,9 @@ import AddTracksToPlaylist from "./addTracksToPlaylist";
 import { Track } from "@/utils/fetchInterfaces";
 
 
+const albumCoverSize = 70;
+
+
 export default async function SongGrid({queryTerm, gridType}: {queryTerm: string, gridType: string}) {
 	let tracks;
 	const cookieStore = await cookies();
@@ -19,14 +22,16 @@ export default async function SongGrid({queryTerm, gridType}: {queryTerm: string
 	}
 
 	const setUniqueKey = keySetter();
-	const songGrid = tracks.map((x: Track) => [<AlbumNameAndCover key={setUniqueKey()} album={x.album} albumCoverSize={90} />, <p key={setUniqueKey()} className={"text-textColor max-w-32"}>{x.name}</p>, <AddTracksToPlaylist key={setUniqueKey()} trackUris={[x.uri]}><p>Add Track To Playlist</p></AddTracksToPlaylist>]);
+	const songGrid = tracks.map((x: Track) => [<AlbumNameAndCover key={setUniqueKey()} album={x.album} albumCoverSize={albumCoverSize} />, <p key={setUniqueKey()} className={"text-textColor max-w-32"}>{x.name}</p>, <AddTracksToPlaylist key={setUniqueKey()} trackUris={[x.uri]}><p>Add Track To Playlist</p></AddTracksToPlaylist>]);
 
 	return (
-		<div className="font-tropiLand grid grid-cols-3 items-center justify-items-start gap-10 mt-6 tracking-widest">
+		<div className="font-tropiLand grid grid-cols-3 my-5 items-center justify-items-start tracking-widest h-[29rem]">
 			<h3>Album</h3>
 			<h3>Track Title</h3>
 			<h3>Add Track To PLaylist</h3>
-			{songGrid}
+			<div className="grid grid-cols-subgrid col-span-3 max-h-[28rem] gap-10 my-6 items-center justify-items-start overflow-auto no-scrollbar">
+				{songGrid}
+			</div>
 		</div>
 	);	
 }

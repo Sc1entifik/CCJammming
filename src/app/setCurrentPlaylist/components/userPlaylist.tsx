@@ -35,18 +35,17 @@ export default async function UserPlaylists() {
 	);
 
 	return (
-		<div className="flex justify-evenly">
-			<div className="flex flex-col mx-4">
-			<h2 className="font-tropiLand tracking-widest">Add New Playlist</h2>
-			<NewPlaylistForm />
-			<h2 className="font-tropiLand tracking-widest">Choose Current Playlist</h2>
-			{userOwnedPlaylists}
+		<div className="flex justify-evenly my-4">
+			<div className="flex flex-col m-4">
+				<h2 className="font-tropiLand tracking-widest">Add New Playlist</h2>
+				<NewPlaylistForm />
+				<h2 className="font-tropiLand tracking-widest">Choose Current Playlist</h2>
+				{userOwnedPlaylists}
 			</div>
 			{cookieStore.has("currentPlaylist") && 
 			<div className="font-tropiLand">
 				<h2 className="text-center">Current Playlist</h2>
-				<br/>
-				<CurrentPlaylist/>
+				<CurrentPlaylist searchTerm="" searchTermType="" urlBase="setCurrentPlaylist"/>
 			</div>
 			}
 			{cookieStore.has("currentPlaylist") && <UnfollowPlaylistButton/>}

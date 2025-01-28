@@ -23,7 +23,7 @@ export default async function CurrentPlaylist({ searchTerm="", searchTermType=""
 			const trackArtistNames = x.track.artists.map(y => y.name).join(", ");
 
 			return (
-					<div key={setUniqueKey()} className="grid grid-cols-subgrid col-span-4 justify-items-start my-5">
+					<div key={setUniqueKey()} className="grid grid-cols-subgrid col-span-3 my-5">
 						<RemoveTracksFromPlaylist urlBase={urlBase} searchTerm={searchTerm} searchTermType={searchTermType} tracks={[x.track]}><Image alt="Track album photo" src={trackAlbumImage} height={trackAlbumImageSize} width={trackAlbumImageSize}/></RemoveTracksFromPlaylist>
 						<RemoveTracksFromPlaylist urlBase={urlBase} searchTerm={searchTerm} searchTermType={searchTermType} tracks={[x.track]}><p>{x.track.name}</p></RemoveTracksFromPlaylist>
 						<RemoveTracksFromPlaylist urlBase={urlBase} searchTerm={searchTerm} searchTermType={searchTermType} tracks={[x.track]}><p>{trackArtistNames}</p></RemoveTracksFromPlaylist>
@@ -36,7 +36,7 @@ export default async function CurrentPlaylist({ searchTerm="", searchTermType=""
 			const episodeName = x.track.show.name;
 
 			return (
-				<div key={setUniqueKey()} className="grid grid-cols-subgrid col-span-4 justify-items-start my-5">
+				<div key={setUniqueKey()} className="grid grid-cols-subgrid col-span-3 my-5">
 					<RemoveTracksFromPlaylist urlBase={urlBase} searchTerm={searchTerm} searchTermType={searchTermType} tracks={[x.track]}><Image alt="Podcast episode photo" src={podcastImage} height={trackAlbumImageSize} width={trackAlbumImageSize}/></RemoveTracksFromPlaylist>
 					<RemoveTracksFromPlaylist urlBase={urlBase} searchTerm={searchTerm} searchTermType={searchTermType} tracks={[x.track]}><p>{episodeName}</p></RemoveTracksFromPlaylist>
 					<RemoveTracksFromPlaylist urlBase={urlBase} searchTerm={searchTerm} searchTermType={searchTermType} tracks={[x.track]}><p>{podcastPublisher}</p></RemoveTracksFromPlaylist>
@@ -46,15 +46,18 @@ export default async function CurrentPlaylist({ searchTerm="", searchTermType=""
 	});
 
 	return (
-		<div className="flex flex-col items-center">
+		<div className="flex flex-col items-center font-tropiLand">
 			<h2>{currentPlaylist.name}</h2>
 			{currentPlaylist.images && <Image alt="Mosaic of playlist album images" src={currentPlaylist.images[0].url} height={playlistImageSize} width={playlistImageSize}/>}
-			<p className="mt-4">Click Track To Remove From Playlist</p>
-			<div className="grid grid-cols-3 max-w-96 gap-8 items-center justify-items-start my-5">
+			<p className="mt-4 tracking-wide">Scroll To See All Songs</p>
+			<p className="mt-4 tracking-wide">Click Track To Remove From Playlist</p>
+			<div className="grid grid-cols-3 max-w-[29rem] max-h-[28rem] gap-5 items-center justify-items-start my-5">
 				<p>Album Image</p>
 				<p>Track Name</p>
 				<p>Artists</p>
-				{playlistTracks}
+				<div className="text-textColor grid grid-cols-subgrid col-span-3 max-h-[28rem] overflow-y-auto no-scrollbar gap-5 items-center justify-items-start">
+					{playlistTracks}
+				</div>
 			</div>
 		</div>
 	);
