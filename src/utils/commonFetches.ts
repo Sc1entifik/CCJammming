@@ -66,9 +66,9 @@ export const fetchArtistAlbums = (artistName: string, authHeader: AuthHeader): P
 		const url = SpotifyEndpoints.ARTISTS_BY_ARTIST_CODE_URI + idCode + "/albums";
 
 		return fetch(url, authHeader).then(res => res.json()).then(res => res.items);
-	}).catch(error => {
-
-		console.error(`Fetch Artist Albums Errored Out: \n${error}`)
+	})
+	.catch(error => {
+		console.error(`Fetch Artist Albums Errored Out: \n${error}`);
 	});
 
 

@@ -1,6 +1,6 @@
 "use client";
 import { keySetter } from "@/utils/helper";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AlbumNameAndCover from "./albumNameAndCover";
 import { Album } from "@/utils/fetchInterfaces";
 import AlbumTrack from "./albumTracks";
@@ -16,8 +16,13 @@ interface SimplifiedTrackObject {
 
 export default function AlbumTracksCollapse({album, tracks}: {album: Album, tracks: SimplifiedTrackObject[]}) {
 	const [isExpanded, setIsExpanded] = useState(false);
+	useEffect(() => () => {
+		setIsExpanded(false)
+		}, []);
+
 	const setUniqueKey = keySetter();
 	const albumCover = album.images[0];
+
 
 	function expandAccordian() {
 		setIsExpanded(() => !isExpanded);
@@ -33,11 +38,13 @@ export default function AlbumTracksCollapse({album, tracks}: {album: Album, trac
 					<AlbumNameAndCover album={album} albumCoverSize={90}/>
 				</button>
 				<AddTracksToPlaylist trackUris={tracks.map(x => x.uri)}>
-				<p>add album to playlist </p>
+					<p>add album to playlist </p>
 				</AddTracksToPlaylist>
 			</div>
+			<div className="flex flex-col">
 				{isExpanded && tracks.map(x => <AlbumTrack key={setUniqueKey()} track={x} albumCover={albumCover} />)}
-		</div>
+			</div>
+	</div>
 
 
 	);

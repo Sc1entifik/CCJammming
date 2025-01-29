@@ -5,7 +5,7 @@ import { keySetter, parseAuthHeaderFromCookieStore } from "@/utils/helper";
 import { Album } from "@/utils/fetchInterfaces";
 
 
-export default async function AlbumSongGrid({artistName, fetchType}: {artistName: string, fetchType: string}) {
+export default async function AlbumGrid({artistName, fetchType}: {artistName: string, fetchType: string}) {
 	const setUniqueKey = keySetter();
 	const authHeader = parseAuthHeaderFromCookieStore(await cookies());
 	let albumFetch;
@@ -27,7 +27,7 @@ export default async function AlbumSongGrid({artistName, fetchType}: {artistName
 	});
 
 	return (
-		<div className="grid grid-cols-1 gap-16">
+		<div className="grid grid-cols-2 gap-16">
 			{albumGridItems}
 		</div>
 	);

@@ -27,7 +27,7 @@ export default async function ArtistNameAndImage({ artistName }: { artistName: s
 	
 
 	return (
-		<div>
+		<div className="flex flex-col items-center">
 			<h2 className="font-tropiLand text-4xl text-center tracking-widest">{artist.name}</h2>
 			<MediumArtistImage artist={artist} />
 		</div>
