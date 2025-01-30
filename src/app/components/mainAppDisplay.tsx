@@ -1,7 +1,7 @@
+import CurrentPlaylist from "@/components/currentPlaylist/currentPlaylist";
 import Albums from "./albums";
 import ArtistAlbums from "./artistAlbums";
 import ArtistTopTracks from "./artistTopTracks";
-import CurrentPlaylist from "./currentPlaylist";
 import MusicForm from "./musicForm";
 import Songs from "./songs";
 

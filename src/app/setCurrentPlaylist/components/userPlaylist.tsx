@@ -4,10 +4,10 @@ import SimplifiedPlaylistObject from "./userPlaylistInterfaces";
 import SpotifyEndpoints from "@/utils/endpoints";
 import { keySetter, parseAuthHeaderFromCookieStore } from "@/utils/helper";
 import { fetchUserProfile } from "@/utils/commonFetches";
-import CurrentPlaylist from "@/app/components/currentPlaylist";
 import Playlist from "./playlist";
 import UnfollowPlaylistButton from "./unfollowPlaylistButton";
 import NewPlaylistForm from "./newPlaylistForm";
+import CurrentPlaylist from "@/components/currentPlaylist/currentPlaylist";
 
 const oneHour = 60000 * 60;
 
