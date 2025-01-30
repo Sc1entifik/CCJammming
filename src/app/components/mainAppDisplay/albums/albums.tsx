@@ -1,4 +1,4 @@
-import AlbumGrid from "./albumGrid"
+import AlbumGrid from "./albumGrid/albumGrid";
 
 
 export default function Albums({albumName}: {albumName: string}) {

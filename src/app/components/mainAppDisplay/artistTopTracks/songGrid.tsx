@@ -1,10 +1,10 @@
 import { fetchArtistTopTracks } from "@/utils/commonFetches";
 import { cookies } from "next/headers";
 
-import AlbumNameAndCover from "./albumNameAndCover";
 import { keySetter, parseAuthHeaderFromCookieStore } from "@/utils/helper";
-import AddTracksToPlaylist from "./addTracksToPlaylist";
 import { Track } from "@/utils/fetchInterfaces";
+import AlbumNameAndCover from "../commonElements/albumNameAndCover";
+import AddTracksToPlaylist from "../commonElements/addTracksToPlaylist";
 
 
 const albumCoverSize = 70;

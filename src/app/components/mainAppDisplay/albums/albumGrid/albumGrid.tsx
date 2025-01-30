@@ -1,9 +1,8 @@
 import { cookies } from "next/headers";
-import AlbumTracksCollapse from "./albumCollapse";
 import { fetchAlbumsByName, fetchAlbumTracksById, fetchArtistAlbums } from "@/utils/commonFetches";
 import { keySetter, parseAuthHeaderFromCookieStore } from "@/utils/helper";
 import { Album } from "@/utils/fetchInterfaces";
-
+import AlbumTracksCollapse from "./albumCollapse/albumCollapse";
 
 export default async function AlbumGrid({artistName, fetchType}: {artistName: string, fetchType: string}) {
 	const setUniqueKey = keySetter();

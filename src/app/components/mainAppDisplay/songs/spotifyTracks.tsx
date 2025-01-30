@@ -1,7 +1,7 @@
 import { Track } from "@/utils/fetchInterfaces";
 import { keySetter } from "@/utils/helper";
 import Image from "next/image";
-import AddTracksToPlaylist from "./addTracksToPlaylist";
+import AddTracksToPlaylist from "../commonElements/addTracksToPlaylist";
 
 export default function SpotifyTracks({tracks, albumCoverSize}: {tracks: Track[], albumCoverSize: number}) {
 	const setUniqueKey = keySetter();

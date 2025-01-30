@@ -1,10 +1,10 @@
 "use client";
 import { keySetter } from "@/utils/helper";
 import { useEffect, useState } from "react";
-import AlbumNameAndCover from "./albumNameAndCover";
 import { Album } from "@/utils/fetchInterfaces";
 import AlbumTrack from "./albumTracks";
-import AddTracksToPlaylist from "./addTracksToPlaylist";
+import AlbumNameAndCover from "../../../commonElements/albumNameAndCover";
+import AddTracksToPlaylist from "../../../commonElements/addTracksToPlaylist";
 
 interface SimplifiedTrackObject {
 	name: string

@@ -1,5 +1,5 @@
-import AlbumGrid from "./albumGrid";
-import ArtistNameAndImage from "./artistNameAndImage";
+import ArtistNameAndImage from "../commonElements/artistNameAndImage";
+import AlbumGrid from "./albumGrid/albumGrid";
 
 
 export default function ArtistAlbums({artistName}: {artistName: string}) {

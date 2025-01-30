@@ -1,6 +1,6 @@
 import { SpotifyImage } from "@/utils/fetchInterfaces"
-import AddTracksToPlaylist from "./addTracksToPlaylist"
 import Image from "next/image"
+import AddTracksToPlaylist from "../../../commonElements/addTracksToPlaylist"
 
 interface SimplifiedTrackObject {
 	name: string

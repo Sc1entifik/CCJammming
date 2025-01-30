@@ -1,9 +1,9 @@
 import CurrentPlaylist from "@/components/currentPlaylist/currentPlaylist";
-import Albums from "./albums";
-import ArtistAlbums from "./artistAlbums";
-import ArtistTopTracks from "./artistTopTracks";
 import MusicForm from "./musicForm";
-import Songs from "./songs";
+import ArtistTopTracks from "./artistTopTracks/artistTopTracks";
+import ArtistAlbums from "./albums/artistAlbums";
+import Albums from "./albums/albums";
+import Songs from "./songs/songs";
 
 export default async function MainAppDisplay({searchTerm, searchTermType}: {searchTerm: string, searchTermType: string}) {
 	let musicElement;

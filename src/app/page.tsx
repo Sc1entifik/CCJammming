@@ -1,6 +1,6 @@
 import { cookies } from "next/headers"
-import MainAppDisplay from "./components/mainAppDisplay";
 import ConnectSpotifyAccountMessage from "./components/connectSpotifyAccountMessage";
+import MainAppDisplay from "./components/mainAppDisplay/mainAppDisplay";
 
 export default async function MainApp({ searchParams }: { searchParams: Promise<{[key: string]: string | undefined}> }) {
 	const cookieStore = await cookies();
@@ -13,5 +13,5 @@ export default async function MainApp({ searchParams }: { searchParams: Promise<
 	} else {
 		return <ConnectSpotifyAccountMessage/>
 	}
-
+	
 }

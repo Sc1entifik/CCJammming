@@ -1,4 +1,4 @@
-import ArtistNameAndImage from "./artistNameAndImage";
+import ArtistNameAndImage from "../commonElements/artistNameAndImage";
 import SongGrid from "./songGrid";
 
 
