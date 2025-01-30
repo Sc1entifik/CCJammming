@@ -27,7 +27,7 @@ Deno.test("Fetch Artist Data By Name: Finds Artists", async () => {
 	const accessHeader = await publicAccessObject().then(res => res.authHeader);
 	const artistLookups = ["Eminem", "Cage", "The Rolling Stones", "The Beatles", "Prince", "Michael Jackson", "Elvis", "Marilyn Manson", "Five Finger Death Punch", "Oasis"];
 
-	for (const artistName in artistLookups) {
+	for (const artistName of artistLookups) {
 		const artistFetch = await fetchArtistDataByName(artistName, accessHeader);
 		assertEquals(artistFetch.name, artistName);
 	}

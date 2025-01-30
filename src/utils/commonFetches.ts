@@ -36,7 +36,7 @@ const artistIdCodeByName = (artistName: string, authHeader: AuthHeader): Promise
 		return matchedId? matchedId: defaultId;
 	})
 	.catch(err => {
-		console.error(err);
+		console.error(`Artist Id Code By Name Fetch Failed: \n${err}`);
 		
 		return errorDefaultId;
 	});
@@ -49,7 +49,11 @@ export const fetchArtistDataByName = (artistName: string, authHeader: AuthHeader
 		.then(idCode => {
 			const url = SpotifyEndpoints.ARTISTS_BY_ARTIST_CODE_URI + idCode;
 
-			return fetch(url, authHeader).then(res => res.json());
+			return fetch(url, authHeader)
+			.then(res => res.json())
+			.catch(err => {
+				console.error(`Fetch Artist Data By Name Failed: \n${err}`);
+			});
 		});
 
 
@@ -57,7 +61,12 @@ export const fetchArtistTopTracks = (artistName: string, authHeader: AuthHeader)
 	.then(idCode => {
 		const url = SpotifyEndpoints.ARTISTS_BY_ARTIST_CODE_URI + idCode + "/top-tracks";
 
-		return fetch(url, authHeader).then(res => res.json()).then(res => res.tracks);
+		return fetch(url, authHeader)
+			.then(res => res.json())
+			.then(res => res.tracks)
+			.catch(err => {
+				console.error(`Fetch Artist Top Tracks Failed: \n${err}`);
+			});
 	});
 
 
@@ -67,31 +76,59 @@ export const fetchArtistAlbums = (artistName: string, authHeader: AuthHeader): P
 
 		return fetch(url, authHeader).then(res => res.json()).then(res => res.items);
 	})
-	.catch(error => {
-		console.error(`Fetch Artist Albums Errored Out: \n${error}`);
+	.catch(err => {
+		console.error(`Fetch Artist Albums Failed: \n${err}`);
 	});
 
 
 export const fetchAlbumTracksById = (albumId: string, authHeader: AuthHeader): Promise<Track[]> => {
 	const url = SpotifyEndpoints.ALBUM_BY_ALBUM_CODE_URI + albumId + "/tracks";
 
-	return fetch(url, authHeader).then(res => res.json()).then(res => res.items);
+	return fetch(url, authHeader)
+		.then(res => res.json())
+		.then(res => res.items)
+		.catch(err => {
+			console.error(`Fetch Album Tracks By Id Failed: \n${err}`)
+		});
 }
 
 
-export const fetchAlbumsByName = (albumName: string, authHeader: AuthHeader): Promise<Album[]> => querySearch(albumName, "album", authHeader).then(res => res.albums).then(res => res.items);
+export const fetchAlbumsByName = (albumName: string, authHeader: AuthHeader): Promise<Album[]> => querySearch(albumName, "album", authHeader)
+	.then(res => res.albums)
+	.then(res => res.items)
+	.catch(err => {
+		console.error(`Fetch Albums By Name Failed: \n${err}`);
+	});
 
 
-export const fetchTracksByName = (trackName: string, authHeader: AuthHeader): Promise<Track[]> => querySearch(trackName, "track", authHeader).then(res => res.tracks).then(res => res.items);
+export const fetchTracksByName = (trackName: string, authHeader: AuthHeader): Promise<Track[]> => querySearch(trackName, "track", authHeader)
+	.then(res => res.tracks)
+	.then(res => res.items)
+	.catch(err => {
+		console.error(`Fetch Tracks By Name Failed: \n${err}`);
+	});
 
 
-export const fetchUserProfile = (authHeader: AuthHeader): Promise<UserProfile> => fetch(SpotifyEndpoints.USER_PROFILE_URI, authHeader).then(res => res.json());
+export const fetchUserProfile = (authHeader: AuthHeader): Promise<UserProfile> => fetch(SpotifyEndpoints.USER_PROFILE_URI, authHeader)
+	.then(res => res.json())
+	.catch(err => {
+		console.error(`Fetch User Profile Failed: \n${err}`);
+	});
 
 
-export const fetchPlaylistById = (playlistId: string, authHeader: AuthHeader): Promise<Playlist> => fetch(SpotifyEndpoints.PLAYLIST_URI + playlistId, authHeader).then(res => res.json());
+export const fetchPlaylistById = (playlistId: string, authHeader: AuthHeader): Promise<Playlist> => fetch(SpotifyEndpoints.PLAYLIST_URI + playlistId, authHeader)
+	.then(res => res.json())
+	.catch(err => {
+		console.error(`Fetch Playlist By Id Failed: \n${err}`);
+	});
 
 
-export const fetchPlaylistItemsById = (playlistId: string, authHeader: AuthHeader): Promise<PlaylistTrackObject[]> => fetch(SpotifyEndpoints.PLAYLIST_URI + playlistId + "/tracks", authHeader).then(res => res.json).then(res => res.items);
+export const fetchPlaylistItemsById = (playlistId: string, authHeader: AuthHeader): Promise<PlaylistTrackObject[]> => fetch(SpotifyEndpoints.PLAYLIST_URI + playlistId + "/tracks", authHeader)
+	.then(res => res.json())
+	.then(res => res.items)
+	.catch(err => {
+		console.error(`Fetch Playlist Items By Id Failed: \n${err}`);
+	});
 
 
 export const fetchAddTracksToPlaylist = (playlistId: string, trackUris: string[], authHeader: AuthHeader) => {
@@ -105,5 +142,9 @@ export const fetchAddTracksToPlaylist = (playlistId: string, trackUris: string[]
 		body: JSON.stringify({uris: trackUris}), 
 	};
 
-	fetch(url, options).then(res => res.json());
+	fetch(url, options)
+		.then(res => res.json())
+		.catch(err => {
+			console.error(`Fetch Add Tracks To Playlist Failed: \n${err}`);
+		});
 };
