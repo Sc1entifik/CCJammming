@@ -32,3 +32,4 @@ Things Coming:
 1. More search point options.
 2. Playlist functionality.
 3. Ability to play songs.
+4. Hamburger nav bar.

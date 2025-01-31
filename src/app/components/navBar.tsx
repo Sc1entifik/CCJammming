@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { cookies } from "next/headers";
-import AuthCookieElements from "./authCookieElements";
+import AuthCookieElements from "./navBar/authCookieElements";
 
 
 export default async function NavBar() { 
