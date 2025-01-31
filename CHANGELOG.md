@@ -27,6 +27,8 @@ Bug Fixes:
 
 - Adding Tracks With Client Components - Bug triggered when trying to use the AddTracksToPlaylist functional component inside a "use client" functional component. Reason for bug was importing cookies from nextjs/headers from within a "use client" component. To fix this issue I moved the "use server" handle click function to the serverActions.ts file and then imported it from the addTracksToPlaylist.tsx. This makes everything work just fine. I however am not sure what real difference doing any of this actually makes.
 
+- Music Form Search Bar Causing Faulty Redirects - Bug triggered when searching for tracks using the musicForm.tsx component when going to the home page directly from typing it in the url bar as opposed to clicking on the home link at the top of the header. This was caused do to how the form variabled are unpacked inside the createRedirectCookie function using formData.values(). For an unknown reason when you go to the home page by typing in the url address an extra keypair got added to the formData variable causing formData.values to unpack incorrectly. I fixed this by unpacking the variables separately key by key and using ternary statements to handle falsey values.
+
 
 Things Coming:
 1. More search point options.

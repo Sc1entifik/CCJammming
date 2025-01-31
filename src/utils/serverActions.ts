@@ -27,12 +27,10 @@ const createStateCookie = async(state: string) => {
 
 
 export const createRedirectCookie = async (formData: FormData) => {
-	const [searchTerm="", searchTermType="", urlBase=""] = formData.values();
-	console.log(`urlBase: ${urlBase}`);
-	formData.keys().forEach(x => console.log(`formData key: ${x}`));
-	formData.values().forEach(x => console.log(`formData value: ${x}`));
+	const searchTerm = formData.get("searchTerm") ? formData.get("searchTerm") : "";
+	const searchTermType = formData.get("searchTermType") ? formData.get("searchTermType") : "";
+	const urlBase = formData.get("urlBase") ? formData.get("urlBase") : "";
 	const redirectUrl = searchTerm && searchTermType ? validateQueryTerm(`/${urlBase}?searchTerm=${searchTerm}&searchTermType=${searchTermType}`) : `/${urlBase}`;
-	console.log(`redirectUrl: ${redirectUrl}`)
 	const cookieName = "redirectUrl";
 	const oneMinute = 60000;
 	const tenMinutes = oneMinute * 10;
