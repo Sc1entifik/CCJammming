@@ -1,12 +1,13 @@
 import { cookies } from "next/headers";
 import { fetchAlbumsByName, fetchAlbumTracksById, fetchArtistAlbums } from "@/utils/commonFetches";
 import { keySetter, parseAuthHeaderFromCookieStore } from "@/utils/helper";
-import { Album } from "@/utils/fetchInterfaces";
+import { Album, Track } from "@/utils/fetchInterfaces";
 import AlbumTracksCollapse from "./albumCollapse/albumCollapse";
 
+
 export default async function AlbumGrid({artistName, fetchType}: {artistName: string, fetchType: string}) {
-	const setUniqueKey = keySetter();
 	const authHeader = parseAuthHeaderFromCookieStore(await cookies());
+	const setUniqueKey = keySetter();
 	let albumFetch;
 
 	switch (fetchType) {
@@ -19,11 +20,19 @@ export default async function AlbumGrid({artistName, fetchType}: {artistName: st
 			break;
 	}
 
-	const albumGridItems = albumFetch.map(async (album: Album) => {
-		const tracks = await fetchAlbumTracksById(album.id, authHeader);
+	const albumGridItems = albumFetch
+		.map(async (album: Album) => {
+			"use server"
+			const tracks = await fetchAlbumTracksById(album.id, authHeader);
+			const albumAndTracks: [Album, Track[]] = [album, tracks];
 
-		return <AlbumTracksCollapse key={setUniqueKey()} album={album} tracks={tracks}/>
-	});
+			return albumAndTracks
+		})
+		.map(async x => {
+			const [album, tracks] = await x;
+			
+			return <AlbumTracksCollapse key={setUniqueKey()} album={album} tracks={tracks}/>
+		});
 
 	return (
 		<div className="grid grid-cols-2 gap-16">

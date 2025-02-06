@@ -88,7 +88,7 @@ export const fetchAlbumTracksById = (albumId: string, authHeader: AuthHeader): P
 		.then(res => res.json())
 		.then(res => res.items)
 		.catch(err => {
-			console.error(`Fetch Album Tracks By Id Failed: \n${err}`)
+			console.error(`Fetch Album Tracks By Id Failed: \nfetchUrl: ${url} \n${err}`)
 		});
 }
 

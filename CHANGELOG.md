@@ -18,6 +18,7 @@
 - v-0.86 - Artist Top Tracks and Current Playlist now scroll independently of the main page. Scroll position on these elements maintain after page refresh. Added Snap scrolling on Artist Top Tracks and Current Playlist.
 - v-0.86-0001 - Discovered two bugs which I have not solved yet. After trying to make some changes I found the codebase somewhat fragile and in need of refactoring. To my horror when I tried to create a refactor branch from the main branch the website would not load. I am making a merge and push to the repository so I can open a working refactoring branch.
 - v-0.86.5 - Refactored commonFetches.ts to now have .catch functions which console.errors the fetch which failed and the error message. Fixed common_fetch_test.ts incorrectly using a for in loop instead of a for of loop. Moved various components to their own folders and ones used by multiple routs into a common component folder location.
+- v-0.88 - Fixed Removing Tracks From Playlist Causes Type Error Bug.
 
 
 Bug Fixes:
@@ -29,6 +30,7 @@ Bug Fixes:
 
 - Music Form Search Bar Causing Faulty Redirects - Bug triggered when searching for tracks using the musicForm.tsx component when going to the home page directly from typing it in the url bar as opposed to clicking on the home link at the top of the header. This was caused do to how the form variabled are unpacked inside the createRedirectCookie function using formData.values(). For an unknown reason when you go to the home page by typing in the url address an extra keypair got added to the formData variable causing formData.values to unpack incorrectly. I fixed this by unpacking the variables separately key by key and using ternary statements to handle falsey values.
 
+- Removing Tracks From Playlist Causes tracks.map() To Cause TypeError - When removing tracks from the current playlist and the view was showing collapsable albums the page rerender would cause the tracks list to be undefined causing a type error. I fixed this by moving the fetches to a client component and then sending the fetch results to a second .map() function after the first.
 
 Things Coming:
 1. More search point options.

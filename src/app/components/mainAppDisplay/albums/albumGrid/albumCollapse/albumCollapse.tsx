@@ -42,11 +42,8 @@ export default function AlbumTracksCollapse({album, tracks}: {album: Album, trac
 				</AddTracksToPlaylist>
 			</div>
 			<div className="flex flex-col">
-				{isExpanded && tracks.map(x => <AlbumTrack key={setUniqueKey()} track={x} albumCover={albumCover} />)}
+				{isExpanded && tracks.map(x => <AlbumTrack key={setUniqueKey()} track={x} albumCover={albumCover}/>)}
 			</div>
 	</div>
-
-
 	);
-
 }
