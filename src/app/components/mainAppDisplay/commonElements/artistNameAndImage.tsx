@@ -13,11 +13,14 @@ interface ArtistObject {
 	}[]
 }
 
-const artistImageSize = "14rem";
 const MediumArtistImage = ({artist}: {artist: ArtistObject}) => {
 	const mediumSizeImage = artist.images[1];
+	const imageStyle = {
+		width: "11rem",
+		height: "11rem",
+	};
 
-	return <Image alt={`${artist.name} portrait`} src={mediumSizeImage.url} style={{width: artistImageSize, height: artistImageSize}} width={5000} height={5000} />
+	return <Image alt={`${artist.name} portrait`} src={mediumSizeImage.url} style={imageStyle} width={5000} height={5000} />
 }
 
 export default async function ArtistNameAndImage({ artistName }: { artistName: string }) {

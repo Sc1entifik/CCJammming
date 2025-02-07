@@ -18,7 +18,7 @@
 - v-0.86 - Artist Top Tracks and Current Playlist now scroll independently of the main page. Scroll position on these elements maintain after page refresh. Added Snap scrolling on Artist Top Tracks and Current Playlist.
 - v-0.86-0001 - Discovered two bugs which I have not solved yet. After trying to make some changes I found the codebase somewhat fragile and in need of refactoring. To my horror when I tried to create a refactor branch from the main branch the website would not load. I am making a merge and push to the repository so I can open a working refactoring branch.
 - v-0.86.5 - Refactored commonFetches.ts to now have .catch functions which console.errors the fetch which failed and the error message. Fixed common_fetch_test.ts incorrectly using a for in loop instead of a for of loop. Moved various components to their own folders and ones used by multiple routs into a common component folder location.
-- v-0.88 - Fixed Removing Tracks From Playlist Causes Type Error Bug. Added fetch caching for fetchAlbumTracksById.
+- v-0.88 - Fixed Removing Tracks From Playlist Causes Type Error Bug. Added fetch caching for fetchAlbumTracksById. Fixed <Image> tag sizing throughout project. Artist Albums and Album search elements now scroll independent of page.
 
 
 Bug Fixes:

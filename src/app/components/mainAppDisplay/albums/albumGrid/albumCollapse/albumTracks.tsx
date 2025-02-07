@@ -9,12 +9,15 @@ interface SimplifiedTrackObject {
 	uri: string
 }
 
-const tinyAlbumCoverSize = 22;
+const imageStyle = {
+	width: "2rem",
+	height: "2rem",
+};
 
 export default function AlbumTrack({track, albumCover}: {track: SimplifiedTrackObject, albumCover: SpotifyImage}) {
 	const albumCoverAndTrack = (
-		<div className="flex gap-4">
-			<Image alt="tiny album cover" src={albumCover.url} height={tinyAlbumCoverSize} width={tinyAlbumCoverSize}/>
+		<div>
+			<Image alt="tiny album cover" src={albumCover.url} height={5000} width={5000} style={imageStyle}/>
 			<p>{track.name}</p>
 		</div>
 	);

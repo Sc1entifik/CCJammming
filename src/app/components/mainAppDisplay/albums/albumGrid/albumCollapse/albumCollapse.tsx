@@ -35,13 +35,13 @@ export default function AlbumTracksCollapse({album, tracks}: {album: Album, trac
 			<div className="flex gap-9 items-center justify-center tracking-widest">
 				<button onClick={expandAccordian}>
 					{albumArtists}
-					<AlbumNameAndCover album={album} albumCoverSize={90}/>
+					<AlbumNameAndCover album={album} albumCoverSize={5.5}/>
 				</button>
 				<AddTracksToPlaylist trackUris={tracks.map(x => x.uri)}>
 					<p>add album to playlist </p>
 				</AddTracksToPlaylist>
 			</div>
-			<div className="flex flex-col">
+			<div className="flex flex-col gap-2">
 				{isExpanded && tracks.map(x => <AlbumTrack key={setUniqueKey()} track={x} albumCover={albumCover}/>)}
 			</div>
 	</div>

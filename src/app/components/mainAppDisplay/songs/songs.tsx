@@ -3,7 +3,7 @@ import SpotifyTracks from "./spotifyTracks";
 import { parseAuthHeaderFromCookieStore } from "@/utils/helper";
 import { cookies } from "next/headers";
 
-const albumCoverSize = 90;
+const albumCoverSize = 5.6;
 
 export default async function Songs({songName}: {songName: string}) {
 	const accessHeader = parseAuthHeaderFromCookieStore(await cookies());

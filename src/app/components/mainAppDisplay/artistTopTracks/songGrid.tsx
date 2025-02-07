@@ -7,7 +7,7 @@ import AlbumNameAndCover from "../commonElements/albumNameAndCover";
 import AddTracksToPlaylist from "../commonElements/addTracksToPlaylist";
 
 
-const albumCoverSize = 70;
+const albumCoverSize = 4.4;
 
 
 export default async function SongGrid({queryTerm, gridType}: {queryTerm: string, gridType: string}) {
@@ -34,7 +34,7 @@ export default async function SongGrid({queryTerm, gridType}: {queryTerm: string
 			<h3>Album</h3>
 			<h3>Track Title</h3>
 			<h3>Add Track To PLaylist</h3>
-			<div className="grid grid-cols-subgrid col-span-3 max-h-[28rem] overflow-auto no-scrollbar snap-y snap-mandatory">
+			<div className="grid grid-cols-subgrid col-span-3 max-h-[28rem] overflow-auto no-scrollbar">
 				{songGrid}
 			</div>
 		</div>

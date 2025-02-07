@@ -6,8 +6,14 @@ import { PlaylistTrackObject } from "@/utils/fetchInterfaces";
 import { keySetter, parseAuthHeaderFromCookieStore } from "@/utils/helper";
 import RemoveTracksFromPlaylist from "./removeTracksFromPlaylist";
 
-const playlistImageSize = 200;
-const trackAlbumImageSize = 60;
+const playlistImageStyle = {
+	height: "11rem",
+	width: "11rem",
+};
+const trackAlbumImageStyle = {
+	height: "4rem",
+	width: "4rem",
+};
 
 
 export default async function CurrentPlaylist({ searchTerm="", searchTermType="", urlBase="" } : { searchTerm: string, searchTermType: string, urlBase: string }) {
@@ -24,7 +30,7 @@ export default async function CurrentPlaylist({ searchTerm="", searchTermType=""
 
 			return (
 					<div key={setUniqueKey()} className="grid grid-cols-subgrid col-span-3 my-5 snap-start scroll-mt-4">
-						<RemoveTracksFromPlaylist urlBase={urlBase} searchTerm={searchTerm} searchTermType={searchTermType} tracks={[x.track]}><Image alt="Track album photo" src={trackAlbumImage} height={trackAlbumImageSize} width={trackAlbumImageSize}/></RemoveTracksFromPlaylist>
+						<RemoveTracksFromPlaylist urlBase={urlBase} searchTerm={searchTerm} searchTermType={searchTermType} tracks={[x.track]}><Image alt="Track album photo" src={trackAlbumImage} height={5000} width={5000} style={trackAlbumImageStyle}/></RemoveTracksFromPlaylist>
 						<RemoveTracksFromPlaylist urlBase={urlBase} searchTerm={searchTerm} searchTermType={searchTermType} tracks={[x.track]}><p>{x.track.name}</p></RemoveTracksFromPlaylist>
 						<RemoveTracksFromPlaylist urlBase={urlBase} searchTerm={searchTerm} searchTermType={searchTermType} tracks={[x.track]}><p>{trackArtistNames}</p></RemoveTracksFromPlaylist>
 					</div>
@@ -37,7 +43,7 @@ export default async function CurrentPlaylist({ searchTerm="", searchTermType=""
 
 			return (
 				<div key={setUniqueKey()} className="grid grid-cols-subgrid col-span-3 my-5 snap-start scroll-mt-4">
-					<RemoveTracksFromPlaylist urlBase={urlBase} searchTerm={searchTerm} searchTermType={searchTermType} tracks={[x.track]}><Image alt="Podcast episode photo" src={podcastImage} height={trackAlbumImageSize} width={trackAlbumImageSize}/></RemoveTracksFromPlaylist>
+					<RemoveTracksFromPlaylist urlBase={urlBase} searchTerm={searchTerm} searchTermType={searchTermType} tracks={[x.track]}><Image alt="Podcast episode photo" src={podcastImage} height={5000} width={5000} style={trackAlbumImageStyle}/></RemoveTracksFromPlaylist>
 					<RemoveTracksFromPlaylist urlBase={urlBase} searchTerm={searchTerm} searchTermType={searchTermType} tracks={[x.track]}><p>{episodeName}</p></RemoveTracksFromPlaylist>
 					<RemoveTracksFromPlaylist urlBase={urlBase} searchTerm={searchTerm} searchTermType={searchTermType} tracks={[x.track]}><p>{podcastPublisher}</p></RemoveTracksFromPlaylist>
 				</div>
@@ -48,10 +54,10 @@ export default async function CurrentPlaylist({ searchTerm="", searchTermType=""
 	return (
 		<div className="flex flex-col items-center font-tropiLand">
 			<h2>{currentPlaylist.name}</h2>
-			{currentPlaylist.images && <Image alt="Mosaic of playlist album images" src={currentPlaylist.images[0].url} height={playlistImageSize} width={playlistImageSize}/>}
+			{currentPlaylist.images && <Image alt="Mosaic of playlist album images" src={currentPlaylist.images[0].url} height={5000} width={5000} style={playlistImageStyle}/>}
 			<p className="mt-4 tracking-wide">Scroll To See All Songs</p>
 			<p className="mt-4 tracking-wide">Click Track To Remove From Playlist</p>
-			<div className="grid grid-cols-3 max-w-[29rem] max-h-[28rem] gap-5 items-center justify-items-start my-5">
+			<div className="grid grid-cols-3 max-w-[29rem] max-h-[85dvh] gap-5 items-center justify-items-start my-5">
 				<p>Album Image</p>
 				<p>Track Name</p>
 				<p>Artists</p>
