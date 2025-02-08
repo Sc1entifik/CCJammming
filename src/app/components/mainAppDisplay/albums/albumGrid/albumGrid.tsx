@@ -35,7 +35,7 @@ export default async function AlbumGrid({artistName, fetchType}: {artistName: st
 		});
 
 	return (
-		<div className="grid grid-cols-2 gap-16 overflow-y-auto no-scrollbar snap-y snap-mandatory">
+		<div className="grid grid-cols-2 gap-16 overflow-y-auto no-scrollbar">
 			{albumGridItems}
 		</div>
 	);

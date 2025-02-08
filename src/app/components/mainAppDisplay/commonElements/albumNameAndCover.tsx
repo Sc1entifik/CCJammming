@@ -11,6 +11,7 @@ export default function AlbumNameAndCover({album, albumCoverSize}: {album: Album
 	const imageStyle = {
 		height: `${albumCoverSize}rem`,
 		width: `${albumCoverSize}rem`,
+		borderRadius: "5%",
 	};
 
 

@@ -18,9 +18,10 @@ const MediumArtistImage = ({artist}: {artist: ArtistObject}) => {
 	const imageStyle = {
 		width: "11rem",
 		height: "11rem",
+		borderRadius: "5%",
 	};
 
-	return <Image alt={`${artist.name} portrait`} src={mediumSizeImage.url} style={imageStyle} width={5000} height={5000} />
+	return <Image priority={true} alt={`${artist.name} portrait`} src={mediumSizeImage.url} style={imageStyle} width={5000} height={5000} />
 }
 
 export default async function ArtistNameAndImage({ artistName }: { artistName: string }) {

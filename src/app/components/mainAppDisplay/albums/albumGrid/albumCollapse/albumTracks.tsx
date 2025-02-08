@@ -12,6 +12,7 @@ interface SimplifiedTrackObject {
 const imageStyle = {
 	width: "2rem",
 	height: "2rem",
+	borderRadius: "5%",
 };
 
 export default function AlbumTrack({track, albumCover}: {track: SimplifiedTrackObject, albumCover: SpotifyImage}) {

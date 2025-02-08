@@ -4,6 +4,7 @@ import SimplifiedPlaylistObject from "./userPlaylistInterfaces";
 const imageStyle = {
 	height: "5.3rem",
 	width: "5.3rem",
+	borderRadius: "5%",
 };
 
 export default function Playlist({playlist, handleClick}: {playlist: SimplifiedPlaylistObject, handleClick: () => void}) {

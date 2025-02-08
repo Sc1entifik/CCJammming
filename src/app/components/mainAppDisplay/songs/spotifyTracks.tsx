@@ -8,6 +8,7 @@ export default function SpotifyTracks({tracks, albumCoverSize}: {tracks: Track[]
 	const imageStyle = {
 		height: `${albumCoverSize}rem`,
 		width : `${albumCoverSize}rem`,
+		borderRadius: "5%",
 	};
 	const trackFlex = tracks.map((track: Track) => (
 		<AddTracksToPlaylist key={setUniqueKey()} trackUris={[track.uri]}>
