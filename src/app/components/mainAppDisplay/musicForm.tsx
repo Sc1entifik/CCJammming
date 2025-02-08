@@ -6,7 +6,7 @@ import Form from "next/form";
 export default function MusicForm() {
 	
 	return (
-			<Form action={createRedirectCookie} className="font-tropiLand">
+			<Form action={createRedirectCookie} className="font-tropiLand text-center mb-4">
 				<input type="text" name="searchTerm" placeholder="Search Term"/>
 				<br/>
 				<input id="artistTopTracks" type="radio" name="searchTermType" value="artistTopTracks" className="mr-0.5" defaultChecked/>

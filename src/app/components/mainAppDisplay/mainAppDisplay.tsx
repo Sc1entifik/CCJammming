@@ -36,10 +36,12 @@ export default async function MainAppDisplay({searchTerm, searchTermType}: {sear
 	}
 
 	return(
-		<div className="flex justify-evenly max-h-[28rem]">
-			<MusicForm />
-			{musicElement}
-			<CurrentPlaylist searchTerm={searchTerm} searchTermType={searchTermType}/>
+		<div>
+			<MusicForm/>
+			<div className="flex justify-evenly">
+				{searchTermType && musicElement}
+				<CurrentPlaylist searchTerm={searchTerm} searchTermType={searchTermType}/>
+			</div>
 		</div>
 	);
 }
