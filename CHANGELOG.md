@@ -21,7 +21,6 @@
 - v-0.88 - Fixed Removing Tracks From Playlist Causes Type Error Bug. Added fetch caching for fetchAlbumTracksById. Fixed <Image> tag sizing throughout project. Artist Albums and Album search elements now scroll independent of page.
 - v-0.88.5 - Rounded track and album images. Added priority to large images above the fold. Moved search bar to top of page (not sure if this is permenant). Set max height on various elements so there is no scroll bar on full page.
 
-
 Bug Fixes:
 - Search Bar Refresh - Bug triggered when page refresh happened from form submit. This triggered another oAuth header request which results in an invalid header. Fixed this by saving the header to a JSON file and then retrieving it. Later switched to a cookie based system.
 
