@@ -16,12 +16,14 @@ const imageStyle = {
 };
 
 export default function AlbumTrack({track, albumCover}: {track: SimplifiedTrackObject, albumCover: SpotifyImage}) {
-	const albumCoverAndTrack = (
-		<div>
-			<Image alt="tiny album cover" src={albumCover.url} height={5000} width={5000} style={imageStyle}/>
-			<p>{track.name}</p>
+	return (
+		<div className="grid grid-cols-subgrid justify-items-start"> 
+			<AddTracksToPlaylist trackUris={[track.uri]}>
+				<Image alt="tiny album cover" src={albumCover.url} height={5000} width={5000} style={imageStyle}/>
+			</AddTracksToPlaylist>
+			<AddTracksToPlaylist trackUris={[track.uri]}>
+				<p className="max-w-[15rem]">{track.name}</p>
+			</AddTracksToPlaylist>
 		</div>
 	);
-
-	return <AddTracksToPlaylist trackUris={[track.uri]}>{albumCoverAndTrack}</AddTracksToPlaylist>;
 }

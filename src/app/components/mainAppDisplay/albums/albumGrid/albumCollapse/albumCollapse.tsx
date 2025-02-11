@@ -28,11 +28,11 @@ export default function AlbumTracksCollapse({album, tracks}: {album: Album, trac
 		setIsExpanded(() => !isExpanded);
 	}
 	
-	const albumArtists = album.artists.map(x => x.name);
+	const albumArtists = album.artists.map(x => <p key={setUniqueKey()}>{x.name}</p>);
 
 	return (
 		<div>
-			<div className="flex gap-9 items-center justify-center tracking-widest">
+			<div className="lg:flex sm:gap-9 sm:items-center sm:justify-center sm:tracking-widest">
 				<button onClick={expandAccordian}>
 					{albumArtists}
 					<AlbumNameAndCover album={album} albumCoverSize={5.5}/>
@@ -41,9 +41,9 @@ export default function AlbumTracksCollapse({album, tracks}: {album: Album, trac
 					<p>add album to playlist </p>
 				</AddTracksToPlaylist>
 			</div>
-			<div className="flex flex-col gap-2">
+			<div className="grid grid-cols-1 justify-items-center gap-4">
 				{isExpanded && tracks.map(x => <AlbumTrack key={setUniqueKey()} track={x} albumCover={albumCover}/>)}
 			</div>
-	</div>
+		</div>
 	);
 }
