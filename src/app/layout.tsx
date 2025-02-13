@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Link from "next/link";
-import NavBar from "./components/navBar/navBar";
+import HamburgerNavBar from "./components/navigation/hamburgerNavBar/hamburgerNavBar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -27,8 +27,8 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
 
 			<header className="font-bounce mx-3 mt-6 mb-10 tracking-wider flex flex-auto justify-around">
 				<Link className="font-extrabold text-6xl" href="/">jaMMMing</Link>
-				<NavBar />
-		</header>
+				<HamburgerNavBar/>
+			</header>
 
         {children}
       </body>

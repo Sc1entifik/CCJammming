@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { deleteAuthCookie } from "@/utils/serverActions";
 import HiddenLink from "./hiddenLink";
-import AccountLoginButton from "./accountLoginButton";
+import LoginButton from "./loginButton";
 
 export default function AuthCookieElements({connectionStatus}: {connectionStatus: boolean}) {
 	const [isAccountConnected, setIsAccountConnected] = useState(connectionStatus);
@@ -15,7 +15,7 @@ export default function AuthCookieElements({connectionStatus}: {connectionStatus
 	return (
 		<div className="flex">
 			<HiddenLink connectionStatus={isAccountConnected} />
-			<AccountLoginButton connectionStatus={isAccountConnected} handleClick={handleClick}/>
+			<LoginButton connectionStatus={isAccountConnected} handleClick={handleClick}/>
 		</div>
 	);
 }
