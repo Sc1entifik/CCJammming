@@ -1,30 +1,34 @@
-import { keySetter } from "@/utils/helper";
+"use client";
 import SiteMap from "@/utils/siteMap";
 import Link from "next/link";
-import LoginButton from "../commonComponents/loginButton";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { deleteAuthCookie } from "@/utils/serverActions";
+import { keySetter } from "@/utils/helper";
+import LoginButton from "./components/loginButton";
 
-export default function useNavBarComponents({connectionStatus, handleClick}: {connectionStatus: boolean, handleClick: () => void}) {
-	interface NavBarComponent {
-		type: string;
-		element: JSX.Element;
+export default function useNavBarComponents(connectionStatus: boolean) {
+	const [isAccountConnected, setIsAccountConnected] = useState(connectionStatus);
+	const router = useRouter();
+	const setUniqueKey = keySetter();
+	const separator = () => <span key={setUniqueKey()} className="hidden md:contents">{">"}</span>
+	
+	const handleClick = () => {
+		setIsAccountConnected(() => !isAccountConnected);
+		deleteAuthCookie();
+		router.push(SiteMap.HOME);
+		router.refresh();
 	}
 
-	const separator = {type: "separator", element: <span>{">"}</span>};
-	const components: NavBarComponent[] = [
-		{type: "link", element: <Link href={SiteMap.HOME}>Home Page</Link>},
-		separator,
-		{type: "link", element: <Link href={SiteMap.SITE_TUTORIAL}>App Tutorial</Link>},
-		separator,
+	const components = [
+		<Link key={setUniqueKey()} href={SiteMap.HOME}>Home Page</Link>,
+		separator(),
+		<Link key={setUniqueKey()} href={SiteMap.SITE_TUTORIAL}>App Tutorial</Link>,
+		separator(),
+		isAccountConnected && <Link key={setUniqueKey()} href={SiteMap.SET_CURRENT_PLAYLIST}>Set Current Playlist</Link>,
+		isAccountConnected && separator(),
+		<LoginButton key={setUniqueKey()} connectionStatus={isAccountConnected} handleClick={handleClick} />
 	];
-
-	if (connectionStatus) {
-		components.push({type: "link", element: <Link href={SiteMap.SET_CURRENT_PLAYLIST} /> });
-		components.push(separator);
-		components.push({type: "loginButton", element: <LoginButton connectionStatus={connectionStatus} handleClick={handleClick}/>});
-
-	} else {
-		components.push({type: "loginButton", element: <LoginButton connectionStatus={connectionStatus} handleClick={handleClick}/>});
-	}
 
 	return components;
 }

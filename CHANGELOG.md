@@ -20,7 +20,7 @@
 - v-0.86.5 - Refactored commonFetches.ts to now have .catch functions which console.errors the fetch which failed and the error message. Fixed common_fetch_test.ts incorrectly using a for in loop instead of a for of loop. Moved various components to their own folders and ones used by multiple routs into a common component folder location.
 - v-0.88 - Fixed Removing Tracks From Playlist Causes Type Error Bug. Added fetch caching for fetchAlbumTracksById. Fixed <Image> tag sizing throughout project. Artist Albums and Album search elements now scroll independent of page.
 - v-0.88.5 - Rounded track and album images. Added priority to large images above the fold. Moved search bar to top of page (not sure if this is permenant). Set max height on various elements so there is no scroll bar on full page.
-- v-0.9 - Created media queries for main page. Created siteMap enum to store page routes. Created useNavBarComponents.tsx hook.Created hamburger menu for screen sizes less than medium screen sizes. 
+- v-0.9 - Created media queries for main page. Created siteMap enum to store page routes. Created useNavBarComponents.tsx hook.Created hamburger menu for screen sizes less than medium screen sizes. Refactored navBarComponents.tsx and siteNavigationMenu.tsx component inside of hamburgerMenu.tsx to use the useNavBarComponents.tsx hook. Got rid of unnecessary functional components used in previous nav bar design.
 
 Bug Fixes:
 - Search Bar Refresh - Bug triggered when page refresh happened from form submit. This triggered another oAuth header request which results in an invalid header. Fixed this by saving the header to a JSON file and then retrieving it. Later switched to a cookie based system.
@@ -31,10 +31,9 @@ Bug Fixes:
 
 - Music Form Search Bar Causing Faulty Redirects - Bug triggered when searching for tracks using the musicForm.tsx component when going to the home page directly from typing it in the url bar as opposed to clicking on the home link at the top of the header. This was caused do to how the form variabled are unpacked inside the createRedirectCookie function using formData.values(). For an unknown reason when you go to the home page by typing in the url address an extra keypair got added to the formData variable causing formData.values to unpack incorrectly. I fixed this by unpacking the variables separately key by key and using ternary statements to handle falsey values.
 
-- Removing Tracks From Playlist Causes tracks.map() To Cause TypeError - When removing tracks from the current playlist and the view was showing collapsable albums the page rerender would cause the tracks list to be undefined causing a type error. I fixed this by moving the fetches to a client component and then sending the fetch results to a second .map() function after the first.
+- Removing Tracks From Playlist Causes tracks.map() To Cause TypeError - When removing tracks from the current playlist and the view was showing collapsable albums the page rerender would cause the tracks list to be undefined causing a type error. I fixed this by moving the fetches to a server component and then sending the fetch results to a second .map() function after the first.
 
 Things Coming:
 1. More search point options.
-2. Playlist functionality.
-3. Ability to play songs.
-4. Hamburger nav bar.
+2. Ability to play songs.
+3. Cleaner looking interace / better styling.
