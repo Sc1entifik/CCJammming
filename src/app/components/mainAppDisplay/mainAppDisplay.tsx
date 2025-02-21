@@ -4,6 +4,9 @@ import ArtistTopTracks from "./artistTopTracks/artistTopTracks";
 import ArtistAlbums from "./albums/artistAlbums";
 import Albums from "./albums/albums";
 import Songs from "./songs/songs";
+import JammmingPlayer from "./jammmingPlayer/jammmingPlayer";
+import AccessToken from "./jammmingPlayer/accessToken";
+import JammmingWebPlayer from "./jammmingPlayer/jammmingPlayer";
 
 export default async function MainAppDisplay({searchTerm, searchTermType}: {searchTerm: string, searchTermType: string}) {
 	let musicElement;

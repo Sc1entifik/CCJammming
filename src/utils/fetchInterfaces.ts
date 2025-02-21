@@ -67,7 +67,7 @@ interface TrackObject {
 }
 
 
-interface EpisodeObject {
+export interface EpisodeObject {
 	description: string
 	html_description: string
 	duration_ms: number
@@ -245,3 +245,14 @@ export interface UserProfile {
 
 }
 
+
+export interface DeviceObject {
+	id: string
+	is_active: boolean
+	is_private_session: boolean
+	is_restricted: boolean
+	name: string
+	type: string
+	volume_percent: number
+	supports_volume: boolean
+}

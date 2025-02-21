@@ -1,6 +1,6 @@
 import SpotifyEndpoints from "./endpoints";
 import { formattedErrorMessage, validateQueryTerm } from "./helper";
-import { Artist, Track, Album, UserProfile, PlaylistTrackObject, Playlist } from "./fetchInterfaces";
+import { Artist, Track, Album, UserProfile, PlaylistTrackObject, Playlist, DeviceObject } from "./fetchInterfaces";
 
 enum QueryTermTypes {
 	ALBUM = "album",
@@ -154,3 +154,11 @@ export const fetchAddTracksToPlaylist = (playlistId: string, trackUris: string[]
 			console.error(formattedErrorMessage("Fetch Add Tracks To Playlist Failed", err));
 		});
 };
+
+
+export const fetchAvailablePlaybackDevices = (authHeader: AuthHeader): Promise<DeviceObject[]> => fetch(SpotifyEndpoints.PLAYBACK_DEVICES_URI, authHeader)
+	.then(res => res.json())
+	.then(res => res.devices)
+	.catch(err => {
+		console.error(`Fetch Available Playback Devices Failed: \n${err}`);
+	});
