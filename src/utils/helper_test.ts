@@ -1,5 +1,5 @@
 import { assertEquals } from "jsr:@std/assert";
-import { validateQueryTerm, keySetter, generateRandomString } from "./helper";
+import { validateQueryTerm, keySetter, generateRandomString, formattedErrorMessage } from "./helper";
 
 const capitalCase = (input: string): string => {
 	let validatedInput = "";
@@ -115,4 +115,20 @@ Deno.test("Generate Random String: All Characters Used", () => {
 		assertEquals(reallyLongRandomString.includes(targetCharacter), true);
 		assertEquals(!reallyLongRandomString.includes(targetCharacter), false);
 	}
+});
+
+//Not an actual test I know however you should be able to see if the messages look good or not!
+Deno.test("Formatted Error Messges: Looks Nice On All Messages", () => {
+	const err = "I AM YOUR STANDARD REACT ERROR!!!! NOBODY UNDERSTANDS WHY I AM HERE OR WHAT TO DO ABOUT ME!!!! I ALSO TRIGGER RANDOM HYDRATION ERRORS. NOT EVERYTIME SO IT IS DIFFICULT TO FIGURE OUT HOW I COULD EVEN TRIGGER A HYDRATION ERROR!!!!"
+	const errorMessage1 = "I am a standard error message";
+	const errorMessage2 = "I AM AN ERROR MESSAGE THAT SOUNDS LIKE I AM YELLING";
+	const errorMessge3 = "I_AM_AN_ERROR_MESSAGE_IN_SCREAMING_SNAKE_CASE_I_SHOULD_ALSO_LOOK_GOOD!!!";
+	const errorMessages = [errorMessage1, errorMessage2, errorMessge3];
+
+	for (let i=0; i<errorMessages.length; i++) {
+		const currentMessage = errorMessages[i];
+		console.log(formattedErrorMessage(currentMessage, err));
+	}
+
+	assertEquals(true, true);
 });

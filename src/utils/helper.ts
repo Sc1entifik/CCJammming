@@ -36,7 +36,6 @@ const generateCharacterPool = ():string => {
 };
 
 
-
 export const validateQueryTerm = (queryTerm: string):string => {
 	const trimmedInput = queryTerm.trim();
 	const capitalizedQueryTerm = toCapitalCase(trimmedInput);
@@ -66,6 +65,23 @@ export const generateRandomString = (stringLength: number): string => {
 
 	return randomString;
 };
+
+
+export const formattedErrorMessage = (helpfulDescription: string, err: string): string => {
+	let lineBuffer = "";
+	const errorUnderneath = "Read Below To See Full Error Message!"
+
+	for (let i=0; i<helpfulDescription.length * 1.5; i++) {
+
+		if (lineBuffer.length % 2 == 0) {
+			lineBuffer += "-";
+		} else {
+			lineBuffer += "*";
+		}
+	} 
+
+	return `\n${lineBuffer}\n${helpfulDescription}:\n${errorUnderneath}\n${lineBuffer}\n${err}`;
+}
 
 
 export const parseAuthHeaderFromCookieStore = (cookieStore: object): AuthHeader => JSON.parse(cookieStore.get("auth").value).authHeader;
