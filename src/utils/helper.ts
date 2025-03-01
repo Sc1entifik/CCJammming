@@ -74,9 +74,9 @@ export const formattedErrorMessage = (helpfulDescription: string, err: string): 
 	for (let i=0; i<helpfulDescription.length * 1.5; i++) {
 
 		if (lineBuffer.length % 2 == 0) {
-			lineBuffer += "-";
-		} else {
 			lineBuffer += "*";
+		} else {
+			lineBuffer += "-";
 		}
 	} 
 

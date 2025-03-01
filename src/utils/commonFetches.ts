@@ -1,5 +1,5 @@
 import SpotifyEndpoints from "./endpoints";
-import { validateQueryTerm } from "./helper";
+import { formattedErrorMessage, validateQueryTerm } from "./helper";
 import { Artist, Track, Album, UserProfile, PlaylistTrackObject, Playlist } from "./fetchInterfaces";
 
 enum QueryTermTypes {
@@ -36,7 +36,7 @@ const artistIdCodeByName = (artistName: string, authHeader: AuthHeader): Promise
 		return matchedId? matchedId: defaultId;
 	})
 	.catch(err => {
-		console.error(`Artist Id Code By Name Fetch Failed: \n${err}`);
+		console.error(formattedErrorMessage("Artist ID Code By Name Fetch Failed", err));
 		
 		return errorDefaultId;
 	});
@@ -52,7 +52,7 @@ export const fetchArtistDataByName = (artistName: string, authHeader: AuthHeader
 			return fetch(url, authHeader)
 			.then(res => res.json())
 			.catch(err => {
-				console.error(`Fetch Artist Data By Name Failed: \n${err}`);
+				console.error(formattedErrorMessage("Fetch Artist Data By Name Failed", err));
 			});
 		});
 
@@ -65,7 +65,7 @@ export const fetchArtistTopTracks = (artistName: string, authHeader: AuthHeader)
 			.then(res => res.json())
 			.then(res => res.tracks)
 			.catch(err => {
-				console.error(`Fetch Artist Top Tracks Failed: \n${err}`);
+				console.error(formattedErrorMessage("Fetch Artist Top Tracks Failed", err));
 			});
 	});
 
@@ -77,7 +77,7 @@ export const fetchArtistAlbums = (artistName: string, authHeader: AuthHeader): P
 		return fetch(url, authHeader).then(res => res.json()).then(res => res.items);
 	})
 	.catch(err => {
-		console.error(`Fetch Artist Albums Failed: \n${err}`);
+		console.error(formattedErrorMessage("Fetch Artist Albums Failed", err));
 	});
 
 
@@ -94,7 +94,7 @@ export const fetchAlbumTracksById = (albumId: string, authHeader: AuthHeader): P
 		.then(res => res.json())
 		.then(res => res.items)
 		.catch(err => {
-			console.error(`Fetch Album Tracks By Id Failed: \nfetchUrl: ${url} \n${err}`)
+			console.error(formattedErrorMessage(`Fetch Album Tracks By ID Failed: fetchURL: ${url}`, err));
 		});
 }
 
@@ -103,7 +103,7 @@ export const fetchAlbumsByName = (albumName: string, authHeader: AuthHeader): Pr
 	.then(res => res.albums)
 	.then(res => res.items)
 	.catch(err => {
-		console.error(`Fetch Albums By Name Failed: \n${err}`);
+		console.error(formattedErrorMessage("Fetch Albums By Name Failed", err));
 	});
 
 
@@ -111,21 +111,21 @@ export const fetchTracksByName = (trackName: string, authHeader: AuthHeader): Pr
 	.then(res => res.tracks)
 	.then(res => res.items)
 	.catch(err => {
-		console.error(`Fetch Tracks By Name Failed: \n${err}`);
+		console.error(formattedErrorMessage("Fetch Tracks By Name Failed", err));
 	});
 
 
 export const fetchUserProfile = (authHeader: AuthHeader): Promise<UserProfile> => fetch(SpotifyEndpoints.USER_PROFILE_URI, authHeader)
 	.then(res => res.json())
 	.catch(err => {
-		console.error(`Fetch User Profile Failed: \n${err}`);
+		console.error(formattedErrorMessage("Fetch User Profile Failed", err));
 	});
 
 
 export const fetchPlaylistById = (playlistId: string, authHeader: AuthHeader): Promise<Playlist> => fetch(SpotifyEndpoints.PLAYLIST_URI + playlistId, authHeader)
 	.then(res => res.json())
 	.catch(err => {
-		console.error(`Fetch Playlist By Id Failed: \n${err}`);
+		console.error(formattedErrorMessage("Fetch Playlist By Id Failed", err));
 	});
 
 
@@ -133,7 +133,7 @@ export const fetchPlaylistItemsById = (playlistId: string, authHeader: AuthHeade
 	.then(res => res.json())
 	.then(res => res.items)
 	.catch(err => {
-		console.error(`Fetch Playlist Items By Id Failed: \n${err}`);
+		console.error(formattedErrorMessage("Fetch Playlist Items By ID Failed", err));
 	});
 
 
@@ -151,6 +151,6 @@ export const fetchAddTracksToPlaylist = (playlistId: string, trackUris: string[]
 	fetch(url, options)
 		.then(res => res.json())
 		.catch(err => {
-			console.error(`Fetch Add Tracks To Playlist Failed: \n${err}`);
+			console.error(formattedErrorMessage("Fetch Add Tracks To Playlist Failed", err));
 		});
 };
