@@ -17,7 +17,7 @@ interface AuthHeader {
 }
 
 
-const querySearch = (validatedQueryTerm: string, queryType: string, authHeader: AuthHeader): Promise<object> => {
+const querySearch = async (validatedQueryTerm: string, queryType: string, authHeader: AuthHeader): Promise<object> => {
 	const typeQueryString = `&type=${queryType}`;
 	const url = SpotifyEndpoints.QUERY_TERM + validatedQueryTerm + typeQueryString;
 
@@ -25,7 +25,7 @@ const querySearch = (validatedQueryTerm: string, queryType: string, authHeader: 
 };
 
 
-const artistIdCodeByName = (artistName: string, authHeader: AuthHeader): Promise<string> => {
+const artistIdCodeByName = async (artistName: string, authHeader: AuthHeader): Promise<string> => {
 	const validatedArtistName = validateQueryTerm(artistName);
 	const errorDefaultId = "7dGJo4pcD2V6oG8kP0tJRR?si=Avzvq2-4SEaloXsfNIJYcg&nd=1&dlsi=a68881c17faa4ca6"; //Id code defaults to Eminem in the extremely rare case that artists.items array is completly empty so as not to throw an error.
 	const artistIdCode = querySearch(artistName, QueryTermTypes.ARTIST, authHeader)
@@ -45,7 +45,7 @@ const artistIdCodeByName = (artistName: string, authHeader: AuthHeader): Promise
 }
 
 
-export const fetchArtistDataByName = (artistName: string, authHeader: AuthHeader): Promise<Artist> => artistIdCodeByName(artistName, authHeader)
+export const fetchArtistDataByName = async (artistName: string, authHeader: AuthHeader): Promise<Artist> => artistIdCodeByName(artistName, authHeader)
 		.then(idCode => {
 			const url = SpotifyEndpoints.ARTISTS_BY_ARTIST_CODE_URI + idCode;
 
@@ -57,7 +57,7 @@ export const fetchArtistDataByName = (artistName: string, authHeader: AuthHeader
 		});
 
 
-export const fetchArtistTopTracks = (artistName: string, authHeader: AuthHeader): Promise<Track[]> => artistIdCodeByName(artistName, authHeader)
+export const fetchArtistTopTracks = async (artistName: string, authHeader: AuthHeader): Promise<Track[]> => artistIdCodeByName(artistName, authHeader)
 	.then(idCode => {
 		const url = SpotifyEndpoints.ARTISTS_BY_ARTIST_CODE_URI + idCode + "/top-tracks";
 
@@ -70,7 +70,7 @@ export const fetchArtistTopTracks = (artistName: string, authHeader: AuthHeader)
 	});
 
 
-export const fetchArtistAlbums = (artistName: string, authHeader: AuthHeader): Promise<Album[]> => artistIdCodeByName(artistName, authHeader)
+export const fetchArtistAlbums = async (artistName: string, authHeader: AuthHeader): Promise<Album[]> => artistIdCodeByName(artistName, authHeader)
 	.then(idCode => {
 		const url = SpotifyEndpoints.ARTISTS_BY_ARTIST_CODE_URI + idCode + "/albums";
 
@@ -81,7 +81,7 @@ export const fetchArtistAlbums = (artistName: string, authHeader: AuthHeader): P
 	});
 
 
-export const fetchAlbumTracksById = (albumId: string, authHeader: AuthHeader): Promise<Track[]> => {
+export const fetchAlbumTracksById = async (albumId: string, authHeader: AuthHeader): Promise<Track[]> => {
 	const url = SpotifyEndpoints.ALBUM_BY_ALBUM_CODE_URI + albumId + "/tracks";
 	const options = {
 		headers: {
@@ -99,7 +99,7 @@ export const fetchAlbumTracksById = (albumId: string, authHeader: AuthHeader): P
 }
 
 
-export const fetchAlbumsByName = (albumName: string, authHeader: AuthHeader): Promise<Album[]> => querySearch(albumName, "album", authHeader)
+export const fetchAlbumsByName = async (albumName: string, authHeader: AuthHeader): Promise<Album[]> => querySearch(albumName, "album", authHeader)
 	.then(res => res.albums)
 	.then(res => res.items)
 	.catch(err => {
@@ -107,7 +107,7 @@ export const fetchAlbumsByName = (albumName: string, authHeader: AuthHeader): Pr
 	});
 
 
-export const fetchTracksByName = (trackName: string, authHeader: AuthHeader): Promise<Track[]> => querySearch(trackName, "track", authHeader)
+export const fetchTracksByName = async (trackName: string, authHeader: AuthHeader): Promise<Track[]> => querySearch(trackName, "track", authHeader)
 	.then(res => res.tracks)
 	.then(res => res.items)
 	.catch(err => {
@@ -115,21 +115,21 @@ export const fetchTracksByName = (trackName: string, authHeader: AuthHeader): Pr
 	});
 
 
-export const fetchUserProfile = (authHeader: AuthHeader): Promise<UserProfile> => fetch(SpotifyEndpoints.USER_PROFILE_URI, authHeader)
+export const fetchUserProfile = async (authHeader: AuthHeader): Promise<UserProfile> => fetch(SpotifyEndpoints.USER_PROFILE_URI, authHeader)
 	.then(res => res.json())
 	.catch(err => {
 		console.error(formattedErrorMessage("Fetch User Profile Failed", err));
 	});
 
 
-export const fetchPlaylistById = (playlistId: string, authHeader: AuthHeader): Promise<Playlist> => fetch(SpotifyEndpoints.PLAYLIST_URI + playlistId, authHeader)
+export const fetchPlaylistById = async (playlistId: string, authHeader: AuthHeader): Promise<Playlist> => fetch(SpotifyEndpoints.PLAYLIST_URI + playlistId, authHeader)
 	.then(res => res.json())
 	.catch(err => {
 		console.error(formattedErrorMessage("Fetch Playlist By Id Failed", err));
 	});
 
 
-export const fetchPlaylistItemsById = (playlistId: string, authHeader: AuthHeader): Promise<PlaylistTrackObject[]> => fetch(SpotifyEndpoints.PLAYLIST_URI + playlistId + "/tracks", authHeader)
+export const fetchPlaylistItemsById = async (playlistId: string, authHeader: AuthHeader): Promise<PlaylistTrackObject[]> => fetch(SpotifyEndpoints.PLAYLIST_URI + playlistId + "/tracks", authHeader)
 	.then(res => res.json())
 	.then(res => res.items)
 	.catch(err => {
@@ -137,7 +137,7 @@ export const fetchPlaylistItemsById = (playlistId: string, authHeader: AuthHeade
 	});
 
 
-export const fetchAddTracksToPlaylist = (playlistId: string, trackUris: string[], authHeader: AuthHeader) => {
+export const fetchAddTracksToPlaylist = async (playlistId: string, trackUris: string[], authHeader: AuthHeader) => {
 	const url = SpotifyEndpoints.PLAYLIST_URI + playlistId + "/tracks";
 	const options = {
 		method: "post",
@@ -156,9 +156,9 @@ export const fetchAddTracksToPlaylist = (playlistId: string, trackUris: string[]
 };
 
 
-export const fetchAvailablePlaybackDevices = (authHeader: AuthHeader): Promise<DeviceObject[]> => fetch(SpotifyEndpoints.PLAYBACK_DEVICES_URI, authHeader)
+export const fetchAvailablePlaybackDevices = async (authHeader: AuthHeader): Promise<DeviceObject[]> => fetch(SpotifyEndpoints.PLAYBACK_DEVICES_URI, authHeader)
 	.then(res => res.json())
 	.then(res => res.devices)
 	.catch(err => {
-		console.error(`Fetch Available Playback Devices Failed: \n${err}`);
+		console.error(formattedErrorMessage(`Fetch Available Playback Devices Failed`, err));
 	});

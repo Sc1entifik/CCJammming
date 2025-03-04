@@ -1,17 +1,18 @@
-import { commonFetches } from "@/utils/serverActions";
+import { fetchSongList } from "@/utils/serverSideFetches";
 import { useEffect, useState } from "react";
 
-export default function useFetch(fetchFunction, fetchQuery: string) {
-	const [fetchItem, setFetchItem] = useState({});
+export default function useFetch(songName: string) {
+	const [songList, setSongList] = useState(null);
 
 	useEffect(() => {
-		const obtainFetch = async () => {
-			const itemFetch = await commonFetches(fetchFunction, fetchQuery);
-			setFetchItem(itemFetch);
+		const songsFetch = async () => {
+			const songs = await fetchSongList(songName);
+
+			setSongList(songs);
 		};
 
-		obtainFetch();
-	}, [fetchFunction, fetchQuery]);
+		songsFetch();
+	}, [songName]);
 
-	return fetchItem;
+	return songList;
 }

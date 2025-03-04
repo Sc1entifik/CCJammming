@@ -1,7 +1,5 @@
 import { cookies } from "next/headers";
 import HamburgerMenu from "./hamburgerMenu/hamburgerMenu";
-import { deleteAuthCookie } from "@/utils/serverActions";
-import { redirect } from "next/navigation";
 import NavBar from "./navBar/navBar";
 
 

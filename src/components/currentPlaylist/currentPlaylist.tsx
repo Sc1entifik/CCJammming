@@ -31,7 +31,7 @@ export default async function CurrentPlaylist({ searchTerm="", searchTermType=""
 			const trackArtistNames = x.track.artists.map(y => y.name).join(", ");
 
 			return (
-					<div key={setUniqueKey()} className="grid grid-cols-subgrid col-span-3 my-5 snap-start scroll-mt-4">
+					<div key={setUniqueKey()} className="grid grid-cols-subgrid col-span-3 my-5 snap-start snap-always scroll-mt-4">
 						<RemoveTracksFromPlaylist urlBase={urlBase} searchTerm={searchTerm} searchTermType={searchTermType} tracks={[x.track]}><Image alt="Track album photo" src={trackAlbumImage} height={5000} width={5000} style={trackAlbumImageStyle}/></RemoveTracksFromPlaylist>
 						<RemoveTracksFromPlaylist urlBase={urlBase} searchTerm={searchTerm} searchTermType={searchTermType} tracks={[x.track]}><p>{x.track.name}</p></RemoveTracksFromPlaylist>
 						<RemoveTracksFromPlaylist urlBase={urlBase} searchTerm={searchTerm} searchTermType={searchTermType} tracks={[x.track]}><p>{trackArtistNames}</p></RemoveTracksFromPlaylist>
@@ -44,7 +44,7 @@ export default async function CurrentPlaylist({ searchTerm="", searchTermType=""
 			const episodeName = x.track.show.name;
 
 			return (
-				<div key={setUniqueKey()} className="grid grid-cols-subgrid col-span-3 my-5 snap-start scroll-mt-4">
+				<div key={setUniqueKey()} className="grid grid-cols-subgrid col-span-3 my-5 snap-start snap-always scroll-mt-4">
 					<RemoveTracksFromPlaylist urlBase={urlBase} searchTerm={searchTerm} searchTermType={searchTermType} tracks={[x.track]}><Image alt="Podcast episode photo" src={podcastImage} height={5000} width={5000} style={trackAlbumImageStyle}/></RemoveTracksFromPlaylist>
 					<RemoveTracksFromPlaylist urlBase={urlBase} searchTerm={searchTerm} searchTermType={searchTermType} tracks={[x.track]}><p>{episodeName}</p></RemoveTracksFromPlaylist>
 					<RemoveTracksFromPlaylist urlBase={urlBase} searchTerm={searchTerm} searchTermType={searchTermType} tracks={[x.track]}><p>{podcastPublisher}</p></RemoveTracksFromPlaylist>

@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   /* config options here */
 	experimental: {
 		serverActions: {
-			allowedOrigins: ["localhost:3000","192.168.2.4:3000","https://localhost:3000", "https://192.168.2.4:3000"],
+			allowedOrigins: ["localhost:3000","192.168.2.4:3000","http://localhost:3000","https://localhost:3000", "https://192.168.2.4:3000"],
 		},
 	},
 	images: {

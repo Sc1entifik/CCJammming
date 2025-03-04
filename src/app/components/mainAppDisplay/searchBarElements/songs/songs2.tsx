@@ -1,16 +1,15 @@
-//import SpotifyTracks from "./spotifyTracks";
 import useFetch from "../hooks/useFetch";
-import { fetchTracksByName } from "@/utils/commonFetches";
+import SpotifyTracks from "./spotifyTracks";
 
-//const albumCoverSize = 5.6;
+const albumCoverSize = 5.6;
 
 export default function Songs({songName}: {songName: string}) {
-	const songFetch = useFetch(fetchTracksByName, songName);
+	const songFetch = useFetch(songName);
 
 	return (
-		<div className="flex flex-col items-center font-tropiLand gap-4">
+		<div className="flex flex-col items-center font-tropiLand gap-4 max-h-[80dvh]">
 			<h3 className="font-bounce tracking-widest">Click Song To Add To Playlist</h3>
-			<p>WTF</p>
+			{songFetch && <SpotifyTracks albumCoverSize={albumCoverSize} tracks={songFetch}/>}
 		</div>
 	);
 }

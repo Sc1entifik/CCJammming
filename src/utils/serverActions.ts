@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 import querystring from "node:querystring";
 
 import SpotifyEndpoints from "./endpoints";
-import { generateRandomString, parseAuthHeaderFromCookieStore, validateQueryTerm } from "./helper";
+import { formattedErrorMessage, generateRandomString, parseAuthHeaderFromCookieStore, validateQueryTerm } from "./helper";
 import { AuthHeader } from "./fetchInterfaces";
 import { fetchUserProfile } from "./commonFetches";
 
@@ -142,9 +142,8 @@ export const deleteItemsFromCurrentPlaylist = async (tracks: object[], urlBase: 
 	const authHeader = parseAuthHeaderFromCookieStore(cookieStore);
 	const redirectUrl = cookieStore.has("redirectUrl") ? cookieStore.get("redirectUrl")?.value : `/${urlBase}`;
 	const playlistId = cookieStore.get("currentPlaylist")?.value;
-	const snapshot_id = await fetch(SpotifyEndpoints.PLAYLIST_URI + playlistId, authHeader).then(res => res.json()).then(res => res.snapshot_id);
 	const url = SpotifyEndpoints.PLAYLIST_URI + playlistId + "/tracks";
-	const body = JSON.stringify({tracks, snapshot_id});
+	const body = JSON.stringify({tracks});
 	const options = {
 		method: "delete",
 		headers: {
@@ -155,10 +154,18 @@ export const deleteItemsFromCurrentPlaylist = async (tracks: object[], urlBase: 
 	};
 	
 	if (playlistId) {
-		await fetch(url, options);
+		try {
+			await fetch(url, options).then(res => {
+				console.log(formattedErrorMessage("Check Deletion Status In Case Of 502 See 502 Deletion Bug Fix For More Info", res.status.toString()));
+			});
+
+		} catch (err) {
+			console.error(formattedErrorMessage("Delete Item From Playlist Failed", err));
+		}
 	}
 
 	if (typeof redirectUrl === "string") {
-		redirect(redirectUrl);
+			redirect(redirectUrl);
+
 	}
 };
