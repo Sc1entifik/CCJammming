@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import Albums from "./albums/albums";
 import ArtistAlbums from "./albums/artistAlbums";
 import ArtistTopTracks from "./artistTopTracks/artistTopTracks";
@@ -9,7 +10,7 @@ export default function SearchBarElement({searchTerm, searchTermType}: {searchTe
 	switch(searchTermType) {
 		case "artistTopTracks": {
 			//return <ArtistTopTracks artistName={searchTerm} />
-			return <p>WTF</p>
+			<p>WTF</p>
 		}
 
 		case "albumsByArtist": {
