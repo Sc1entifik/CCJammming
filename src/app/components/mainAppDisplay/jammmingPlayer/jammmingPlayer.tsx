@@ -1,8 +1,7 @@
 "use client"
-import { EpisodeObject, Track } from "@/utils/fetchInterfaces";
 import { useEffect } from "react";
 
-export default function JammmingPlayer({ playerItem }: {playerItem: Track | EpisodeObject}) {
+export default function JammmingPlayer({ playerItemUri }: {playerItemUri: string}) {
 
 	useEffect(() => {
 		const script = document.createElement("script");
@@ -18,12 +17,17 @@ export default function JammmingPlayer({ playerItem }: {playerItem: Track | Epis
 			const options = {
 				width,
 				height,
-				uri: playerItem.uri,
+				uri: playerItemUri,
 			};
-			const callback = (EmbedController) => {};
+
+			const callback = (EmbedController) => {
+			};
+			
 			IFrameAPI.createController(element, options, callback);
 		}
-		}, [playerItem.uri]);
+
+	}, [playerItemUri]);
+
 
 	return (
 		<div className="flex justify-center">

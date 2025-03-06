@@ -3,7 +3,6 @@
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import querystring from "node:querystring";
-
 import SpotifyEndpoints from "./endpoints";
 import { formattedErrorMessage, generateRandomString, parseAuthHeaderFromCookieStore, validateQueryTerm } from "./helper";
 import { AuthHeader } from "./fetchInterfaces";
@@ -169,3 +168,9 @@ export const deleteItemsFromCurrentPlaylist = async (tracks: object[], urlBase: 
 
 	}
 };
+
+
+export const createSampleTrackUriCookie = async (sampleTrackUri: string) => {
+	const expires = Date.now() + 7000; //expires after 7 seconds
+	await createNamedCookie("sampleTrackUri", sampleTrackUri, expires);
+}
