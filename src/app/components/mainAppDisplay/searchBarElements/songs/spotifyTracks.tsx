@@ -13,7 +13,7 @@ export default function SpotifyTracks({tracks, albumCoverSize}: {tracks: Track[]
 	};
 
 	const trackFlex = tracks.map((track: Track) => (
-		<div key={setUniqueKey()} className="grid grid-cols-subgrid col-span-2">
+		<div key={setUniqueKey()} className="grid grid-cols-subgrid col-span-2 snap-always snap-start">
 			<AddTracksToPlaylist trackUris={[track.uri]}>
 				<div className="snap-start snap-always">
 					<p className="max-w-32">{track.artists.map(x => x.name).join(", ")}</p>

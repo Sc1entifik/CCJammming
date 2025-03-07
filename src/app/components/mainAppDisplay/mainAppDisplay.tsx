@@ -8,7 +8,7 @@ export default async function MainAppDisplay({searchTerm, searchTermType}: {sear
 	const cookieStore = await cookies();
 	
 	return (
-		<div>
+		<div className=" max-h-[84dvh]">
 			{!searchTermType && 
 				<div className="mb-16">
 					<MusicForm/>

@@ -19,10 +19,7 @@ export default function SearchBarElement({searchTerm, searchTermType}: {searchTe
 		}
 
 		case "songs": {
-			return (
-				<div>
-					<Songs songName={searchTerm} />
-				</div>);
+			return <Songs songName={searchTerm} />
 		}
 
 		default: {

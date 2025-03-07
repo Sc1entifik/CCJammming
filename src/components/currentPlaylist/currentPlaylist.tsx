@@ -63,8 +63,8 @@ export default async function CurrentPlaylist({ searchTerm="", searchTermType=""
 				<p>Album Image</p>
 				<p>Track Name</p>
 				<p>Artists</p>
-				<div className="text-textColor grid grid-cols-subgrid col-span-3 max-h-[41dvh] overflow-y-auto no-scrollbar gap-5 items-center justify-items-start snap-y snap-mandatory">
-					{playlistTracks}
+				<div className="text-textColor grid grid-cols-subgrid col-span-3 max-h-[47dvh] overflow-y-auto no-scrollbar gap-5 items-center justify-items-start snap-y snap-mandatory">
+						{playlistTracks}
 				</div>
 			</div>
 		</div>

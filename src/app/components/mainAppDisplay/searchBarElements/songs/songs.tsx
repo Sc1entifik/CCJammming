@@ -10,9 +10,10 @@ export default async function Songs({songName}: {songName: string}) {
 	const songFetch = await fetchTracksByName(songName, accessHeader);
 
 	return (
-	<div className="flex flex-col items-center font-tropiLand gap-4">
-		<h3 className="font-bounce tracking-widest">Click Song To Add To Playlist</h3>
-		<SpotifyTracks tracks={songFetch} albumCoverSize={albumCoverSize} />
-	</div>
-	)
+		<div className="flex flex-col items-center font-tropiLand gap-4 max-h-[84dvh]">
+			<h3 className="font-tropiLand tracking-widest">Scroll To See All Songs</h3>
+			<h3 className="font-tropiLand tracking-widest">Click Song To Add To Playlist</h3>
+			<SpotifyTracks tracks={songFetch} albumCoverSize={albumCoverSize} />
+		</div>
+	);
 }

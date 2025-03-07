@@ -23,7 +23,7 @@
 - v-0.9 - Created media queries for main page. Created siteMap enum to store page routes. Created useNavBarComponents.tsx hook.Created hamburger menu for screen sizes less than medium screen sizes. Refactored navBarComponents.tsx and siteNavigationMenu.tsx component inside of hamburgerMenu.tsx to use the useNavBarComponents.tsx hook. Got rid of unnecessary functional components used in previous nav bar design.
 - v-0.92 - Created OEmbed Enum for OEmbed endpoints. Not sure if this will make the final cut. Built Functional component for IFrame embed element. Only seems to embed previews of songs but does work on any version of Spotify so this looks like a win. Added player embed element for song player.
 - v-0.92.3 - Fixed Delete Item from Playlist 502 Bug. Refactored Song search to scroll in place with no scroll bars. Songs element now uses client based fetching so prop drilling should now work with client based component. Snap scroll styling added to Songs Functional Component.
-- v-0.93 - Fixed Player Won't Load For New Song Bug. Also moved fetches back to server side fetching which speeds things up. Made createSampleTrackUriCookie server action. 
+- v-0.93 - Fixed Player Won't Load For New Song Bug. Also moved fetches back to server side fetching which speeds things up. Made createSampleTrackUriCookie server action. Refactored songs to scroll through tracks and use snap scrolling while still using server side fetch. 
 
 Bug Fixes:
 - Search Bar Refresh - Bug triggered when page refresh happened from form submit. This triggered another oAuth header request which results in an invalid header. Fixed this by saving the header to a JSON file and then retrieving it. Later switched to a cookie based system.
@@ -38,7 +38,7 @@ Bug Fixes:
 
 - 502 Deletion Bug - Recent change to Spotify API causes a 502 Bad Gateway status message when trying to delete items from playlist while supplying the snapshot ID. This would not trigger an actual error message so this was very troublesome to spot and fix. The fix to this was to remove the snapshot ID from the request which also speeds up the request as well. This error does not show up as an error so I added a console.log with a formattedErrorMessage every time someone deletes something so it is easy to check the status message of the deletion operation. This should be a code of 200.
 
-- Player Won't Load For New Song - Bug caused by Spotify Embed player causing a failure to rebuild the element when it is already there. Fixed this by getting rid of the page redirect in createSampleUriCookie server action, and adding location.reload after calling createSampleUriCookie from the onClick event handler in the trackURI button. I also had to create an inner async function inside the anonymous function so I could await dreateSampleUriCookie before the location.reload was triggered otherwise the page would reload before the cookie was created.
+- Player Won't Load For New Song - Bug caused by Spotify Embed player causing a failure to rebuild the element when it is already there. Fixed this by getting rid of the page redirect in createSampleUriCookie server action, and adding location.reload after calling createSampleUriCookie from the onClick event handler in the trackURI button. I also had to create an inner async function inside the anonymous function so I could await createSampleUriCookie before the location.reload was triggered otherwise the page would reload before the cookie was created.
 
 Things Coming:
 1. More search point options.
