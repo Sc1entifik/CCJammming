@@ -7,8 +7,6 @@
     "npm:@types/node@20": "20.17.1",
     "npm:@types/react-dom@18": "18.3.1",
     "npm:@types/react@18": "18.3.12",
-    "npm:cookie@^1.0.2": "1.0.2",
-    "npm:cookies@~0.9.1": "0.9.1",
     "npm:eslint-config-next@15.0.2-canary.9": "15.0.2-canary.9_eslint@8.57.1_typescript@5.6.3_@typescript-eslint+parser@8.12.0__eslint@8.57.1__typescript@5.6.3_eslint-plugin-import@2.31.0__eslint@8.57.1",
     "npm:eslint@8": "8.57.1",
     "npm:next@15.0.2-canary.9": "15.0.2-canary.9_react@19.0.0-rc-1631855f-20241023_react-dom@19.0.0-rc-1631855f-20241023__react@19.0.0-rc-1631855f-20241023",
@@ -627,16 +625,6 @@
     "concat-map@0.0.1": {
       "integrity": "sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg=="
     },
-    "cookie@1.0.2": {
-      "integrity": "sha512-9Kr/j4O16ISv8zBBhJoi4bXOYNTkFLOqSL3UDB0njXxCXNezjeyVrJyGOWtgfs/q2km1gwBcfH8q1yEGoMYunA=="
-    },
-    "cookies@0.9.1": {
-      "integrity": "sha512-TG2hpqe4ELx54QER/S3HQ9SRVnQnGBtKUz5bLQWtYAQ+o6GpgMs6sYUvaiJjVxb+UXwhRhAEP3m7LbsIZ77Hmw==",
-      "dependencies": [
-        "depd",
-        "keygrip"
-      ]
-    },
     "cross-spawn@7.0.3": {
       "integrity": "sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==",
       "dependencies": [
@@ -708,9 +696,6 @@
         "has-property-descriptors",
         "object-keys"
       ]
-    },
-    "depd@2.0.0": {
-      "integrity": "sha512-g7nH6P6dyDioJogAAGprGpCtVImJhpPk/roCzdb3fIh61/s/nPsfR6onyMwkCAR/OlC3yBC0lESvUoQEAssIrw=="
     },
     "detect-libc@2.0.3": {
       "integrity": "sha512-bwy0MGW55bG41VqxxypOsdSdGqLwXPI/focwgTYCFMbdUiBAxLg9CFzG08sz2aqzknwiX7Hkl0bQENjg8iLByw=="
@@ -1516,12 +1501,6 @@
         "object.values"
       ]
     },
-    "keygrip@1.1.0": {
-      "integrity": "sha512-iYSchDJ+liQ8iwbSI2QqsQOvqv58eJCEanyJPJi+Khyu8smkcKSFUCbPwzFcL7YVtZ6eONjqRX/38caJ7QjRAQ==",
-      "dependencies": [
-        "tsscmp"
-      ]
-    },
     "keyv@4.5.4": {
       "integrity": "sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==",
       "dependencies": [
@@ -2222,9 +2201,6 @@
     "tslib@2.8.0": {
       "integrity": "sha512-jWVzBLplnCmoaTr13V9dYbiQ99wvZRd0vNWaDRg+aVYRcjDF3nDksxFDE/+fkXnKhpnUUkmx5pK/v8mCtLVqZA=="
     },
-    "tsscmp@1.0.6": {
-      "integrity": "sha512-LxhtAkPDTkVCMQjt2h6eBVY28KCjikZqZfMcC15YBeNjkgUpdCfBu5HoiOTDu86v6smE8yOjyEktJ8hlbANHQA=="
-    },
     "type-check@0.4.0": {
       "integrity": "sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==",
       "dependencies": [
@@ -2385,8 +2361,6 @@
         "npm:@types/node@20",
         "npm:@types/react-dom@18",
         "npm:@types/react@18",
-        "npm:cookie@^1.0.2",
-        "npm:cookies@~0.9.1",
         "npm:eslint-config-next@15.0.2-canary.9",
         "npm:eslint@8",
         "npm:next@15.0.2-canary.9",

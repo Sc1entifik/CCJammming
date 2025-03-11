@@ -5,6 +5,8 @@ import { Album } from "@/utils/fetchInterfaces";
 import AddTracksToPlaylist from "../../../commonElements/addTracksToPlaylist";
 import AlbumTrack from "./albumTracks";
 import AlbumNameAndCover from "../../../commonElements/albumNameAndCover";
+import JammmingPlayer from "@/app/components/mainAppDisplay/jammmingPlayer/jammmingPlayer";
+import TrackUriButton from "../../../commonElements/trackUriButton";
 
 interface SimplifiedTrackObject {
 	name: string
@@ -41,8 +43,8 @@ export default function AlbumTracksCollapse({album, tracks}: {album: Album, trac
 					<p>add album to playlist </p>
 				</AddTracksToPlaylist>
 			</div>
-			<div className="grid grid-cols-1 justify-items-center gap-4">
-				{isExpanded && tracks.map(x => <AlbumTrack key={setUniqueKey()} track={x} albumCover={albumCover}/>)}
+			<div className="grid grid-cols-2 justify-items-center gap-4">
+				{isExpanded && tracks.map(x => [<AlbumTrack key={setUniqueKey()} track={x} albumCover={albumCover}/>, <TrackUriButton key={setUniqueKey()} trackUri={x.uri}/>])}
 			</div>
 		</div>
 	);

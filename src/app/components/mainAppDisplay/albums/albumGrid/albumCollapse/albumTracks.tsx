@@ -1,6 +1,7 @@
 import { SpotifyImage } from "@/utils/fetchInterfaces"
 import Image from "next/image"
 import AddTracksToPlaylist from "../../../commonElements/addTracksToPlaylist"
+import TrackUriButton from "../../../searchBarElements/commonElements/trackUriButton"
 
 interface SimplifiedTrackObject {
 	name: string
@@ -24,6 +25,7 @@ export default function AlbumTrack({track, albumCover}: {track: SimplifiedTrackO
 			<AddTracksToPlaylist trackUris={[track.uri]}>
 				<p className="max-w-[15rem]">{track.name}</p>
 			</AddTracksToPlaylist>
+			<TrackUriButton trackUri={track.uri} />
 		</div>
 	);
 }
