@@ -24,6 +24,7 @@
 - v-0.92 - Created OEmbed Enum for OEmbed endpoints. Not sure if this will make the final cut. Built Functional component for IFrame embed element. Only seems to embed previews of songs but does work on any version of Spotify so this looks like a win. Added player embed element for song player.
 - v-0.92.3 - Fixed Delete Item from Playlist 502 Bug. Refactored Song search to scroll in place with no scroll bars. Songs element now uses client based fetching so prop drilling should now work with client based component. Snap scroll styling added to Songs Functional Component.
 - v-0.93 - Fixed Player Won't Load For New Song Bug. Also moved fetches back to server side fetching which speeds things up. Made createSampleTrackUriCookie server action. Refactored songs to scroll through tracks and use snap scrolling while still using server side fetch. Album and ArtistAlbums fetches now have play samples. Refactored ArtistAlbums and Album functional components to have nice looking scrolls.
+- v-0.94 - Deleted unnecessary functional components. Made scrolling look better.
 
 Bug Fixes:
 - Search Bar Refresh - Bug triggered when page refresh happened from form submit. This triggered another oAuth header request which results in an invalid header. Fixed this by saving the header to a JSON file and then retrieving it. Later switched to a cookie based system.

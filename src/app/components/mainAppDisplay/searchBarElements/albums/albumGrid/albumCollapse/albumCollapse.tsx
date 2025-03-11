@@ -5,7 +5,6 @@ import { Album } from "@/utils/fetchInterfaces";
 import AddTracksToPlaylist from "../../../commonElements/addTracksToPlaylist";
 import AlbumTrack from "./albumTracks";
 import AlbumNameAndCover from "../../../commonElements/albumNameAndCover";
-import JammmingPlayer from "@/app/components/mainAppDisplay/jammmingPlayer/jammmingPlayer";
 import TrackUriButton from "../../../commonElements/trackUriButton";
 
 interface SimplifiedTrackObject {
