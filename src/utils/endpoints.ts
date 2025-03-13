@@ -7,6 +7,7 @@ export enum OEmbedApi {
 }
 
 enum SpotifyEndpoints {
+	SPOTIFY_RECOVER_PLAYLISTS =	"https://support.spotify.com/us/article/save-recover-playlists/",
 	MAIN_TOKEN_URI = "https://accounts.spotify.com",
 	MAIN_API_URI = "https://api.spotify.com",
 	CLIENT_CREDENTIALS_URI = `${SpotifyEndpoints.MAIN_TOKEN_URI}/api/token`,
