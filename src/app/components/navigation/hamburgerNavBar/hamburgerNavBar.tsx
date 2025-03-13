@@ -3,8 +3,6 @@ import HamburgerMenu from "./hamburgerMenu/hamburgerMenu";
 import NavBar from "./navBar/navBar";
 
 
-
-
 export default async function HamburgerNavBar() {
 	const cookieStore = await cookies();
 	const redirectObject = cookieStore.has("rediretUrl") ? cookieStore.get("redirectUrl")?.value : "/";

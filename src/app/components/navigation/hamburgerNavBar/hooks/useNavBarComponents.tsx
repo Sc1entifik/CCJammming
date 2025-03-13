@@ -27,6 +27,8 @@ export default function useNavBarComponents(connectionStatus: boolean) {
 		separator(),
 		isAccountConnected && <Link key={setUniqueKey()} href={SiteMap.SET_CURRENT_PLAYLIST}>Set Current Playlist</Link>,
 		isAccountConnected && separator(),
+		isAccountConnected && <Link key={setUniqueKey()} href={SiteMap.REORDER_PLAYLIST}>Reorder Playlist</Link>,
+		isAccountConnected && separator(),
 		<LoginButton key={setUniqueKey()} connectionStatus={isAccountConnected} handleClick={handleClick} />
 	];
 
