@@ -37,7 +37,7 @@ interface PodcastShow {
 }
 
 
-interface TrackObject {
+export interface TrackObject {
 	album: Album
 	artists: simplifiedArtist[]
 	available_markets: string[]
