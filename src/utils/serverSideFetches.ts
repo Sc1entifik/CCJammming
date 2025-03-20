@@ -32,3 +32,23 @@ export const changePlaylistNameAndDescription = async(form: FormData) => {
 
 	await fetch(url, options).catch(err => formattedErrorMessage("Change Playlist Name And Description Failed", err));
 }
+
+
+export const updatePlaylistItems = async(uris: string[]) => {
+	console.log(uris);
+	const cookieStore = await cookies();
+	const authHeader = parseAuthHeaderFromCookieStore(cookieStore);
+	const playlistId = cookieStore.get("currentPlaylist")?.value;
+	const url = SpotifyEndpoints.PLAYLIST_URI + playlistId + "/tracks";
+	const body = JSON.stringify({ uris });
+	const options = {
+		method: "put",
+		headers: {
+			Authorization: authHeader.headers.Authorization,
+			"Content-Type": "application/json",
+		},
+		body,
+	};
+
+	await fetch(url, options);
+}

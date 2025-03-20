@@ -20,7 +20,9 @@ export default async function PlaylistUpdate() {
 	return (
 		<div className="flex flex-col items-center">
 			<PlaylistNameAndDescription currentPlaylist={currentPlaylist}/>
-			<h2 className="font-tropiLand mt-6 tracking-wide">Drag Tracks Around To Change Playorder</h2>
+			<h2 className="font-tropiLand mt-6 tracking-wide">Scroll To See All Songs</h2>
+			<h2 className="font-tropiLand tracking-wide">Drag Tracks Around To Change Playorder</h2>
+			<h2 className="font-tropiLand tracking-wide">Hold Tracks Near Drag Lines To Drag And Scroll</h2>
 			<h2 className="font-tropiLand mb-6 tracking-wide">Click Button To Update Playlist</h2>
 			<PlaylistReorder playlistTracks={currentPlaylistTracks}/>
 		</div>
