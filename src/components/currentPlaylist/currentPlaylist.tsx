@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import Image from "next/image";
 
-import { fetchPlaylistById } from "@/utils/commonFetches";
+import { fetchPlaylistById, fetchPlaylistItemsById } from "@/utils/commonFetches";
 import { PlaylistTrackObject } from "@/utils/fetchInterfaces";
 import { keySetter, parseAuthHeaderFromCookieStore } from "@/utils/helper";
 import RemoveTracksFromPlaylist from "./removeTracksFromPlaylist";
@@ -24,7 +24,8 @@ export default async function CurrentPlaylist({ searchTerm="", searchTermType=""
 	const authHeader = parseAuthHeaderFromCookieStore(cookieStore);
 	const currentPlaylist = await fetchPlaylistById(playlistId, authHeader);
 	const setUniqueKey = keySetter();
-	const playlistTracks = currentPlaylist.tracks.items
+	const currentPlaylistItems = await fetchPlaylistItemsById(playlistId, authHeader);
+	const playlistTracks = currentPlaylistItems
 	.map((x: PlaylistTrackObject) => {
 		if ("album" in x.track) {
 			const trackAlbumImage = x.track.album.images[0].url;

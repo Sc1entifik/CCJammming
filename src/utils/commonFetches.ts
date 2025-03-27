@@ -128,13 +128,33 @@ export const fetchPlaylistById = async (playlistId: string, authHeader: AuthHead
 		console.error(formattedErrorMessage("Fetch Playlist By Id Failed", err));
 	});
 
-
-export const fetchPlaylistItemsById = async (playlistId: string, authHeader: AuthHeader): Promise<PlaylistTrackObject[]> => fetch(SpotifyEndpoints.PLAYLIST_URI + playlistId + "/tracks", authHeader)
+/*
+export const fetchPlaylistItemsById = async (playlistId: string, authHeader: AuthHeader, offset=0): Promise<PlaylistTrackObject[]> => fetch(SpotifyEndpoints.PLAYLIST_URI + playlistId + `/tracks?limit=100&offset=${offset}`, authHeader)
 	.then(res => res.json())
 	.then(res => res.items)
 	.catch(err => {
 		console.error(formattedErrorMessage("Fetch Playlist Items By ID Failed", err));
 	});
+*/
+
+//Reciprocal function needed in order to bypass the 100 song spotify endpoint limit
+export const fetchPlaylistItemsById = async(playlistId: string, authHeader: AuthHeader, offset=0): Promise<PlaylistTrackObject[]> => {
+	const batchLimit = 100;
+	const currentBatch = await fetch(SpotifyEndpoints.PLAYLIST_URI + playlistId + `/tracks?limit=${batchLimit}&offset=${offset}`, authHeader)
+		.then(res => res.json())
+		.then(res => res.items)
+		.catch(err => {
+			console.error(formattedErrorMessage("Fetch Playlist Items By ID Failed", err));
+		});
+
+	if (currentBatch.length < batchLimit) {
+		return currentBatch;
+	}
+
+	const nextBatch = await(fetchPlaylistItemsById(playlistId, authHeader, offset + batchLimit));
+
+	return currentBatch.concat(nextBatch);
+};
 
 
 export const fetchAddTracksToPlaylist = async (playlistId: string, trackUris: string[], authHeader: AuthHeader) => {

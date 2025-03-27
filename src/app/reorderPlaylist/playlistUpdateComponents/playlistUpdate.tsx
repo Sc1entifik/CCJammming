@@ -1,4 +1,4 @@
-import { fetchPlaylistById, fetchPlaylistItemsById } from "@/utils/commonFetches";
+import { fetchAllPlaylistItemsById, fetchPlaylistById, fetchPlaylistItemsById } from "@/utils/commonFetches";
 import { parseAuthHeaderFromCookieStore } from "@/utils/helper";
 import { cookies } from "next/headers";
 import PlaylistNameAndDescription from "./playlistNameAndDescription";
@@ -13,7 +13,7 @@ export default async function PlaylistUpdate() {
 		return <SetCurrentPlaylistMessage />
 	}
 
-	const currentPlaylistId = cookieStore.get("currentPlaylist")?.value;
+	const currentPlaylistId = cookieStore.get("currentPlaylist")?.value as string;
 	const currentPlaylist = await fetchPlaylistById(currentPlaylistId, authHeader);
 	const currentPlaylistTracks = await fetchPlaylistItemsById(currentPlaylistId, authHeader);
 	
