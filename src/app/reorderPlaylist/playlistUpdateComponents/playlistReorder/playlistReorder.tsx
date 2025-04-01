@@ -2,9 +2,9 @@
 
 import {PlaylistTrackObject} from "@/utils/fetchInterfaces";
 import useElementUriHashMap from "./hooks/useElementUriHashMap";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { keySetter } from "@/utils/helper";
-import { updatePlaylistItems } from "@/utils/serverSideFetches";
+import { reorderPlaylistItems } from "@/utils/serverSideFetches";
 
 export default function PlaylistReorder({playlistTracks} : {playlistTracks: PlaylistTrackObject[]}) {
 	const elementUriMap = useElementUriHashMap(playlistTracks);
@@ -58,8 +58,7 @@ export default function PlaylistReorder({playlistTracks} : {playlistTracks: Play
 			</div>
 			<button className="disabled:opacity-60 bg-gray-500 border rounded-md px-2 h-16 w-56 ml-8 text-textColor" disabled={isDisabled} onClick={() => {
 				const uris = draggableElements.map(x => elementUriMap.get(x)) as string[];
-				console.log(uris);
-				updatePlaylistItems(uris);
+				reorderPlaylistItems(uris);
 				setIsDisabled(true);
 				}}>Click To Reorder Playlist</button>
 		</div>

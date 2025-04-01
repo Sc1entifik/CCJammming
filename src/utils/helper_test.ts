@@ -1,5 +1,5 @@
 import { assertEquals } from "jsr:@std/assert";
-import { validateQueryTerm, keySetter, generateRandomString, formattedErrorMessage } from "./helper";
+import { validateQueryTerm, keySetter, generateRandomString, formattedErrorMessage, reverseList } from "./helper";
 
 const capitalCase = (input: string): string => {
 	let validatedInput = "";
@@ -16,6 +16,13 @@ const capitalCase = (input: string): string => {
 	}
 	return validatedInput;
 };
+
+
+Deno.test("Reverse List Test", () => {
+	const forwardsAndBackwards = [["flat", "duck", "oyster", "shuffle"], ["shuffle", "oyster", "duck", "flat"]];
+	
+	assertEquals(reverseList(forwardsAndBackwards[0]), forwardsAndBackwards[1]);
+});
 
 
 Deno.test("Manual Capitals Test", () => {

@@ -1,5 +1,6 @@
 import { AuthHeader } from "./fetchInterfaces";
 
+
 const toCapitalCase = (queryTerm: string): string => {
 	let validatedInput = "";
 
@@ -17,6 +18,19 @@ const toCapitalCase = (queryTerm: string): string => {
 	}
 
 	return validatedInput;
+}
+
+
+export const reverseList = <T>(lst: T[]) => {
+	let endIndex = lst.length - 1;
+	const revList = [];
+
+	while (endIndex >= 0) {
+		revList.push(lst[endIndex]);
+		endIndex -= 1;
+	}
+
+	return revList;
 }
 
 

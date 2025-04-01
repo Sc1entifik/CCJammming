@@ -1,4 +1,4 @@
-import { fetchAllPlaylistItemsById, fetchPlaylistById, fetchPlaylistItemsById } from "@/utils/commonFetches";
+import { fetchPlaylistById, fetchPlaylistItemsById } from "@/utils/commonFetches";
 import { parseAuthHeaderFromCookieStore } from "@/utils/helper";
 import { cookies } from "next/headers";
 import PlaylistNameAndDescription from "./playlistNameAndDescription";

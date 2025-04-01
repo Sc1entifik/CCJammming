@@ -17,7 +17,7 @@ interface AuthHeader {
 }
 
 
-const querySearch = async (validatedQueryTerm: string, queryType: string, authHeader: AuthHeader): Promise<object> => {
+const querySearch = async (validatedQueryTerm: string, queryType: string, authHeader: AuthHeader) => {
 	const typeQueryString = `&type=${queryType}`;
 	const url = SpotifyEndpoints.QUERY_TERM + validatedQueryTerm + typeQueryString;
 
@@ -31,7 +31,7 @@ const artistIdCodeByName = async (artistName: string, authHeader: AuthHeader): P
 	const artistIdCode = querySearch(artistName, QueryTermTypes.ARTIST, authHeader)
 	.then(res => {
 		const defaultId = res.artists.items[0].id;
-		const matchedId = res.artists.items.find(x => validateQueryTerm(x.name) === validatedArtistName)?.id;
+		const matchedId = res.artists.items.find((x: Artist) => validateQueryTerm(x.name) === validatedArtistName)?.id;
 
 		return matchedId? matchedId: defaultId;
 	})
@@ -128,14 +128,6 @@ export const fetchPlaylistById = async (playlistId: string, authHeader: AuthHead
 		console.error(formattedErrorMessage("Fetch Playlist By Id Failed", err));
 	});
 
-/*
-export const fetchPlaylistItemsById = async (playlistId: string, authHeader: AuthHeader, offset=0): Promise<PlaylistTrackObject[]> => fetch(SpotifyEndpoints.PLAYLIST_URI + playlistId + `/tracks?limit=100&offset=${offset}`, authHeader)
-	.then(res => res.json())
-	.then(res => res.items)
-	.catch(err => {
-		console.error(formattedErrorMessage("Fetch Playlist Items By ID Failed", err));
-	});
-*/
 
 //Reciprocal function needed in order to bypass the 100 song spotify endpoint limit
 export const fetchPlaylistItemsById = async(playlistId: string, authHeader: AuthHeader, offset=0): Promise<PlaylistTrackObject[]> => {
@@ -154,25 +146,6 @@ export const fetchPlaylistItemsById = async(playlistId: string, authHeader: Auth
 	const nextBatch = await(fetchPlaylistItemsById(playlistId, authHeader, offset + batchLimit));
 
 	return currentBatch.concat(nextBatch);
-};
-
-
-export const fetchAddTracksToPlaylist = async (playlistId: string, trackUris: string[], authHeader: AuthHeader) => {
-	const url = SpotifyEndpoints.PLAYLIST_URI + playlistId + "/tracks";
-	const options = {
-		method: "post",
-		headers: {
-			Authorization: authHeader.headers.Authorization,
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({uris: trackUris}), 
-	};
-
-	fetch(url, options)
-		.then(res => res.json())
-		.catch(err => {
-			console.error(formattedErrorMessage("Fetch Add Tracks To Playlist Failed", err));
-		});
 };
 
 
