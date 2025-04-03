@@ -2,6 +2,12 @@
 import { useEffect } from "react";
 
 
+declare global {
+	interface Window {
+		onSpotifyIframeApiReady?: (IFrameAPI) => void;
+	}
+}
+
 export default function JammmingPlayer({ playerItemUri }: {playerItemUri: string}) {
 
 	useEffect(() => {
