@@ -1,10 +1,21 @@
 "use client"
 import { useEffect } from "react";
 
+interface SpotifyIFrameAPI {
+	createController: (
+		element: HTMLElement | null,
+		options: {
+			width: number,
+			height: number, 
+			uri: string,
+		}, 
+		callback: () => void
+	) => void,
+}
 
 declare global {
 	interface Window {
-		onSpotifyIframeApiReady?: (IFrameAPI) => void;
+		onSpotifyIframeApiReady?: (IFrameAPI: SpotifyIFrameAPI) => void;
 	}
 }
 
