@@ -1,6 +1,7 @@
 "use client"
 import { useEffect } from "react";
 
+
 export default function JammmingPlayer({ playerItemUri }: {playerItemUri: string}) {
 
 	useEffect(() => {
@@ -20,8 +21,7 @@ export default function JammmingPlayer({ playerItemUri }: {playerItemUri: string
 				uri: playerItemUri,
 			};
 
-			const callback = (EmbedController) => {
-			};
+			const callback = () => {};
 			
 			IFrameAPI.createController(element, options, callback);
 		}
