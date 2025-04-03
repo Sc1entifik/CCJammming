@@ -99,7 +99,7 @@ export const fetchAlbumTracksById = async (albumId: string, authHeader: AuthHead
 }
 
 
-export const fetchAlbumsByName = async (albumName: string, authHeader: AuthHeader): Promise<Album[]> => querySearch(albumName, "album", authHeader)
+export const fetchAlbumsByName = async (albumName: string, authHeader: AuthHeader): Promise<Album[]> => querySearch(albumName, QueryTermTypes.ALBUM, authHeader)
 	.then(res => res.albums)
 	.then(res => res.items)
 	.catch(err => {
@@ -107,7 +107,7 @@ export const fetchAlbumsByName = async (albumName: string, authHeader: AuthHeade
 	});
 
 
-export const fetchTracksByName = async (trackName: string, authHeader: AuthHeader): Promise<Track[]> => querySearch(trackName, "track", authHeader)
+export const fetchTracksByName = async (trackName: string, authHeader: AuthHeader): Promise<Track[]> => querySearch(trackName, QueryTermTypes.TRACK, authHeader)
 	.then(res => res.tracks)
 	.then(res => res.items)
 	.catch(err => {

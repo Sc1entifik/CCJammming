@@ -37,10 +37,13 @@ export default async function UserPlaylists() {
 	return (
 		<div className="flex justify-evenly my-4">
 			<div className="flex flex-col m-4">
-				<h2 className="font-tropiLand tracking-widest">Add New Playlist</h2>
+				<h2 className="font-tropiLand tracking-wider">Add New Playlist</h2>
 				<NewPlaylistForm />
-				<h2 className="font-tropiLand tracking-widest">Choose Current Playlist</h2>
+				<h2 className="font-tropiLand tracking-wider">Scroll To See All Your Playlists</h2>
+				<h2 className="font-tropiLand tracking-wider">Choose A Playlist To Modify</h2>
+				<div className=" max-h-[47dvh] overflow-y-auto no-scrollbar snap-y snap-mandatory">
 				{userOwnedPlaylists}
+				</div>
 			</div>
 			{cookieStore.has("currentPlaylist") && 
 			<div className="font-tropiLand">
