@@ -1,5 +1,6 @@
 import { AuthHeader } from "./fetchInterfaces";
 
+type CookieStore = {get: (key: string) => {name: string, value: string,}};
 
 const toCapitalCase = (queryTerm: string): string => {
 	let validatedInput = "";
@@ -97,5 +98,4 @@ export const formattedErrorMessage = (helpfulDescription: string, err: string): 
 	return `\n${lineBuffer}\n${helpfulDescription}:\n${errorUnderneath}\n${lineBuffer}\n${err}`;
 }
 
-
-export const parseAuthHeaderFromCookieStore = (cookieStore: object): AuthHeader => JSON.parse(cookieStore.get("auth").value).authHeader;
+export const parseAuthHeaderFromCookieStore = (cookieStore: CookieStore): AuthHeader => JSON.parse(cookieStore.get("auth").value).authHeader;
