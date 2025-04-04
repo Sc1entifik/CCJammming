@@ -1,13 +1,13 @@
-import { assertEquals } from "jsr:@std/assert";
+import { assertEquals } from "@std/assert";
 
 import { fetchAlbumsByName, fetchAlbumTracksById, fetchArtistAlbums, fetchArtistDataByName, fetchArtistTopTracks, fetchTracksByName } from "./commonFetches";
 import { publicAccessObject } from "./spotifyOAuth";
-import { Album, Track } from "./fetchInterfaces";
+import { Album, Artist, Track } from "./fetchInterfaces";
 
 
 const daftPunkAlbumAndTrackList = () => {
 	type AlbumsAndTrackList = [album:string, trackList: string[]];
-	const daftPunkAlbumsAndTracks: AlbumsAndTrackList = [["Homework", ["Daftendirekt", "WDPK 83.7 FM", "Revolution 909", "Da Funk", "Phoenix", "Fresh", "Around the World", "Rollin' & Scratchin'", "Teachers", "High Fidelity", "Rock'n Roll", "Oh Yeah", "Burnin'", "Indo Silver Club", "Alive", "Funk Ad"]], ["Discovery", ["One More Time", "Aerodynamic", "Digital Love", "Harder, Better, Faster, Stronger", "Crescendolls", "Nightvision", "Superheroes", "High Life", "Something About Us", "Voyager", "Veridis Quo", "Short Circuit", "Face to Face", "Too Long"]], ["Alive 2007", ["Robot Rock / Oh Yeah", "Touch It / Technologic", "Television Rules the Nation / Crescendolls", "Too Long / Steam Machine", "Around the World / Harder, Better, Faster, Stronger", "Burnin' / Too Long", "Face to Face / Short Circuit", "One More Time / Aerodynamic", "Aerodynamic Beats / Gabrielle , Forget About the World", "Prime Time of Your Life / Brainwasher / Rollin' & Scratchin' / Alive", "Da Funk / Daftendirekt", "Superheroes / Human After All / Rock'n Roll", "Human After All / Together / One More Time / Music Sounds Better with You"]], ["Random Access Memories", ["Give Life Back to Music", "The Game of Love", "Giorgio by Moroder", "Within", "Instant Crush (feat. Julian Casablancas)", "Lose Yourself to Dance (feat. Pharrell Williams)", "Touch (feat. Paul Williams)", "Get Lucky (feat. Pharrell Williams and Nile Rodgers)", "Beyond", "Motherboard", "Fragments of Time (feat. Todd Edwards)", "Doin' it Right (feat. Panda Bear)", "Contact"]]];
+	const daftPunkAlbumsAndTracks: AlbumsAndTrackList[] = [["Homework", ["Daftendirekt", "WDPK 83.7 FM", "Revolution 909", "Da Funk", "Phoenix", "Fresh", "Around the World", "Rollin' & Scratchin'", "Teachers", "High Fidelity", "Rock'n Roll", "Oh Yeah", "Burnin'", "Indo Silver Club", "Alive", "Funk Ad"]], ["Discovery", ["One More Time", "Aerodynamic", "Digital Love", "Harder, Better, Faster, Stronger", "Crescendolls", "Nightvision", "Superheroes", "High Life", "Something About Us", "Voyager", "Veridis Quo", "Short Circuit", "Face to Face", "Too Long"]], ["Alive 2007", ["Robot Rock / Oh Yeah", "Touch It / Technologic", "Television Rules the Nation / Crescendolls", "Too Long / Steam Machine", "Around the World / Harder, Better, Faster, Stronger", "Burnin' / Too Long", "Face to Face / Short Circuit", "One More Time / Aerodynamic", "Aerodynamic Beats / Gabrielle , Forget About the World", "Prime Time of Your Life / Brainwasher / Rollin' & Scratchin' / Alive", "Da Funk / Daftendirekt", "Superheroes / Human After All / Rock'n Roll", "Human After All / Together / One More Time / Music Sounds Better with You"]], ["Random Access Memories", ["Give Life Back to Music", "The Game of Love", "Giorgio by Moroder", "Within", "Instant Crush (feat. Julian Casablancas)", "Lose Yourself to Dance (feat. Pharrell Williams)", "Touch (feat. Paul Williams)", "Get Lucky (feat. Pharrell Williams and Nile Rodgers)", "Beyond", "Motherboard", "Fragments of Time (feat. Todd Edwards)", "Doin' it Right (feat. Panda Bear)", "Contact"]]];
 
 	return daftPunkAlbumsAndTracks;
 };
@@ -41,7 +41,8 @@ Deno.test("Fetch Artist Top Tracks: Make Sure Object Gets Fetched", async() => {
 	for (let i=0; i<artistList.length; i++) {
 		const artist = artistList[i];
 		const artistTopTracks = await fetchArtistTopTracks(artist, accessHeader);
-		const artistFromSearchObject = artistTopTracks[0].artists.find(x => x.name === artist).name;
+		const searchObject = artistTopTracks[0].artists.find(x => x.name === artist) as Artist
+		const artistFromSearchObject = searchObject.name;
 
 		assertEquals(artist, artistFromSearchObject);
 	}
@@ -58,7 +59,7 @@ Deno.test("Fetch Artist Albums: Make Sure Specific Albums Get Fetched", async() 
 		const artistAlbums = await fetchArtistAlbums(artist, accessHeader);
 		
 		albums.forEach(albumName => {
-			const foundAlbum = artistAlbums.find(x => x.name === albumName);
+			const foundAlbum = artistAlbums.find(x => x.name === albumName) as Album;
 
 			assertEquals(foundAlbum.name, albumName);
 		});
@@ -67,7 +68,7 @@ Deno.test("Fetch Artist Albums: Make Sure Specific Albums Get Fetched", async() 
 
 
 Deno.test("Fetch Album Tracks By ID: Make Sure Album Traks Get Fetched", async() => {
-	const convertDateToNumber = (x: string) => x.replaceAll("-","");
+	const convertDateToNumber = (x: string) => Number(x.replaceAll("-",""));
 	const accessHeader = await publicAccessObject().then(res => res.authHeader);
 	const daftPunkAlbums = await fetchArtistAlbums("Daft Punk", accessHeader);
 	const daftPunkAlbumsAndTracks = daftPunkAlbumAndTrackList(); 
@@ -109,7 +110,7 @@ Deno.test("Fetch Track Query Search: Fetch Tracks By Name", async() => {
 	for (const songAndArtist of artistsAndTracks) {
 		const [artistName, trackName] = songAndArtist;
 		const trackFetch = await fetchTracksByName(trackName, accessHeader);
-		const targetTrack = trackFetch.find((x: Track) => x.artists.find(y => y.name === artistName));
+		const targetTrack = trackFetch.find((x: Track) => x.artists.find(y => y.name === artistName)) as Track;
 
 		assertEquals(targetTrack.name, trackName);
 	}
