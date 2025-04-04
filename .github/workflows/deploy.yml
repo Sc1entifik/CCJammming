@@ -37,7 +37,7 @@ jobs:
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
-          project: "spotify-playlist-app"
+          project: "spotify-playlist-jammming"
           entrypoint: "./server.cjs"
           root: ".next/standalone"
           
