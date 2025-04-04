@@ -17,9 +17,9 @@ export default async function MainAppDisplay({searchTerm, searchTermType}: {sear
 
 			{searchTermType && 
 				<div className="md:flex md:justify-center gap-y-8 gap-x-32 mt-4">
-					{cookieStore.has("sampleTrackUri") && <JammmingPlayer playerItemUri={cookieStore.get("sampleTrackUri")?.value}/>}
+					{cookieStore.has("sampleTrackUri") && <JammmingPlayer playerItemUri={cookieStore.get("sampleTrackUri")?.value as string}/>}
 					<SearchBarElement searchTerm={searchTerm} searchTermType={searchTermType}/>
-					<CurrentPlaylist searchTerm={searchTerm} searchTermType={searchTermType}/>
+					<CurrentPlaylist searchTerm={searchTerm} searchTermType={searchTermType} urlBase=""/>
 				</div>
 			}
 		</div>
