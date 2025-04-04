@@ -1,4 +1,4 @@
-import { assertEquals } from "jsr:@std/assert";
+import { assertEquals } from "@std/assert";
 import { validateQueryTerm, keySetter, generateRandomString, formattedErrorMessage, reverseList } from "./helper";
 
 const capitalCase = (input: string): string => {
