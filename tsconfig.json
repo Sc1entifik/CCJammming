@@ -2,8 +2,7 @@
   "compilerOptions": {
 		"baseUrl": ".",
     "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext", "deno.ns"],
-		"types": ["@types/node"],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
