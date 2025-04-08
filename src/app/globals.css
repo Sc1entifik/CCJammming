@@ -28,7 +28,7 @@
 
 @font-face {
 	font-family: "NiceBounce";
-	src: url("fonts/NiceBounce.otf");
+	src: url("../../public/NiceBounce.otf");
 	font-weight: normal;
 	font-style: normal;
 }
@@ -36,7 +36,7 @@
 
 @font-face {
 	font-family: "TropiLand";
-	src: url("fonts/TropiLand.ttf");
+	src: url("../../public/TropiLand.ttf");
 	font-weight: normal;
 	font-style: normal;
 }
