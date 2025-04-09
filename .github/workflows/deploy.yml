@@ -24,7 +24,7 @@ jobs:
           deno-version: v2.x
 
       - name: Install Node.js
-        uses: actions/setup-node@v22.14.0
+        uses: actions/setup-node@v4
         with:
           node-version: lts/*
 
