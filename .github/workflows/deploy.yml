@@ -38,7 +38,7 @@ jobs:
         uses: denoland/deployctl@v1
         with:
           project: "spotify-playlist-jammming"
-          entrypoint: ".next/standalone/server.cjs"
+          entrypoint: "server.cjs"
           root: ".next/standalone"
           
           
