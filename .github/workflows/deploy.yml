@@ -40,3 +40,5 @@ jobs:
           project: "jammming-spotify-playlist"
           entrypoint: "./server.cjs"
           root: ".next/standalone"
+          
+          
