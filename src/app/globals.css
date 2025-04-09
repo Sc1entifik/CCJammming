@@ -28,7 +28,7 @@
 
 @font-face {
 	font-family: "GeistSans";
-	src: url("../../public/GeistVF.woff");
+	src: url("/GeistVF.woff");
 	font-weight: 100 900;
 	font-style: normal;
 }
@@ -36,14 +36,14 @@
 
 @font-face {
 	font-family: "GeistMono";
-	src: url("../../public/GeistMonoVF.woff");
+	src: url("/GeistMonoVF.woff");
 	font-weight: 100 900;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: "NiceBounce";
-	src: url("../../public/NiceBounce.otf");
+	src: url("/NiceBounce.otf");
 	font-weight: normal;
 	font-style: normal;
 }
@@ -51,7 +51,7 @@
 
 @font-face {
 	font-family: "TropiLand";
-	src: url("../../public/TropiLand.ttf");
+	src: url("/TropiLand.ttf");
 	font-weight: normal;
 	font-style: normal;
 }
