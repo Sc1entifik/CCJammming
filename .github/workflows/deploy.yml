@@ -24,7 +24,7 @@ jobs:
           deno-version: v2.x
 
       - name: Install Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v22.14.0
         with:
           node-version: lts/*
 
@@ -38,7 +38,7 @@ jobs:
         uses: denoland/deployctl@v1
         with:
           project: "jammming-spotify-playlist"
-          entrypoint: "jsr:@deno/nextjs-start"
+          entrypoint: "./server.cjs"
           root: ".next/standalone"
           
           
