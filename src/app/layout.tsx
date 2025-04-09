@@ -1,20 +1,9 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import Link from "next/link";
 import HamburgerNavBar from "./components/navigation/hamburgerNavBar/hamburgerNavBar";
 import SiteMap from "@/utils/siteMap";
 
-const geistSans = localFont({
-  src: "../../public/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "../../public/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
 
 export const metadata: Metadata = {
   title: "Jammming - Spotify Playlist App",
@@ -24,8 +13,7 @@ export const metadata: Metadata = {
 export default function RootLayout({children}: Readonly<{children: React.ReactNode;}>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-
+      <body className="font-geistSans antialiased">
 			<header className="font-bounce mx-3 mt-6 mb-10 tracking-wider flex flex-auto justify-around">
 				<Link className="font-extrabold text-6xl" href={SiteMap.HOME}>jaMMMing</Link>
 				<HamburgerNavBar/>

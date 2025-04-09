@@ -17,6 +17,8 @@ const config: Config = {
 			fontFamily: {
 				bounce: ["NiceBounce", "Geist-MonoVF", "sans-serif"],
 				tropiLand: ["Tropiland", "Geist-MonoVF", "sans-serif"],
+				geistSans: ["GeistSans", "sans-serif"],
+				geistMono: ["GeistMono", "sans-serif"],
 			}
     },
   },
