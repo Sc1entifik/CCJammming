@@ -31,11 +31,6 @@ jobs:
       - name: Install step
         run: "npm install"
 
-      - name: Transpile next.config.ts
-        run: |
-          npm install -g esbuild
-          esbuild next.config.ts --bundle --outfile=next.config.js --format=cjs --platform=node
-
       - name: Build step
         run: "npm run build && (cp -r public .next/standalone/public; cp -r .next/static .next/standalone/.next/static; mv .next/standalone/server.js .next/standalone/server.cjs;)"
 
