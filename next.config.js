@@ -1,6 +1,9 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var nextConfig = {
+module.exports = async (phase, { defaultConfig }) => {
+	/**
+	 * @type {import('next').NextConfig}
+	 */
+	var nextConfig = {
     /* config options here */
     experimental: {
         serverActions: {
@@ -28,5 +31,6 @@ var nextConfig = {
             },
         ],
     },
-};
-exports.default = nextConfig;
+	}
+	return nextConfig;
+}
