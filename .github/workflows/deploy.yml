@@ -34,16 +34,16 @@ jobs:
       - name: Transpile next.config.ts
         run: |
           npm install -g esbuild
-          esbuild ./next.config.ts --bundle --outfile=next.config.mjs --format=esm --platform=node
+          esbuild next.config.ts --bundle --outfile=next.config.js --format=cjs --platform=node
 
       - name: Build step
-        run: "npm run build && (cp -r public .next/standalone/public; cp -r .next/static .next/standalone/.next/static;)"
+        run: "npm run build && (cp -r public .next/standalone/public; cp -r .next/static .next/standalone/.next/static; mv .next/standalone/server.js .next/standalone/server.cjs)"
 
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
           project: "jammming-spotify-playlist"
-          entrypoint: "./server.js"
+          entrypoint: "./server.cjs"
           root: ".next/standalone"
           
           
