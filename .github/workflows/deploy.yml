@@ -34,12 +34,6 @@ jobs:
       - name: Build step
         run: "npm run build && (cp -r public .next/standalone/public; cp -r .next/static .next/standalone/.next/static; mv .next/standalone/server.js .next/standalone/server.cjs)"
 
-      - name: Verify build output
-        run: |
-          ls -la .next/standalone
-          ls -la .next/standalone/public
-          ls -la .next/standalone/.next/static
-
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
