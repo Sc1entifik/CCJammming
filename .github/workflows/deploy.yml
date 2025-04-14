@@ -40,6 +40,10 @@ jobs:
           project: "jammming-spotify-playlist"
           entrypoint: "jsr:@deno/nextjs-start"
           root: "."
-          include: .next, public, package.json
-          exclude: .next/cache
+          include: |
+            .next
+            public
+            package.json
+          exclude: |
+            .next/cache
           
