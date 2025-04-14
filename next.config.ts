@@ -8,7 +8,6 @@ const nextConfig: NextConfig = {
 		},
 	},
 	runtime: "edge",
-	output: "standalone",
 	images: {
 		remotePatterns: [
 			{
