@@ -85,7 +85,7 @@ export const fetchAlbumTracksById = async (albumId: string, authHeader: AuthHead
 	const url = SpotifyEndpoints.ALBUM_BY_ALBUM_CODE_URI + albumId + "/tracks";
 	const options = {
 		headers: {
-			Authorization: authHeader.headers.Authorization,
+			Authorization: authHeader.headers.Authorization as string,
 		},
 		cache: "force-cache",
 	};

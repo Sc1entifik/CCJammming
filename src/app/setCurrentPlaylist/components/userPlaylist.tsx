@@ -24,7 +24,7 @@ export default async function UserPlaylists() {
 		.map(x => {
 			const setCurrentPlaylist = async() => {
 				"use server";
-				const isProduction = Deno.env.get("SERVER_ENVIRONMENT") === "Production";
+				const isProduction = process.env.SERVER_ENVIRONMENT === "Production";
 				const cookieStore = await cookies();
 
 				cookieStore.set("currentPlaylist", x.id, {httpOnly: true, secure: isProduction, expires: Date.now() + oneHour});

@@ -29,7 +29,7 @@ const publicAccessTestingToken = async (): Promise<AccessToken> => {
 	const url = SpotifyEndpoints.CLIENT_CREDENTIALS_URI;
 	const options = {
 		method: "post",
-		body: `grant_type=client_credentials&client_id=${Deno.env.get("CLIENT_ID")}&client_secret=${Deno.env.get("CLIENT_SECRET")}`,
+		body: `grant_type=client_credentials&client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}`,
 		headers: {
 			"Content-Type": "application/x-www-form-urlencoded",
 		},
@@ -43,10 +43,10 @@ const accountAccessToken = async (accessCode: string): Promise<AccountAccessToke
 	const url = SpotifyEndpoints.CLIENT_CREDENTIALS_URI;
 	const options = {
 		method: "post",
-		body: `grant_type=authorization_code&code=${accessCode}&redirect_uri=${Deno.env.get("REDIRECT_URI")}`,
+		body: `grant_type=authorization_code&code=${accessCode}&redirect_uri=${process.env.REDIRECT_URI}`,
 		headers: {
 			"Content-Type": "application/x-www-form-urlencoded",
-			Authorization: "Basic " + Buffer.from(Deno.env.get("CLIENT_ID") + ":" + Deno.env.get("CLIENT_SECRET")).toString("base64"),
+			Authorization: "Basic " + Buffer.from(process.env.CLIENT_ID + ":" + process.env.CLIENT_SECRET).toString("base64"),
 		},
 		json: true,
 	};

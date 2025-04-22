@@ -10,7 +10,7 @@ import { fetchUserProfile } from "./commonFetches";
 
 
 const createNamedCookie = async (cookieName: string, value: string, expires: number) => {
-	const isProduction = Deno.env.get("SERVER_ENVIRONMENT") === "Production";
+	const isProduction = process.env.SERVER_ENVIRONMENT === "Production";
 	const cookieStore = await cookies();
 
 	cookieStore.set(cookieName, value, { httpOnly: true, secure: isProduction, expires });
@@ -48,9 +48,9 @@ export const deleteAuthCookie = async () => {
 
 export const spotifyAccountLoginAuthorization = async () => {
 	const response_type = "code";
-	const client_id = Deno.env.get("CLIENT_ID");
+	const client_id = process.env.CLIENT_ID;
 	const scope = "playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public user-read-playback-state user-modify-playback-state user-read-currently-playing";
-	const redirect_uri = Deno.env.get("REDIRECT_URI"); 
+	const redirect_uri = process.env.REDIRECT_URI; 
 	const state = generateRandomString(16);
 	const authorizeEndpoint = querystring.stringify({
 		response_type,
