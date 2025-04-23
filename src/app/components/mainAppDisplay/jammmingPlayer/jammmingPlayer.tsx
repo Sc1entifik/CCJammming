@@ -1,5 +1,7 @@
 "use client"
+import { Iframe } from "@/utils/globalInterfaces";
 import { useEffect } from "react";
+
 
 export default function JammmingPlayer({ playerItemUri }: {playerItemUri: string}) {
 
@@ -8,20 +10,19 @@ export default function JammmingPlayer({ playerItemUri }: {playerItemUri: string
 		script.src = "https://open.spotify.com/embed/iframe-api/v1";
 		script.async = true;
 		document.body.appendChild(script);
-		//sizing in px. The embeded player will not change smaller than this without condensing down with ungly scroll bars and things. You can size up from here on bigger screens but it actually looks pretty good this size on all screens.
+		//sizing in px. The embeded player will not change smaller than this without condensing down with ungly scroll bars and things. You can size up from here on bigger screens but this size actually looks pretty good on all screens.
 		const width = 256; 
 		const height = 131; 
 		
-		window.onSpotifyIframeApiReady = (IFrameAPI) => {
-			const element = document.getElementById("embed-iframe");
+		window.onSpotifyIframeApiReady = (IFrameAPI: Iframe) => {
+			const element = document.getElementById("embed-iframe") as HTMLElement;
 			const options = {
 				width,
 				height,
 				uri: playerItemUri,
 			};
 
-			const callback = (EmbedController) => {
-			};
+			const callback = <T,>(EmbedController: T) => EmbedController;
 			
 			IFrameAPI.createController(element, options, callback);
 		}
