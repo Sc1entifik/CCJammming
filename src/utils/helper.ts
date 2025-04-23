@@ -1,4 +1,5 @@
 import { AuthHeader } from "./fetchInterfaces";
+import { CookieStore } from "./globalInterfaces";
 
 
 const toCapitalCase = (queryTerm: string): string => {
@@ -98,4 +99,8 @@ export const formattedErrorMessage = (helpfulDescription: string, err: string): 
 }
 
 
-export const parseAuthHeaderFromCookieStore = (cookieStore: object): AuthHeader => JSON.parse(cookieStore.get("auth").value).authHeader;
+export const parseAuthHeaderFromCookieStore = (cookieStore: CookieStore): AuthHeader => {
+	const authString = cookieStore.get("auth")?.value as string;
+
+	return JSON.parse(authString).authHeader
+};
