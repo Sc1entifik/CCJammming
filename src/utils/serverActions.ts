@@ -69,7 +69,7 @@ export const spotifyAccountLoginAuthorization = async () => {
 export const unfollowCurrentPlaylist = async() => {
 	const cookieStore = await cookies();
 	const authHeader: AuthHeader = parseAuthHeaderFromCookieStore(cookieStore);
-	const currentPlaylist = cookieStore.get("currentPlaylist").value;
+	const currentPlaylist = cookieStore.get("currentPlaylist")?.value;
 	const url = SpotifyEndpoints.PLAYLIST_URI + currentPlaylist + "/followers";
 	const options = {
 		method: "delete",
@@ -159,7 +159,7 @@ export const deleteItemsFromCurrentPlaylist = async (tracks: object[], urlBase: 
 			});
 
 		} catch (err) {
-			console.error(formattedErrorMessage("Delete Item From Playlist Failed", err));
+			console.error(formattedErrorMessage("Delete Item From Playlist Failed", err as string));
 		}
 	}
 
