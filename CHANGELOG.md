@@ -29,9 +29,12 @@
 - v-0.96 - Solved Playlist GET Request 100 Track Max bug. Refactored fetchPlaylistItemsById fetch to be a reciprocol function in order to get any number of playlist items. Refactored updatePlaylistItems to be called from a higher order function called reorderPlaylistItems to get around Spotify's 100 track limitation on the endpoint called there. I also use a function called addTracksToPlaylist from reorderPlaylists. Using both of these functions in tandem duplicates all the wanted functionality and is cleaner than using Spotify's update playlist items endpoint their inteded way with all the optional paramaters.
 - v-1 - Made minor refactors to make site more visually appealing. Now ready for deployment.
 - v-1.1 - Removing all type errors and Deno.env.get() references for successful build. Added global type for Window element to support window.onSpotifyIframeApiReady declaration in jammmingPlayer.tsx. Removed unnecessary OEmbed enum.
+- v-1.15 - Fixed Hamburger Menu Bug by setting z-indexes of the Click To Reorder Playlist button and the hamburger menu itself.
 
 
 Bug Fixes:
+- Hamburger Menu Bug - The bug triggered when activating the hamurger menu on the reorder playlist page. When this happened and the Click To Reorder Playlist button was inactive the button would appear over the hamburger menu. It would act normally though once active. I set the z-index of both the button and the hamburger menu to set the stacking priority thus fixing the problem.
+
 - Search Bar Refresh - Bug triggered when page refresh happened from form submit. This triggered another oAuth header request which results in an invalid header. Fixed this by saving the header to a JSON file and then retrieving it. Later switched to a cookie based system.
 
 - Underground Artist Data Bug - Bug triggered when looking for a lesser known artist by name which has a similar name to a well known artist thus causing the more well known artist data to get returned instead. Fixed this by filtering for artist name on list with .find() and then returning res.items[0] only when res.items.find() variable is undefined.

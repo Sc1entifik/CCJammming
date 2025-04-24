@@ -56,7 +56,7 @@ export default function PlaylistReorder({playlistTracks} : {playlistTracks: Play
 					</div>
 				))}
 			</div>
-			<button className="disabled:opacity-60 bg-gray-500 border rounded-md px-2 h-16 w-56 ml-8 text-textColor" disabled={isDisabled} onClick={() => {
+			<button className="disabled:opacity-60 disabled:z-10 bg-gray-500 border rounded-md px-2 h-16 w-56 ml-8 text-textColor" disabled={isDisabled} onClick={() => {
 				const uris = draggableElements.map(x => elementUriMap.get(x)) as string[];
 				reorderPlaylistItems(uris);
 				setIsDisabled(true);
