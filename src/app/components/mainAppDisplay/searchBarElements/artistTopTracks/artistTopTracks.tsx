@@ -9,7 +9,7 @@ export default function ArtistTopTracks({artistName}: {artistName: string}) {
 			<ArtistNameAndImage artistName={artistName}/>
 			<p className="mt-4 tracking-wide">Scroll To See All Songs</p>
 			<p className="mb-4 tracking-wide">Click Song To Add To Playlist</p>
-			<SongGrid queryTerm={artistName} gridType="artist top tracks"/>
+			<SongGrid queryTerm={artistName} />
 		</div>
 	); 
 }

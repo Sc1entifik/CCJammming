@@ -30,5 +30,4 @@ export default function SpotifyTracks({tracks, albumCoverSize}: {tracks: Track[]
 			{trackFlex}
 		</div>
 	);
-
 }

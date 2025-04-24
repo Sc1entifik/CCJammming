@@ -4,7 +4,6 @@ import ArtistTopTracks from "./artistTopTracks/artistTopTracks";
 import Songs from "./songs/songs";
 
 export default function SearchBarElement({searchTerm, searchTermType}: {searchTerm: string, searchTermType: string}) {
-
 	switch(searchTermType) {
 		case "artistTopTracks": {
 			return <ArtistTopTracks artistName={searchTerm} />

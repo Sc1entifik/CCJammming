@@ -11,16 +11,10 @@ import { Track } from "@/utils/fetchInterfaces";
 const albumCoverSize = 4.4;
 
 
-export default async function SongGrid({queryTerm, gridType}: {queryTerm: string, gridType: string}) {
-	let tracks;
+export default async function SongGrid({ queryTerm }: { queryTerm: string }) {
 	const cookieStore = await cookies();
 	const authHeader = parseAuthHeaderFromCookieStore(cookieStore);
-
-	switch (gridType) {
-		case "artist top tracks":
-		tracks = await fetchArtistTopTracks(queryTerm, authHeader);
-		break;
-	}
+	const tracks = await fetchArtistTopTracks(queryTerm, authHeader) as Track[];
 
 	const setUniqueKey = keySetter();
 	const songGrid = tracks
