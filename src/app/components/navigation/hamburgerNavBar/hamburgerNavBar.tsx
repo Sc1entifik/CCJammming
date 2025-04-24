@@ -5,13 +5,7 @@ import NavBar from "./navBar/navBar";
 
 export default async function HamburgerNavBar() {
 	const cookieStore = await cookies();
-	const redirectObject = cookieStore.has("rediretUrl") ? cookieStore.get("redirectUrl")?.value : "/";
-	let redirectUrl;
-	if (typeof redirectObject === "string") {
-		redirectUrl = redirectObject;
-	} else {
-		redirectUrl = "/";
-	}
+
 
 	return (
 		<div>
