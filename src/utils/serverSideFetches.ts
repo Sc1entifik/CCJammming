@@ -3,9 +3,8 @@ import { cookies } from "next/headers";
 import { fetchTracksByName } from "./commonFetches";
 import { formattedErrorMessage, parseAuthHeaderFromCookieStore, reverseList } from "./helper";
 import SpotifyEndpoints from "./endpoints";
-import { AuthHeader } from "./fetchInterfaces";
+import { CookieStore } from "./globalInterfaces";
 
-type CookieStore = Awaited<ReturnType<typeof cookies>>;
 
 export const fetchSongList = async (songName: string) => {
 	const cookieStore = await cookies();
