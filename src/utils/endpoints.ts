@@ -1,11 +1,3 @@
-export enum OEmbedApi {
-	O_EMBED_URI = "https://open.spotify.com/embed",
-	O_EMBED_EPISODE = `${O_EMBED_URI}/episode/`,
-	O_EMBED_ARTIST = `${O_EMBED_URI}/artist/`,
-	O_EMBED_TRACK = `${O_EMBED_URI}/track/`,
-	O_EMBED_ALBUM = `${O_EMBED_URI}/album/`,
-}
-
 enum SpotifyEndpoints {
 	SPOTIFY_RECOVER_PLAYLISTS =	"https://support.spotify.com/us/article/save-recover-playlists/",
 	MAIN_TOKEN_URI = "https://accounts.spotify.com",
