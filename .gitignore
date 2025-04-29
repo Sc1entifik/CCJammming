@@ -12,6 +12,9 @@
 
 # testing
 /coverage
+/src/utils/common_fetches_test.ts
+/src/utils/helper_test.ts
+
 
 # next.js
 /.next/
