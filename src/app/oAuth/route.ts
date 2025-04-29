@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { NextRequest } from "next/server";
 
 import { accountAccessObject } from "@/utils/spotifyOAuth";
+import SiteMap from "@/utils/siteMap";
 
 const isProduction = process.env.SERVER_ENVIRONMENT === "Production";
 
@@ -18,5 +19,5 @@ export async function GET(request: NextRequest) {
 		cookieStore.delete("state");
 	}
 
-	redirect("/");
+	redirect(SiteMap.HOME);
 }
