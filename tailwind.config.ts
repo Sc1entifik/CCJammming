@@ -11,8 +11,8 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-				headerColor: "hsl(160, 90%, 75%)",
-				textColor: "hsl(340, 60%, 95%)",
+				headerColor: "hsl(12, 100%, 55%)",
+				textColor: "hsl(52, 100%, 85%)",
       },
 			fontFamily: {
 				bounce: ["NiceBounce", "Geist-MonoVF", "sans-serif"],
