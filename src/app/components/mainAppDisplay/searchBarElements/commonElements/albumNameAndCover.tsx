@@ -16,9 +16,9 @@ export default function AlbumNameAndCover({album, albumCoverSize}: {album: Album
 
 
 	return (
-	<div className={"flex flex-col items-center"}>
+	<div className="flex flex-col items-center w-32">
 		<Image alt="album cover" src={album.images[0].url} width={5000} height={5000} style={imageStyle}/>
-		<p className="text-textColor max-w-32">{album.name}</p>
+		<p className="text-textColor">{album.name}</p>
 	</div>
 	);
 	
