@@ -39,8 +39,8 @@ export default async function UserPlaylists() {
 			<div className="flex flex-col m-4">
 				<h2 className="font-tropiLand tracking-wider">Add New Playlist</h2>
 				<NewPlaylistForm />
-				<h2 className="font-tropiLand tracking-wider">Scroll To See All Your Playlists</h2>
-				<h2 className="font-tropiLand tracking-wider">Choose A Playlist To Modify</h2>
+				<h2 className="font-tropiLand text-textColor tracking-wider">Scroll To See All Your Playlists</h2>
+				<h2 className="font-tropiLand text-textColor tracking-wider">Choose A Playlist To Modify</h2>
 				<div className=" max-h-[47dvh] overflow-y-auto no-scrollbar snap-y snap-mandatory">
 				{userOwnedPlaylists}
 				</div>
