@@ -18,7 +18,7 @@ export default function SpotifyTracks({tracks, albumCoverSize}: {tracks: Track[]
 				<div className="snap-start snap-always">
 					<p className="max-w-32">{track.artists.map(x => x.name).join(", ")}</p>
 					<Image alt="tiny album cover" src={track.album.images[0].url} height={5000} width={5000} style={imageStyle}/>
-					<p className="max-w-32">{track.name}</p>
+					<p className="max-w-32 text-textColor">{track.name}</p>
 				</div>
 			</AddTracksToPlaylist>
 			<TrackUriButton trackUri={track.uri} />
