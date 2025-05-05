@@ -31,7 +31,7 @@
 - v-1.1 - Removing all type errors and Deno.env.get() references for successful build. Added global type for Window element to support window.onSpotifyIframeApiReady declaration in jammmingPlayer.tsx. Removed unnecessary OEmbed enum.
 - v-1.15 - Fixed Hamburger Menu Bug by setting z-indexes of the Click To Reorder Playlist button and the hamburger menu itself.
 - v-1.2 - Changed color scheme to deep purple with blood orange headers. Fixed artistTopTracks element not lining up properly by making the list of elements a 1D array by using .reduce((x) => x.concat(y)). This allowed me to use proper subgrid element alignment. I also fixed up a lining issue with the album cover and song name not centering in the grid properly by setting the width of the entire element containing the album cover and song name instead of just the song name. Styling tweaks to Songs element.
-
+- v-1.25 - Upgraded styling for Set Current Playlist route to look nice on mobile. Other styiling tweaks for mobile.
 
 Bug Fixes:
 - Hamburger Menu Bug - The bug triggered when activating the hamurger menu on the reorder playlist page. When this happened and the Click To Reorder Playlist button was inactive the button would appear over the hamburger menu. It would act normally though once active. I set the z-index of both the button and the hamburger menu to set the stacking priority thus fixing the problem.
