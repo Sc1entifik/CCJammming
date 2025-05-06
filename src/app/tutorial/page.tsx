@@ -6,7 +6,7 @@ export default function About() {
 				<p className="text-textColor">jaMMMing is a performant web app that streamlines creating and working with Spotify playlists.</p>
 
 				<h2 className="text-4xl mb-4 mt-10">App Permissions And Cookie Policy</h2>
-				<p className="text-textColor">jaMMMing needs permissions from your Spotify account in order to modify playlists your playlists and create new ones. We use cookies so when you click the different links across the site everything works without us having to stop and ask you for your permission over and over again. These cookies do not track you or your information and we do not store data about you. These cookies expire and delete themselves after an hour or when you click the Disconnect Spotify Account link at the top of the page when you are done using the site.</p>
+				<p className="text-textColor">jaMMMing needs permissions from your Spotify account in order to modify your playlists and create new ones. We use cookies so that when you click the different links across the site everything works without us having to stop and ask you for your permissions over and over again. These cookies do not track you or your information and we do not store data about you. These cookies expire and delete themselves after an hour or when you click the Disconnect Spotify Account link at the top of the page when you are done using the site.</p>
 			</div>
 		</div>
 	);
