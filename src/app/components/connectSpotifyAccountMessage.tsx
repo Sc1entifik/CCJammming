@@ -11,11 +11,12 @@ export default async function ConnectSpotifyAccountMessage() {
 
 	return (
 		<div className="font-tropiLand flex flex-col items-center px-6">
-			<h1 className="max-w-prose text-4xl mb-10">In order to start Jammming the app needs permission to modify your playlists.</h1>
+			<h1 className="max-w-prose text-4xl mb-10 text-textColor">In order to start Jammming the app needs your permission to modify your Spotify playlists.</h1>
 			<h2 className="text-2xl">Step 1: Connect Your Spotify Account To Jammming.</h2>
 			{connectAccountMessage}
 			<h2 className="text-2xl">Step 2: Choose A Playlist To Modify</h2>
 			{selectCurrentPlaylistMessage}
+			<h1 className="max-w-prose text-xl font-sans text-textColor mt-40">This app uses only essential cookies in order to access the Spotify API on your behalf to help you modify your playlists. We do not track you, use, or otherwise store your data. For more info see the App Tutorial page.</h1>
 		</div>
 	);
 }
