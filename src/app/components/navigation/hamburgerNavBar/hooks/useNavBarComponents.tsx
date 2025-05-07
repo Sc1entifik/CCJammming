@@ -2,22 +2,17 @@
 import SiteMap from "@/utils/siteMap";
 import Link from "next/link";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { deleteAuthCookie } from "@/utils/serverActions";
 import { keySetter } from "@/utils/helper";
 import LoginButton from "./components/loginButton";
 
 export default function useNavBarComponents(connectionStatus: boolean) {
 	const [isAccountConnected, setIsAccountConnected] = useState(connectionStatus);
-	const router = useRouter();
 	const setUniqueKey = keySetter();
 	const separator = () => <span key={setUniqueKey()} className="hidden md:contents">{">"}</span>
-	
-	const handleClick = () => {
+	const handleClick = async () => {
 		setIsAccountConnected(() => !isAccountConnected);
-		deleteAuthCookie();
-		router.push(SiteMap.HOME);
-		router.refresh();
+		await deleteAuthCookie();
 	}
 
 	const components = [
@@ -29,7 +24,7 @@ export default function useNavBarComponents(connectionStatus: boolean) {
 		isAccountConnected && separator(),
 		isAccountConnected && <Link key={setUniqueKey()} href={SiteMap.REORDER_PLAYLIST}>Reorder Playlist</Link>,
 		isAccountConnected && separator(),
-		<LoginButton key={setUniqueKey()} connectionStatus={isAccountConnected} handleClick={handleClick} />
+		<LoginButton key={setUniqueKey()} connectionStatus={isAccountConnected} handleClickAction={handleClick} />
 	];
 
 	return components;

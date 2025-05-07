@@ -7,6 +7,7 @@ import SpotifyEndpoints from "./endpoints";
 import { formattedErrorMessage, generateRandomString, parseAuthHeaderFromCookieStore, validateQueryTerm } from "./helper";
 import { AuthHeader } from "./fetchInterfaces";
 import { fetchUserProfile } from "./commonFetches";
+import SiteMap from "./siteMap";
 
 
 const createNamedCookie = async (cookieName: string, value: string, expires: number) => {
@@ -42,7 +43,15 @@ export const createRedirectCookie = async (formData: FormData) => {
 
 
 export const deleteAuthCookie = async () => {
-	await cookies().then(res => res.delete("auth"));
+	const cookieStore = await cookies();
+
+	cookieStore
+		.getAll()
+		.forEach(x => {
+				cookieStore.delete(x.name);
+		});
+
+	redirect(SiteMap.HOME);
 };
 
 
