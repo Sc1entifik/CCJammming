@@ -2,7 +2,7 @@
 import SiteMap from "@/utils/siteMap";
 import Link from "next/link";
 import { useState } from "react";
-import { deleteAuthCookie } from "@/utils/serverActions";
+import { deleteCookies } from "@/utils/serverActions";
 import { keySetter } from "@/utils/helper";
 import LoginButton from "./components/loginButton";
 
@@ -12,7 +12,7 @@ export default function useNavBarComponents(connectionStatus: boolean) {
 	const separator = () => <span key={setUniqueKey()} className="hidden md:contents">{">"}</span>
 	const handleClick = async () => {
 		setIsAccountConnected(() => !isAccountConnected);
-		await deleteAuthCookie();
+		await deleteCookies();
 	}
 
 	const components = [

@@ -42,7 +42,7 @@ export const createRedirectCookie = async (formData: FormData) => {
 };
 
 
-export const deleteAuthCookie = async () => {
+export const deleteCookies = async () => {
 	const cookieStore = await cookies();
 
 	cookieStore
