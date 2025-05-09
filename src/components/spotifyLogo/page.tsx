@@ -1,11 +1,12 @@
 export default function SpotifyLogo({ remSize }: { remSize: number }) {
+	const height = `${remSize * 0.35}rem`;
+	const width =	`${remSize}rem`;
 
 	return (
 			<svg 
-				id="Layer_1" 
-				xmlns="http://www.w3.org/2000/svg" 
+				xmlns="http://www.w3.org/	2000/svg" 
 				viewBox="0 0 823.46 225.25"
-				className={`min-w-[72px] h-[${Math.floor(remSize * .75)}rem] w-[${remSize}rem]`}
+				style={{ height, width }}
 			>
 				<path 
 					fill="#fff" 
