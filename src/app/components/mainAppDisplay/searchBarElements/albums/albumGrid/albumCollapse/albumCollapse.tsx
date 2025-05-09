@@ -6,6 +6,8 @@ import AddTracksToPlaylist from "../../../commonElements/addTracksToPlaylist";
 import AlbumTrack from "./albumTracks";
 import AlbumNameAndCover from "../../../commonElements/albumNameAndCover";
 import TrackUriButton from "../../../commonElements/trackUriButton";
+import Link from "next/link";
+import SpotifyLogo from "@/components/spotifyLogo/page";
 
 interface SimplifiedTrackObject {
 	name: string
@@ -32,12 +34,15 @@ export default function AlbumTracksCollapse({album, tracks}: {album: Album, trac
 	const albumArtists = album.artists.map(x => <p key={setUniqueKey()}>{x.name}</p>);
 
 	return (
-		<div>
+		<div className="snap-start">
 			<div className="lg:flex sm:gap-9 sm:items-center sm:justify-center sm:tracking-widest">
-				<button onClick={expandAccordian}>
-					{albumArtists}
-					<AlbumNameAndCover album={album} albumCoverSize={5.5}/>
-				</button>
+				<div>
+					<Link href={album.external_urls.spotify} target="_blank"><SpotifyLogo remSize={7}/></Link>
+					<button onClick={expandAccordian}>
+						{albumArtists}
+						<AlbumNameAndCover album={album} albumCoverSize={5.5}/>
+					</button>
+				</div>
 				<AddTracksToPlaylist trackUris={tracks.map(x => x.uri)}>
 					<p>add album to playlist </p>
 				</AddTracksToPlaylist>

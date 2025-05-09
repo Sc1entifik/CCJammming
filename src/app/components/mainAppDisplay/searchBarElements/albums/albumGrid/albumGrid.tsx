@@ -31,11 +31,15 @@ export default async function AlbumGrid({artistName, fetchType}: {artistName: st
 		.map(async x => {
 			const [album, tracks] = await x;
 			
-			return <AlbumTracksCollapse key={setUniqueKey()} album={album} tracks={tracks}/>
+		return (
+			<div key={setUniqueKey()} >
+				<AlbumTracksCollapse key={setUniqueKey()} album={album} tracks={tracks}/>	
+			</div>
+		);
 		});
 
 	return (
-		<div className="grid grid-cols-1 gap-16 overflow-y-auto no-scrollbar">
+		<div className="grid grid-cols-1 gap-16 overflow-y-auto no-scrollbar snap-y snap-mandatory">
 			{albumGridItems}
 		</div>
 	);
