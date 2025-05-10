@@ -6,6 +6,8 @@ import AlbumNameAndCover from "../commonElements/albumNameAndCover";
 import AddTracksToPlaylist from "../commonElements/addTracksToPlaylist";
 import TrackUriButton from "../commonElements/trackUriButton";
 import { Track } from "@/utils/fetchInterfaces";
+import Link from "next/link";
+import SpotifyLogo from "@/components/spotifyLogo/page";
 
 
 const albumCoverSize = 4.4;
@@ -21,7 +23,14 @@ export default async function SongGrid({ queryTerm }: { queryTerm: string }) {
 		.map((x: Track) => { 
 
 			return [
-				<AddTracksToPlaylist key={setUniqueKey()} trackUris={[x.uri]}><AlbumNameAndCover album={x.album} albumCoverSize={albumCoverSize} /></AddTracksToPlaylist>, <AddTracksToPlaylist key={setUniqueKey()} trackUris={[x.uri]}><p className={"text-textColor max-w-32"}>{x.name}</p></AddTracksToPlaylist>, <TrackUriButton key={setUniqueKey()} trackUri={x.uri} />
+				<div key={setUniqueKey()}>
+					<AddTracksToPlaylist trackUris={[x.uri]}><AlbumNameAndCover album={x.album} albumCoverSize={albumCoverSize} /></AddTracksToPlaylist>
+					<Link href={x.external_urls.spotify} target="_blank">
+						<SpotifyLogo remSize={6}/>
+					</Link>
+				</div>, 
+				<AddTracksToPlaylist key={setUniqueKey()} trackUris={[x.uri]}><p className={"text-textColor max-w-32"}>{x.name}</p></AddTracksToPlaylist>, 
+				<TrackUriButton key={setUniqueKey()} trackUri={x.uri} />
 			]})
 			.reduce((x, y) => x.concat(y))
 			.map( x => <div key={setUniqueKey()} className="snap-start">{x}</div>);

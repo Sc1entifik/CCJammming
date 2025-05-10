@@ -3,6 +3,8 @@ import { keySetter } from "@/utils/helper";
 import Image from "next/image";
 import AddTracksToPlaylist from "../commonElements/addTracksToPlaylist";
 import TrackUriButton from "../commonElements/trackUriButton";
+import Link from "next/link";
+import SpotifyLogo from "@/components/spotifyLogo/page";
 
 export default function SpotifyTracks({tracks, albumCoverSize}: {tracks: Track[], albumCoverSize: number}) {
 	const setUniqueKey = keySetter();
@@ -14,13 +16,18 @@ export default function SpotifyTracks({tracks, albumCoverSize}: {tracks: Track[]
 
 	const trackFlex = tracks.map((track: Track) => (
 		<div key={setUniqueKey()} className="grid grid-cols-subgrid col-span-2 snap-always snap-start">
-			<AddTracksToPlaylist trackUris={[track.uri]}>
-				<div className="snap-start snap-always">
-					<p className="max-w-32">{track.artists.map(x => x.name).join(", ")}</p>
-					<Image alt="tiny album cover" src={track.album.images[0].url} height={5000} width={5000} style={imageStyle}/>
-					<p className="max-w-32 text-textColor">{track.name}</p>
-				</div>
-			</AddTracksToPlaylist>
+			<div>
+				<Link href={track.external_urls.spotify} target="_blank">
+					<SpotifyLogo remSize={6}/>
+				</Link>
+				<AddTracksToPlaylist trackUris={[track.uri]}>
+					<div className="snap-start snap-always">
+						<p className="max-w-32">{track.artists.map(x => x.name).join(", ")}</p>
+						<Image alt="tiny album cover" src={track.album.images[0].url} height={5000} width={5000} style={imageStyle}/>
+						<p className="max-w-32 text-textColor">{track.name}</p>
+					</div>
+				</AddTracksToPlaylist>
+			</div>
 			<TrackUriButton trackUri={track.uri} />
 		</div>
 	));

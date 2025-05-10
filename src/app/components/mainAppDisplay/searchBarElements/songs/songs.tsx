@@ -13,6 +13,7 @@ export default async function Songs({songName}: {songName: string}) {
 		<div className="flex flex-col items-center font-tropiLand gap-4 max-h-[84dvh]">
 			<h3 className="font-tropiLand text-textColor tracking-widest">Scroll To See All Songs</h3>
 			<h3 className="font-tropiLand text-textColor tracking-widest">Click Song To Add To Playlist</h3>
+			<h3 className="font-tropiLand text-textColor tracking-widest">Click Spotify Tag To Play On Spotify</h3>
 			<SpotifyTracks tracks={songFetch} albumCoverSize={albumCoverSize} />
 		</div>
 	);

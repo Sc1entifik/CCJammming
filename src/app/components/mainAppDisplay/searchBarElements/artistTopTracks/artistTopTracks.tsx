@@ -8,7 +8,8 @@ export default function ArtistTopTracks({artistName}: {artistName: string}) {
 		<div className="ml-2 mr-2 flex flex-col items-center font-tropiLand">
 			<ArtistNameAndImage artistName={artistName}/>
 			<p className="mt-4 text-textColor tracking-wide">Scroll To See All Songs</p>
-			<p className="mb-4 text-textColor tracking-wide">Click Song To Add To Playlist</p>
+			<p className="text-textColor tracking-wide">Click Song To Add To Playlist</p>
+			<p className="mb-4 text-textColor tracking-wide">Click Spotify Tag To Play On Spotify</p>
 			<SongGrid queryTerm={artistName} />
 		</div>
 	); 
