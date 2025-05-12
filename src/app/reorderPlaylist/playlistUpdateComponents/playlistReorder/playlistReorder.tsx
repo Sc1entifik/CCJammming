@@ -1,14 +1,16 @@
 "use client";
 
 import {PlaylistTrackObject} from "@/utils/fetchInterfaces";
-import useElementUriHashMap from "./hooks/useElementUriHashMap";
+import useElementTrackHashMap from "./hooks/useElementTrackHashMap";
 import { useState } from "react";
 import { keySetter } from "@/utils/helper";
 import { reorderPlaylistItems } from "@/utils/serverSideFetches";
+import Link from "next/link";
+import SpotifyLogo from "@/components/spotifyLogo/page";
 
 export default function PlaylistReorder({playlistTracks} : {playlistTracks: PlaylistTrackObject[]}) {
-	const elementUriMap = useElementUriHashMap(playlistTracks);
-	const [draggableElements, setDraggableElements] = useState<React.ReactElement[]>(Array.from(elementUriMap.keys()));
+	const elementTrackMap = useElementTrackHashMap(playlistTracks);
+	const [draggableElements, setDraggableElements] = useState<React.ReactElement[]>(Array.from(elementTrackMap.keys()));
 	const [draggedElement, setDraggedElement] = useState<React.ReactElement | null>(null);
 	const [isDisabled, setIsDisabled] = useState(true);
 	const setUniqueKey = keySetter();
@@ -52,12 +54,15 @@ export default function PlaylistReorder({playlistTracks} : {playlistTracks: Play
 						onDrop={e => eventHandlers.onDrop(e, element)}
 						className="grid col-span-2 cursor-grabbing"
 						>
+						<Link href={elementTrackMap.get(element)?.external_urls.spotify as string} target="_blank">
+							<SpotifyLogo remSize={5}/>
+						</Link>
 						{element}
 					</div>
 				))}
 			</div>
 			<button className="disabled:opacity-60 disabled:z-10 bg-gray-500 border rounded-md px-2 h-16 w-56 ml-8 text-textColor" disabled={isDisabled} onClick={() => {
-				const uris = draggableElements.map(x => elementUriMap.get(x)) as string[];
+				const uris = draggableElements.map(x => elementTrackMap.get(x)?.uri) as string[];
 				reorderPlaylistItems(uris);
 				setIsDisabled(true);
 				}}>Click To Reorder Playlist</button>
