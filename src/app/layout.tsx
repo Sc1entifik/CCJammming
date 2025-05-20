@@ -26,7 +26,7 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
 
-			<header className="font-bounce mx-3 mt-6 mb-10 tracking-wider flex flex-auto justify-around">
+			<header className="font-bounce mx-8 mt-6 mb-10 tracking-wider flex flex-auto justify-between">
 				<Link className="font-extrabold text-6xl" href={SiteMap.HOME}>jaMMMing</Link>
 				<HamburgerNavBar/>
 			</header>
