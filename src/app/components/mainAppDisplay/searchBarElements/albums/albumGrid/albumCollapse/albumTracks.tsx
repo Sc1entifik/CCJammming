@@ -27,7 +27,7 @@ export default function AlbumTrack({track, albumCover}: {track: SimplifiedTrackO
 				<Image alt="tiny album cover" src={albumCover.url} height={5000} width={5000} style={imageStyle}/>
 			</AddTracksToPlaylist>
 			<AddTracksToPlaylist trackUris={[track.uri]}>
-				<p className="max-w-[15rem] text-textColor">{track.name}</p>
+				<p className="max-w-60 text-textColor">{track.name}</p>
 			</AddTracksToPlaylist>
 		</div>
 	);

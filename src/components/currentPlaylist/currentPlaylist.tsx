@@ -73,7 +73,7 @@ export default async function CurrentPlaylist({ searchTerm="", searchTermType=""
 			<p className="mt-4 tracking-wide text-textColor">Scroll To See All Songs</p>
 			<p className="tracking-wide text-textColor">Click Track To Remove From Playlist</p>
 			<p className="tracking-wide text-textColor">Click Spotify Tag To Play On Spotify</p>
-			<div className="grid grid-cols-3 lg:max-w-[29rem] max-w-[20rem] lg:gap-5 items-center justify-items-start my-5">
+			<div className="grid grid-cols-3 lg:max-w-116 max-w-[20rem] lg:gap-5 items-center justify-items-start my-5">
 				<p>Album Image</p>
 				<p>Track Name</p>
 				<p>Artists</p>

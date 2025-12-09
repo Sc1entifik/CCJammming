@@ -8,7 +8,9 @@ export default function MusicForm() {
 	return (
 			<div className="flex justify-center">
 			<Form action={createRedirectCookie} className="font-tropiLand flex flex-col items-start mb-4 tracking-wider">
-				<input type="text" name="searchTerm" placeholder="Search Term" className="py-0.5 px-2 w-60 text-black"/>
+				<div className="bg-white">
+					<input type="text" name="searchTerm" placeholder="Search Term" className="py-0.5 px-2 w-60 text-black"/>
+				</div>
 				<br/>
 
 				<div className="mb-0.5">

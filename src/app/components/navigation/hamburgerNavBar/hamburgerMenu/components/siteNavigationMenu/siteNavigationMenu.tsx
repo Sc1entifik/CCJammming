@@ -17,7 +17,7 @@ export default function SiteNavigationMenu({action, connectionStatus} : {action:
 	const lastIndex = hamburgerMenu.length -1;
 
 	return (
-		<div className="absolute bg-background bg-opacity-70 w-full h-[100dvh] top-0 right-0 z-50">
+		<div className="absolute bg-background bg-opacity-70 w-full h-dvh top-0 right-0 z-50">
 			<button onClick={action} className="ml-[90vw] mt-8">
 				<HamburgerCloseIcon/>
 			</button>

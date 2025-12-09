@@ -54,7 +54,4 @@ Bug Fixes:
 
 - Playlist GET Request 100 Track Max - Bug caused by the Spotify get playlist items endpoint maxing out at 100 items. To fix this I made the fetch a reciprocol function to call it enough times to get all items from any playlist. Similarly I had to call a playlist update and then add batches of 100 tracks to get around the 100 item limitation on the update playlist items endpoint.
 
-Things Coming:
-1. More search point options.
-2. Ability to play songs.
-3. Cleaner looking interace / better styling.
+- Major NextJS Update And Tailwind Overhaul - There was an urgent Vercel vulnerability that needed to be fixed by updating from any olcer version of NextJS to version 16.0.8. This of course meant me also updating Tailwind to v4. This broke my entire front end and I needed to rewrite my entire globals.css file to fix this. I also needed to change various styling inconsistencies like adding white backgrounds to all the text inputs by wrapping them in divs and adding a white background. 
