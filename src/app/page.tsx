@@ -1,4 +1,4 @@
-import { cookies } from "next/headers"
+import { cookies } from "next/headers";
 import ConnectSpotifyAccountMessage from "./components/connectSpotifyAccountMessage";
 import MainAppDisplay from "./components/mainAppDisplay/mainAppDisplay";
 
