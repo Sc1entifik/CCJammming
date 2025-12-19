@@ -40,7 +40,7 @@ export default async function SongGrid({ queryTerm }: { queryTerm: string }) {
 			<h3>Album</h3>
 			<h3>Track Title</h3>
 			<h3>Click For Play Sample</h3>
-			<div className="grid grid-cols-subgrid col-span-3 max-h-[48dvh] gap-12 justify-items-start items-center overflow-y-auto no-scrollbar snap-y snap-mandatory">
+			<div className="grid grid-cols-subgrid col-span-3 max-h-[73dvh] gap-12 justify-items-start items-center overflow-y-auto no-scrollbar snap-y snap-mandatory">
 				{songGrid}
 			</div>
 		</div>
