@@ -11,7 +11,7 @@ export default function JammmingPlayer({ playerItemUri }: {playerItemUri: string
 		script.async = true;
 		document.body.appendChild(script);
 		//sizing in px. The embeded player will not change smaller than this without condensing down with ungly scroll bars and things. You can size up from here on bigger screens but this size actually looks pretty good on all screens.
-		const width = 256; 
+		const width = 280; 
 		const height = 131; 
 		
 		window.onSpotifyIframeApiReady = (IFrameAPI: Iframe) => {
