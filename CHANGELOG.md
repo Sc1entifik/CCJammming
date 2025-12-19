@@ -34,6 +34,7 @@
 - v-1.25 - Upgraded styling for Set Current Playlist route to look nice on mobile. Other styiling tweaks for mobile.
 - v-1.25.5 - Changed deleteAuthCookie server action to delete all cookies instead of the authCookie and also to redirect user to home page after the cookies deletion. Renamed deleteAuthCookie to deleteCookies.
 - v-1.3 - Added Spotify logo functional component. Added Spotify Logos everywhere I feel they are needed. Made small styling tweaks. Added links to Spotify.
+- v-1.4 - Added new favicon to page.
 
 Bug Fixes:
 - Hamburger Menu Bug - The bug triggered when activating the hamurger menu on the reorder playlist page. When this happened and the Click To Reorder Playlist button was inactive the button would appear over the hamburger menu. It would act normally though once active. I set the z-index of both the button and the hamburger menu to set the stacking priority thus fixing the problem.
