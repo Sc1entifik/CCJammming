@@ -3,19 +3,14 @@ import Image from "next/image";
 
 import { fetchPlaylistById, fetchPlaylistItemsById } from "@/utils/commonFetches";
 import { PlaylistTrackObject } from "@/utils/fetchInterfaces";
-import { keySetter, parseAuthHeaderFromCookieStore } from "@/utils/helper";
-import RemoveTracksFromPlaylist from "./removeTracksFromPlaylist";
+import { parseAuthHeaderFromCookieStore } from "@/utils/helper";
 import SpotifyLogo from "../spotifyLogo/page";
-import Link from "next/link";
+import MusicSubGrid from "./musicSubGrid";
+import PodcastSubgrid from "./podcastSubgrid";
 
 const playlistImageStyle = {
 	height: "11rem",
 	width: "11rem",
-	borderRadius: "5%",
-};
-const trackAlbumImageStyle = {
-	height: "4rem",
-	width: "4rem",
 	borderRadius: "5%",
 };
 
@@ -25,43 +20,14 @@ export default async function CurrentPlaylist({ searchTerm="", searchTermType=""
 	const playlistId = cookieStore.get("currentPlaylist")?.value as string;
 	const authHeader = parseAuthHeaderFromCookieStore(cookieStore);
 	const currentPlaylist = await fetchPlaylistById(playlistId, authHeader);
-	const setUniqueKey = keySetter();
 	const currentPlaylistItems = await fetchPlaylistItemsById(playlistId, authHeader);
 	const playlistTracks = currentPlaylistItems
-	.map((x: PlaylistTrackObject) => {
-		const trackUri = x.track.external_urls.spotify;
+	.map((x: PlaylistTrackObject, y: number) => {
 		if ("album" in x.track) {
-			const trackAlbumImage = x.track.album.images[0].url;
-			const trackArtistNames = x.track.artists.map(y => y.name).join(", ");
-
-			return (
-					<div key={setUniqueKey()} className="grid grid-cols-subgrid col-span-3 my-5 snap-start snap-always scroll-mt-4">
-						<div>
-							<RemoveTracksFromPlaylist urlBase={urlBase} searchTerm={searchTerm} searchTermType={searchTermType} tracks={[x.track]}><Image alt="Track album photo" src={trackAlbumImage} height={5000} width={5000} style={trackAlbumImageStyle}/></RemoveTracksFromPlaylist>
-							<Link href={trackUri} target="_blank">
-								<SpotifyLogo remSize={5}/>
-							</Link>
-					</div>
-						<RemoveTracksFromPlaylist urlBase={urlBase} searchTerm={searchTerm} searchTermType={searchTermType} tracks={[x.track]}><p>{x.track.name}</p></RemoveTracksFromPlaylist>
-						<RemoveTracksFromPlaylist urlBase={urlBase} searchTerm={searchTerm} searchTermType={searchTermType} tracks={[x.track]}><p>{trackArtistNames}</p></RemoveTracksFromPlaylist>
-					</div>
-			);
+			return <MusicSubGrid key={y} playlistTrack={x.track} urlBase={urlBase} searchTerm={searchTerm} searchTermType={searchTermType}/>
 
 		} else {
-			const podcastImage = x.track.images[0].url;
-			const podcastPublisher = x.track.show.publisher;
-			const episodeName = x.track.show.name;
-
-			return (
-				<div key={setUniqueKey()} className="grid grid-cols-subgrid col-span-3 my-5 snap-start snap-always scroll-mt-4">
-					<div>
-					<SpotifyLogo remSize={5}/>
-					<RemoveTracksFromPlaylist urlBase={urlBase} searchTerm={searchTerm} searchTermType={searchTermType} tracks={[x.track]}><Image alt="Podcast episode photo" src={podcastImage} height={5000} width={5000} style={trackAlbumImageStyle}/></RemoveTracksFromPlaylist>
-					</div>
-					<RemoveTracksFromPlaylist urlBase={urlBase} searchTerm={searchTerm} searchTermType={searchTermType} tracks={[x.track]}><p>{episodeName}</p></RemoveTracksFromPlaylist>
-					<RemoveTracksFromPlaylist urlBase={urlBase} searchTerm={searchTerm} searchTermType={searchTermType} tracks={[x.track]}><p>{podcastPublisher}</p></RemoveTracksFromPlaylist>
-				</div>
-			);			
+			return <PodcastSubgrid key={y} playlistTrack={x.track} urlBase={urlBase} searchTerm={searchTerm} searchTermType={searchTermType}/>
 		}
 	});
 
