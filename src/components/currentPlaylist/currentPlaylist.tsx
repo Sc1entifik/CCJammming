@@ -11,7 +11,7 @@ export default async function CurrentPlaylist({ searchTerm="", searchTermType=""
 	const authHeader = parseAuthHeaderFromCookieStore(cookieStore);
 
 	return (
-		<div className="flex flex-col items-center md:flex-row md:justify-center md:gap-20 font-tropiLand">
+		<div className="flex flex-col items-center md:flex-row md:justify-center md:items-start md:gap-20 font-tropiLand">
 			<Suspense fallback={<p>Loading...</p>}>
 				<CurrentPlaylistMosaic playlistId={playlistId} authHeader={authHeader}/>
 			</Suspense>
