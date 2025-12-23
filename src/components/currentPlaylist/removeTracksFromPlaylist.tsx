@@ -2,6 +2,7 @@
 
 import { createRedirectCookie, deleteItemsFromCurrentPlaylist } from "@/utils/serverActions";
 import Form from "next/form";
+import { useTransition } from "react";
 
 interface UriObject  {
 	uri: string
@@ -11,9 +12,13 @@ export default function RemoveTracksFromPlaylist( {urlBase, searchTerm, searchTe
 	const trackUris = tracks.map((x: UriObject) => {
 		return {uri: x.uri};
 	}); 
+	const [isPending, startTransition] = useTransition();
 	const handleFormSubmit = (formData: FormData) => {
-		createRedirectCookie(formData);
-		deleteItemsFromCurrentPlaylist(trackUris, urlBase);
+		startTransition(() => {
+			createRedirectCookie(formData);
+			deleteItemsFromCurrentPlaylist(trackUris, urlBase);
+
+		});
 	}
 	
 	return (
@@ -21,7 +26,7 @@ export default function RemoveTracksFromPlaylist( {urlBase, searchTerm, searchTe
 			<input name="searchTerm" value={searchTerm} hidden readOnly/>
 			<input name="searchTermType" value={searchTermType} hidden readOnly/>
 			<input name="urlBase" value={urlBase} hidden readOnly/>
-			<button type="submit" className="hover:cursor-pointer">{children}</button>
+			<button type="submit" className={isPending ? "cursor-wait" : "hover:cursor-pointer"}>{children}</button>
 		</Form>
 	);
 }
