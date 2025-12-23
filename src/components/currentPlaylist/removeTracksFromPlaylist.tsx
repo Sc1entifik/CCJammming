@@ -21,7 +21,7 @@ export default function RemoveTracksFromPlaylist( {urlBase, searchTerm, searchTe
 			<input name="searchTerm" value={searchTerm} hidden readOnly/>
 			<input name="searchTermType" value={searchTermType} hidden readOnly/>
 			<input name="urlBase" value={urlBase} hidden readOnly/>
-			<button type="submit">{children}</button>
+			<button type="submit" className="hover:cursor-pointer">{children}</button>
 		</Form>
 	);
 }
