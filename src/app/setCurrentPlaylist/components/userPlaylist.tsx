@@ -35,7 +35,7 @@ export default async function UserPlaylists() {
 	);
 
 	return (
-		<div className="flex flex-col items-center md:flex-row md:justify-evenly md:items-start my-4 gap-y-4">
+		<div className="flex flex-col items-center xl:flex-row md:justify-evenly xl:items-start my-4 gap-y-4">
 			<div className="flex flex-col m-4">
 				<h2 className="font-tropiLand tracking-wider">Add New Playlist</h2>
 				<NewPlaylistForm />

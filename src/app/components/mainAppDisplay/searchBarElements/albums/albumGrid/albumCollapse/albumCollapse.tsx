@@ -35,7 +35,7 @@ export default function AlbumTracksCollapse({album, tracks}: {album: Album, trac
 
 	return (
 		<div className="snap-start">
-			<div className="lg:flex sm:gap-9 sm:items-center sm:justify-center sm:tracking-widest">
+			<div className="xl:flex sm:gap-9 sm:items-center sm:justify-center sm:tracking-widest">
 				<div>
 					<Link href={album.external_urls.spotify} target="_blank"><SpotifyLogo remSize={7}/></Link>
 					<button onClick={expandAccordian}>
