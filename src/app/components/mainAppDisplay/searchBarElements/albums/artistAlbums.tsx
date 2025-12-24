@@ -5,9 +5,9 @@ import AlbumGrid from "./albumGrid/albumGrid";
 export default function ArtistAlbums({artistName}: {artistName: string}) {
 
 	return (
-		<div className="flex flex-col items-center xl:flex-row xl:items-start font-tropiLand gap-4 max-w-160 max-h-[110dvh] xl:max-h-[84dvh]">
-			<ArtistNameAndImage artistName={artistName}/>
-			<div className="flex flex-col items-start">
+		<div className="flex flex-col items-center xl:flex-row xl:items-start font-tropiLand gap-10 max-w-160 h-[110dvh] xl:h-[84dvh] pl-2">
+			<div className="flex flex-col items-start gap-2">
+				<ArtistNameAndImage artistName={artistName}/>
 				<h3 className="text-textColor">Scroll To See All Albums</h3>
 				<h3 className="text-textColor">Click Album To Expand</h3>
 				<h3 className="text-textColor">Click Song To Add To Playlist</h3>
