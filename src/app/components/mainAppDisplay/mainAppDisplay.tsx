@@ -8,21 +8,21 @@ export default async function MainAppDisplay({searchTerm, searchTermType}: {sear
 	const cookieStore = await cookies();
 	
 	return (
-		<div className=" max-h-[84dvh]">
+		<div className="max-h-[84dvh] flex flex-col items-center xl:flex-row xl:items-start">
 			{!searchTermType && 
-				<div className="mb-16">
+				<div className="mb-16 m-auto">
 					<MusicForm/>
 				</div>
 			}
 
 			{searchTermType && 
-				<div className="xl:flex xl:justify-around gap-y-8 gap-x-32">
+				<div className="flex flex-col items-center xl:flex-row xl:items-start xl:justify-around gap-y-8 gap-x-32 w-full">
 					<div className="flex flex-col">
 						{cookieStore.has("sampleTrackUri") && <JammmingPlayer playerItemUri={cookieStore.get("sampleTrackUri")?.value as string}/>}
 						<SearchBarElement searchTerm={searchTerm} searchTermType={searchTermType}/>
 					</div>
 
-					<div className="mt-12 md:mt-0">
+					<div className="mt-12 md:mt-0 lg:pr-6">
 						<CurrentPlaylist searchTerm={searchTerm} searchTermType={searchTermType} urlBase=""/>
 					</div>
 				</div>

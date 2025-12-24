@@ -5,7 +5,7 @@ import SongGrid from "./songGrid";
 export default function ArtistTopTracks({artistName}: {artistName: string}) {
 
 	return (
-		<div className="ml-2 mr-2 flex flex-col xl:flex-row font-tropiLand xl:gap-20">
+		<div className="ml-2 mr-2 flex flex-col items-center xl:flex-row xl:items-start font-tropiLand xl:gap-20">
 			<div className="flex flex-col items-center">
 				<ArtistNameAndImage artistName={artistName}/>
 				<div className="flex flex-col items-start">
