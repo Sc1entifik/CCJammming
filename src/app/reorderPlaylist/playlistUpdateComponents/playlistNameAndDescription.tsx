@@ -10,7 +10,7 @@ export default function PlaylistNameAndDescription({currentPlaylist} : {currentP
 
 	return (
 		<div>
-		<h2 className="text-center mb-2 tracking-wide font-tropiLand text-textColor">Changes Made To Playlist Name And Description May Take A Minute To Process</h2>
+		<h2 className="text-left mb-2 tracking-wide font-tropiLand text-textColor max-w-72">Changes Made To Playlist Name And Description May Take A Minute To Process</h2>
 		<Form action={changePlaylistNameAndDescription} className="flex gap-10 justify-center">
 			<div className="flex flex-col gap-1">
 				<div className="bg-white">

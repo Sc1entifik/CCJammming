@@ -18,12 +18,14 @@ export default async function PlaylistUpdate() {
 	const currentPlaylistTracks = await fetchPlaylistItemsById(currentPlaylistId, authHeader);
 	
 	return (
-		<div className="flex flex-col items-center">
+		<div className="flex flex-col items-center xl:flex-row xl:justify-center xl:items-start gap-10">
+			<div className="text-left">
 			<PlaylistNameAndDescription currentPlaylist={currentPlaylist}/>
 			<h2 className="font-tropiLand mt-6 tracking-wide">Scroll To See All Songs</h2>
 			<h2 className="font-tropiLand tracking-wide">Drag Tracks Around To Change Playorder</h2>
 			<h2 className="font-tropiLand tracking-wide">Hold Tracks Near Drag Lines To Drag And Scroll</h2>
 			<h2 className="font-tropiLand mb-6 tracking-wide">Click Button To Update Playlist</h2>
+			</div>
 			<PlaylistReorder playlistTracks={currentPlaylistTracks}/>
 		</div>
 		)

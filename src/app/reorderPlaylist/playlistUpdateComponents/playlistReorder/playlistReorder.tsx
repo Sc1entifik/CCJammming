@@ -44,7 +44,7 @@ export default function PlaylistReorder({playlistTracks} : {playlistTracks: Play
 
 	return (
 		<div className="flex">
-			<div className="text-textColor tracking-wide grid grid-cols-2 gap-4 border border-dotted border-y-sky-500 border-r-0 border-l-0 max-h-[62dvh] overflow-y-auto no-scrollbar">
+			<div className="text-textColor tracking-wide grid grid-cols-2 gap-y-4 border border-dotted border-y-sky-500 border-r-0 border-l-0 max-h-[62dvh] xl:max-h-[85dvh] overflow-y-auto no-scrollbar">
 				{draggableElements.map(element => (
 					<div
 						key={setUniqueKey()}
