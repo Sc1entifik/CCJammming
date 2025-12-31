@@ -6,34 +6,56 @@ import Form from "next/form";
 export default function MusicForm() {
 	
 	return (
-			<div className="flex justify-center">
-			<Form action={createRedirectCookie} className="font-tropiLand flex flex-col items-start mb-4 tracking-wider">
-				<div className="bg-white">
-					<input type="text" name="searchTerm" placeholder="Search Term" className="py-0.5 px-2 w-60 text-black"/>
-				</div>
-				<br/>
+			<div className="flex justify-center items-center-safe mb-4 h-[70dvh]">
+				<Form
+					action={createRedirectCookie} 
+					className="
+						w-96
+						font-tropiLand 
+						text-xl
+						flex 
+						flex-col 
+						items-start
+						tracking-wider
+						gap-1.5
+						bg-[hsl(268,70%,18%)] 
+						rounded-2xl 
+						shadow-[20px_20px_40px_rgba(0,0,0,0.9),-8px_-8px_20px_rgba(255,255,255,0.04)]
+				">
+					<input 
+						type="text"
+						name="searchTerm"
+						placeholder="Search Term"
+						className="
+							w-4/5
+							py-0.5
+							px-2
+							text-black
+							bg-white
+							m-4
+							rounded-xl 
+					"/>
 
-				<div className="mb-0.5">
-					<input id="artistTopTracks" type="radio" name="searchTermType" value="artistTopTracks" className="mr-0.5" defaultChecked/>
-					<label htmlFor="artistTopTracks" className="pl-3">Artist Top Tracks</label>
-				</div>
-			
-				<div className="mb-0.5">
-					<input id="albumsByArtist" type="radio" name="searchTermType" value="albumsByArtist" className="mr-0.5"/>
-					<label htmlFor="albumsByArtist" className="pl-3">Artist Albums</label>
-				</div>
+					<div className="mx-4">
+						<input id="artistTopTracks" type="radio" name="searchTermType" value="artistTopTracks" defaultChecked />
+						<label htmlFor="artistTopTracks" className="pl-3">Artist Top Tracks</label>
+					</div>
+				
+					<div className="mx-4">
+						<input id="albumsByArtist" type="radio" name="searchTermType" value="albumsByArtist" />
+						<label htmlFor="albumsByArtist" className="pl-3">Artist Albums</label>
+					</div>
 
-				<div className="mb-0.5">
-					<input id="albums" type="radio" name="searchTermType" value="albums" className="mr-0.5"/>
-					<label htmlFor="albums" className="pl-3">Album</label>
-				</div>
+					<div className="mx-4">
+						<input id="albums" type="radio" name="searchTermType" value="albums" />
+						<label htmlFor="albums" className="pl-3">Album</label>
+					</div>
 
-				<div className="mb-0.5">
-					<input id="songs" type="radio" name="searchTermType" value="songs" className="mr-0.5"/>
-					<label htmlFor="songs" className="pl-3">Song</label>
-				</div>
-				<br/>
-			</Form>
+					<div className="mx-4 pb-3">
+						<input id="songs" type="radio" name="searchTermType" value="songs" />
+						<label htmlFor="songs" className="pl-3">Song</label>
+					</div>
+				</Form>
 			</div>
 	);
 }
