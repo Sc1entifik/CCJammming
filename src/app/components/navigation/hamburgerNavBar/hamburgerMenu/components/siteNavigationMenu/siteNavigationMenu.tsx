@@ -17,11 +17,11 @@ export default function SiteNavigationMenu({action, connectionStatus} : {action:
 	const lastIndex = hamburgerMenu.length -1;
 
 	return (
-		<div className="absolute bg-background bg-opacity-70 w-full h-dvh top-0 right-0 z-50">
+		<div className="absolute bg-hamburgerOverlay/70 text-green-500 w-full h-dvh top-0 right-0 z-50">
 			<button onClick={action} className="ml-[90vw] mt-8">
 				<HamburgerCloseIcon/>
 			</button>
-			<div className="flex flex-col justify-evenly items-center h-screen border-t border-solid border-t-green-500">
+			<div className="flex flex-col justify-around items-center h-screen border-t border-solid border-t-green-500">
 			{hamburgerMenu.map((x,y) => y !== lastIndex ? <button key={setUniqueKey()} onClick={action}>{x}</button> : x)}
 			</div>
 		</div>

@@ -1,12 +1,7 @@
 @import "tailwindcss";
 
 @layer utilities {
-  :root {
-    --background: #ffffff;
-    --foreground: #171717;
-  }
-
-  @media (max-width: 770) {
+  @media (max-width: 770px) {
     html {
       font-size: 12px;
     }
@@ -15,13 +10,6 @@
   @media (max-width: 450px) {
     html {
       font-size: 10px;
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --background: #0a0a0a;
-      --foreground: #ededed;
     }
   }
 
@@ -38,24 +26,19 @@
     font-weight: normal;
     font-style: normal;
   }
-}
 
-@theme {
-	--color-background: "var(--background)";
-	--color-foreground: "var(--foreground)";
-	--color-headerColor: hsl(12, 100%, 55%);
-	--color-textColor: hsl(52, 100%, 85%);
-	--font-bounce: "NiceBounce", "Geist-MonoVF", sans-serif;
-	--font-tropiLand: "Tropiland", "Geist-MonoVF", sans-serif;
-}
-
-
-@layer utilities {
 	.no-scrollbar {
 		scrollbar-width: none;
 	}
 }
 
+@theme {
+	--color-hamburgerOverlay: hsl(268, 70%, 12%);
+	--color-headerColor: hsl(12, 100%, 55%);
+	--color-textColor: hsl(52, 100%, 85%);
+	--font-bounce: "NiceBounce", "Geist-MonoVF", sans-serif;
+	--font-tropiLand: "Tropiland", "Geist-MonoVF", sans-serif;
+}
 
 body {
   color: hsl(12, 100%, 55%);
