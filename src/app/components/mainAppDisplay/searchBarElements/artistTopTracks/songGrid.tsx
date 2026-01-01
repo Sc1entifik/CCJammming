@@ -28,18 +28,18 @@ export default async function SongGrid({ queryTerm }: { queryTerm: string }) {
 						<SpotifyLogo remSize={6}/>
 					</Link>
 				</div>, 
-				<AddTracksToPlaylist key={y} trackUris={[x.uri]}><p className={"text-textColor max-w-32"}>{x.name}</p></AddTracksToPlaylist>, 
+				<AddTracksToPlaylist key={y} trackUris={[x.uri]}><p className="text-textColor max-w-32 text-left">{x.name}</p></AddTracksToPlaylist>, 
 				<TrackUriButton key={y} trackUri={x.uri} />
 			]})
 			.reduce((x, y) => x.concat(y))
 			.map( (x, y) => <div key={y} className="snap-start">{x}</div>);
 
 	return (
-		<div className="font-tropiLand grid grid-cols-3 my-5 tracking-widest">
+		<div className="font-tropiLand grid grid-cols-3 gap-y-5 tracking-widest justify-items-start">
 			<h3 className="text-alternativeColor text-lg text-left">Album</h3>
 			<h3 className="text-alternativeColor text-lg text-left">Track Title</h3>
 			<h3 className="text-alternativeColor text-lg text-left">Click For Play Sample</h3>
-			<div className="grid grid-cols-subgrid col-span-3 max-h-[73dvh] gap-12 justify-items-start items-center overflow-y-auto no-scrollbar snap-y snap-mandatory">
+			<div className="grid grid-cols-subgrid col-span-3 max-h-[73dvh] gap-y-12 overflow-y-auto no-scrollbar snap-y snap-mandatory">
 				{ songGrid }
 			</div>
 		</div>
