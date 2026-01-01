@@ -7,7 +7,7 @@ export default function Albums({albumName}: {albumName: string}) {
 				<h3 className="text-textColor">Click Album To Expand</h3>
 				<h3 className="text-textColor">Click Song To Add To Playlist</h3>
 				<h3 className="text-textColor mb-4">Click Spotify Tag To Play On Spotify</h3>
-			<AlbumGrid artistName={albumName} fetchType="album name"/>
+			<AlbumGrid artistName={albumName} />
 		</div>
 	);
 }

@@ -26,7 +26,7 @@ export default async function ArtistNameAndImage({ artistName }: { artistName: s
 	
 
 	return (
-		<div className="flex flex-col items-center">
+		<div suppressHydrationWarning className="flex flex-col items-center">
 			<Link href={artist.external_urls.spotify} target="_blank">
 				<SpotifyLogo remSize={13}/>
 			</Link>

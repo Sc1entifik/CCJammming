@@ -1,5 +1,4 @@
 "use client";
-import { keySetter } from "@/utils/helper";
 import { useEffect, useState } from "react";
 import { Album } from "@/utils/fetchInterfaces";
 import AddTracksToPlaylist from "../../../commonElements/addTracksToPlaylist";
@@ -23,7 +22,6 @@ export default function AlbumTracksCollapse({album, tracks}: {album: Album, trac
 		setIsExpanded(false)
 		}, []);
 
-	const setUniqueKey = keySetter();
 	const albumCover = album.images[0];
 
 
@@ -31,7 +29,7 @@ export default function AlbumTracksCollapse({album, tracks}: {album: Album, trac
 		setIsExpanded(() => !isExpanded);
 	}
 	
-	const albumArtists = album.artists.map(x => <p key={setUniqueKey()}>{x.name}</p>);
+	const albumArtists = album.artists.map((x,y) => <p key={y}>{x.name}</p>);
 
 	return (
 		<div className="snap-start">
@@ -48,7 +46,7 @@ export default function AlbumTracksCollapse({album, tracks}: {album: Album, trac
 				</AddTracksToPlaylist>
 			</div>
 			<div className="grid grid-cols-2 justify-items-center gap-4">
-				{isExpanded && tracks.map(x => [<AlbumTrack key={setUniqueKey()} track={x} albumCover={albumCover}/>, <TrackUriButton key={setUniqueKey()} trackUri={x.uri}/>])}
+				{isExpanded && tracks.map((x,y) => [<AlbumTrack key={y} track={x} albumCover={albumCover}/>, <TrackUriButton key={x.uri} trackUri={x.uri}/>])}
 			</div>
 		</div>
 	);
