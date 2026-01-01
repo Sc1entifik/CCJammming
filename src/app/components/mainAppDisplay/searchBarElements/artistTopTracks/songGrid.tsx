@@ -1,7 +1,7 @@
 import { fetchArtistTopTracks } from "@/utils/commonFetches";
 import { cookies } from "next/headers";
 
-import { keySetter, parseAuthHeaderFromCookieStore } from "@/utils/helper";
+import { parseAuthHeaderFromCookieStore } from "@/utils/helper";
 import AlbumNameAndCover from "../commonElements/albumNameAndCover";
 import AddTracksToPlaylist from "../commonElements/addTracksToPlaylist";
 import TrackUriButton from "../commonElements/trackUriButton";
@@ -18,28 +18,27 @@ export default async function SongGrid({ queryTerm }: { queryTerm: string }) {
 	const authHeader = parseAuthHeaderFromCookieStore(cookieStore);
 	const tracks = await fetchArtistTopTracks(queryTerm, authHeader) as Track[];
 
-	const setUniqueKey = keySetter();
 	const songGrid = tracks
-		.map((x: Track) => { 
+		.map((x: Track, y: number) => { 
 
 			return [
-				<div key={setUniqueKey()}>
+				<div key={y}>
 					<AddTracksToPlaylist trackUris={[x.uri]}><AlbumNameAndCover album={x.album} albumCoverSize={albumCoverSize} /></AddTracksToPlaylist>
 					<Link href={x.external_urls.spotify} target="_blank">
 						<SpotifyLogo remSize={6}/>
 					</Link>
 				</div>, 
-				<AddTracksToPlaylist key={setUniqueKey()} trackUris={[x.uri]}><p className={"text-textColor max-w-32"}>{x.name}</p></AddTracksToPlaylist>, 
-				<TrackUriButton key={setUniqueKey()} trackUri={x.uri} />
+				<AddTracksToPlaylist key={y} trackUris={[x.uri]}><p className={"text-textColor max-w-32"}>{x.name}</p></AddTracksToPlaylist>, 
+				<TrackUriButton key={y} trackUri={x.uri} />
 			]})
 			.reduce((x, y) => x.concat(y))
-			.map( x => <div key={setUniqueKey()} className="snap-start">{x}</div>);
+			.map( (x, y) => <div key={y} className="snap-start">{x}</div>);
 
 	return (
 		<div className="font-tropiLand grid grid-cols-3 my-5 tracking-widest">
-			<h3>Album</h3>
-			<h3>Track Title</h3>
-			<h3>Click For Play Sample</h3>
+			<h3 className="text-alternativeColor text-lg text-left">Album</h3>
+			<h3 className="text-alternativeColor text-lg text-left">Track Title</h3>
+			<h3 className="text-alternativeColor text-lg text-left">Click For Play Sample</h3>
 			<div className="grid grid-cols-subgrid col-span-3 max-h-[73dvh] gap-12 justify-items-start items-center overflow-y-auto no-scrollbar snap-y snap-mandatory">
 				{ songGrid }
 			</div>

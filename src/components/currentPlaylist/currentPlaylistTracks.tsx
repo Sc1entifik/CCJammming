@@ -13,11 +13,11 @@ export default async function CurrentPlaylistTracks({ searchTerm, searchTermType
 	});
 
 	return (
-		<div className="grid grid-cols-3 lg:max-w-116 max-w-[20rem] lg:gap-5 items-center justify-items-start my-5">
-			<p>AlbumImage</p>
-			<p>Track Name</p>
-			<p>Artists</p>
-			<div className="text-textColor grid grid-cols-subgrid col-span-3 max-h-[80dvh] overflow-y-auto no-scrollbar gap-5 items-center justify-items-start snap-y snap-mandatory">
+		<div className="grid grid-cols-3 lg:max-w-116 max-w-[20rem] lg:gap-5 justify-items-start">
+			<h3 className="text-alternativeColor text-lg text-left">Album Image</h3>
+			<h3 className="text-alternativeColor text-lg text-left">Track Name</h3>
+			<h3 className="text-alternativeColor text-lg text-left">Artists</h3>
+			<div className="text-textColor grid grid-cols-subgrid col-span-3 max-h-[80dvh] overflow-y-auto no-scrollbar gap-y-10 snap-y snap-mandatory">
 					{currentPlaylistTracks}
 			</div>
 		</div>

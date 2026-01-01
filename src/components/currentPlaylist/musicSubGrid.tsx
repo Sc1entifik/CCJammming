@@ -22,7 +22,7 @@ export default function MusicSubGrid({ playlistTrack, urlBase, searchTerm, searc
 		const trackArtistNames = playlistTrack.artists.map(x => x.name).join(", ");
 
 		return (
-			<div className="grid grid-cols-subgrid col-span-3 my-5 snap-start snap-always scroll-mt-4">
+			<div className="grid grid-cols-subgrid col-span-3 snap-start snap-always scroll-mt-4">
 				<div>
 					<RemoveTracksFromPlaylist urlBase={urlBase} searchTerm={searchTerm} searchTermType={searchTermType} tracks={[playlistTrack]}>
 						<Image alt="Track album photo" src={trackAlbumImage} height={5000} width={5000} style={ { height: "4rem", width: "4rem", borderRadius: "5%", } }/>
@@ -34,11 +34,11 @@ export default function MusicSubGrid({ playlistTrack, urlBase, searchTerm, searc
 				</div>
 
 				<RemoveTracksFromPlaylist urlBase={urlBase} searchTerm={searchTerm} searchTermType={searchTermType} tracks={[playlistTrack]}>
-					<p>{playlistTrack.name}</p>
+					<p className="text-left leading-relaxed">{playlistTrack.name}</p>
 				</RemoveTracksFromPlaylist>
 
 				<RemoveTracksFromPlaylist urlBase={urlBase} searchTerm={searchTerm} searchTermType={searchTermType} tracks={[playlistTrack]}>
-					<p>{trackArtistNames}</p>
+					<p className="text-left leading-relaxed">{trackArtistNames}</p>
 				</RemoveTracksFromPlaylist>
 			</div>
 		);
