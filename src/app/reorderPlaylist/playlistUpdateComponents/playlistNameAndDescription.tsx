@@ -13,10 +13,10 @@ export default function PlaylistNameAndDescription({currentPlaylist} : {currentP
 		<h2 className="text-left mb-2 tracking-wide font-tropiLand text-textColor max-w-72">Changes Made To Playlist Name And Description May Take A Minute To Process</h2>
 		<Form action={changePlaylistNameAndDescription} className="flex gap-10 justify-center">
 			<div className="flex flex-col gap-1">
-				<div className="bg-white">
+				<div className="bg-white rounded-2xl">
 					<input name="playlistName" className="mb-2 w-60 px-2 text-black" value={playlistName} onChange={event => setPlaylistName(event.target.value)} placeholder={playlistName}/>
 				</div>
-				<div className="bg-white">
+				<div className="bg-white rounded-xl">
 					<input name="playlistDescription" className="w-60 px-2 text-black" value={playlistDescription} onChange={event => setPlaylistDescription(event.target.value)} placeholder={playlistDescription ? playlistDescription : "Add a playlist description here"} />
 				</div>
 			</div>

@@ -6,10 +6,10 @@ export default function NewPlaylistForm() {
 
 	return (
 		<Form className="flex flex-col gap-y-3 my-11" action={addPlaylist}>
-			<div className="bg-white">
+			<div className="bg-white rounded-xl">
 				<input className="py-0.5 px-2 text-black" type="text" name="newPlaylistName" placeholder="New playlist Name Here" required/>
 			</div>
-			<div className="bg-white">
+			<div className="bg-white rounded-xl">
 				<input className="py-0.5 px-2 text-black" type="text" name="newPlaylistDescription" placeholder="New playlist description here" required/>
 			</div>
 			<div className="flex">

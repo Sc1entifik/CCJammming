@@ -1,10 +1,10 @@
 import { Track } from "@/utils/fetchInterfaces";
 import { keySetter } from "@/utils/helper";
 import Image from "next/image";
-import AddTracksToPlaylist from "../commonElements/addTracksToPlaylist";
-import TrackUriButton from "../commonElements/trackUriButton";
 import Link from "next/link";
+import AddTracksToPlaylist from "../commonElements/addTracksToPlaylist";
 import SpotifyLogo from "@/components/spotifyLogo/page";
+import SampleTrackCookieButton from "../commonElements/sampleTrackCookieButton";
 
 export default function SpotifyTracks({tracks, albumCoverSize}: {tracks: Track[], albumCoverSize: number}) {
 	const setUniqueKey = keySetter();
@@ -28,7 +28,7 @@ export default function SpotifyTracks({tracks, albumCoverSize}: {tracks: Track[]
 					</div>
 				</AddTracksToPlaylist>
 			</div>
-			<TrackUriButton trackUri={track.uri} />
+			<SampleTrackCookieButton trackUri={track.uri} />
 		</div>
 	));
 

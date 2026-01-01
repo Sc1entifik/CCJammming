@@ -1,12 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { Album } from "@/utils/fetchInterfaces";
 import AddTracksToPlaylist from "../../../commonElements/addTracksToPlaylist";
 import AlbumTrack from "./albumTracks";
 import AlbumNameAndCover from "../../../commonElements/albumNameAndCover";
-import TrackUriButton from "../../../commonElements/trackUriButton";
-import Link from "next/link";
 import SpotifyLogo from "@/components/spotifyLogo/page";
+import SampleTrackCookieButton from "../../../commonElements/sampleTrackCookieButton";
 
 interface SimplifiedTrackObject {
 	name: string
@@ -46,7 +46,7 @@ export default function AlbumTracksCollapse({album, tracks}: {album: Album, trac
 				</AddTracksToPlaylist>
 			</div>
 			<div className="grid grid-cols-2 justify-items-center gap-4">
-				{isExpanded && tracks.map((x,y) => [<AlbumTrack key={y} track={x} albumCover={albumCover}/>, <TrackUriButton key={x.uri} trackUri={x.uri}/>])}
+				{isExpanded && tracks.map((x,y) => [<AlbumTrack key={y} track={x} albumCover={albumCover}/>, <SampleTrackCookieButton key={x.uri} trackUri={x.uri}/>])}
 			</div>
 		</div>
 	);
