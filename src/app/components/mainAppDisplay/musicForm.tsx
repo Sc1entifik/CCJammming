@@ -6,13 +6,13 @@ import Form from "next/form";
 export default function MusicForm() {
 	
 	return (
-			<div className="flex justify-center items-center-safe mb-4 h-[70dvh]">
 				<Form
 					action={createRedirectCookie} 
 					className="
-						w-96
+						w-120
 						font-tropiLand 
 						text-xl
+						text-alternativeColor
 						flex 
 						flex-col 
 						items-start
@@ -56,6 +56,5 @@ export default function MusicForm() {
 						<label htmlFor="songs" className="pl-3">Song</label>
 					</div>
 				</Form>
-			</div>
 	);
 }

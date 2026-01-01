@@ -10,7 +10,7 @@ export default async function MainAppDisplay({searchTerm, searchTermType}: {sear
 	return (
 		<div className="max-h-[84dvh] flex flex-col items-center xl:flex-row xl:items-start">
 			{!searchTermType && 
-				<div className="mb-16 m-auto">
+				<div className="flex justify-center items-center w-full h-[70dvh]">
 					<MusicForm/>
 				</div>
 			}
