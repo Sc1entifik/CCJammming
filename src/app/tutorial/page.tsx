@@ -17,26 +17,26 @@ export default function About() {
 				<ScreenshotImageOne src="/images/initialHomePage1.png"/>
 
 				<h3 className="text-alternativeColor text-2xl mb-1 mt-4">Set The Current Playlist To Modify</h3>
-				<p className="text-textColor">After jaMMMing is authenticated to your Spotify account the next step is to set the active playlist which can be done from the Set Current Playlist link at the top of the page or clicking the link from the instructions on the front of the home page. Your current playlist can always be selected or changed from the Set Current Playlist page. This determines which of your Spotify playlists gets modified when you add, remove, or reorder songs on your playlist.</p>
+				<p className="text-textColor">After jaMMMing is authenticated to your Spotify account the next step is to set the active playlist which can be done from the Set Current Playlist link at the top of the page or clicking the link from the instructions on the front of the home page. The current playlist can be selected or changed from the Set Current Playlist page. This determines which of your Spotify playlists gets modified when you add, remove, or reorder songs on your playlist.</p>
 				<ScreenshotImageOne src="/images/initialHomePage2.png"/>
 				<p className="text-textColor">This is also the screen you can use to create new playlists and unfollow playlists you are no longer interested in.</p>
 				<ScreenshotImageTwo src="/images/setCurrentPlaylist1.png"/>
 
 
 				<h3 className="text-alternativeColor text-2xl mb-1 mt-4">Music Search And Adding Or Removing Songs</h3>
-				<p className="text-textColor">Once you are authenticated to the app and a current playlist is chosen when you navigate to the home page by clicking on the JaMMMing logo at the top of the page or the Home Page link from the navigation bar you will be taken to a music search form.</p>
+				<p className="text-textColor">After the app is authenticated and the current playlist is chosen navigating to the home page will be take you to the music search form instead of the initial instructions. You can navigate to the home page by clicking the Jamming logo at the top left of the page or the Home Page link in the navigation bar.</p>
 				<ScreenshotImageTwo src="/images/musicSearch.png"/>
 
 				<p className="text-textColor">There are four search criteria. Artist Top Tracks and Artist Albums lets you look up songs and albums by artist name. Album lets you look up albums by album name and Song lets you look up songs by song name.</p>
 				<ScreenshotImageTwo src="/images/artistTopTracks.png"/>
 
-				<p className="text-textColor">Clicking a song will add it to your playlist. Clicking an album will expand the album showing the songs in the album to add them individually to your playlist. Clicking the Click for Play Sample button will bring up a few second sample of the song for you to listen to.</p>
+				<p className="text-textColor">Clicking a song will add it to your playlist. Clicking an album will expand the album showing the songs in the album which allows you to click them to add them to your playlsit. Clicking the Click for Play Sample button will bring up a few second sample of the song for you to listen to.</p>
 				<ScreenshotImageTwo src="/images/samplePlayer.png"/>
 
 				<p className="text-textColor">On the album and artist album searches you can also add the entire album to your playlist with the add album to playlist button.</p>
 				<ScreenshotImageTwo src="/images/artistAlbums1.png" />
 				<ScreenshotImageTwo src="/images/artistAlbumsExpandedAlbum.png" />
-				<p className="text-textColor">Songs will always be added to the bottom of your playlist and clicking a song from our playlist will remove a song from it.</p>
+				<p className="text-textColor">Songs will always be added to the bottom of your playlist and clicking a song from your playlist will remove the song from it.</p>
 
 
 				<h3 className="text-alternativeColor text-2xl mb-1 mt-4">Reordering And Renaming Playlists</h3>
