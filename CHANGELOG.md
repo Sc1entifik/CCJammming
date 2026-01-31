@@ -221,7 +221,7 @@
 - **v-1.5** 
     - Added app images to tutorial page.
 
-Bug Fixes:
+## Bug Fixes:
 - Hamburger Menu Bug - The bug triggered when activating the hamurger menu on the reorder playlist page. When this happened and the Click To Reorder Playlist button was inactive the button would appear over the hamburger menu. It would act normally though once active. I set the z-index of both the button and the hamburger menu to set the stacking priority thus fixing the problem.
 
 - Search Bar Refresh - Bug triggered when page refresh happened from form submit. This triggered another oAuth header request which results in an invalid header. Fixed this by saving the header to a JSON file and then retrieving it. Later switched to a cookie based system.
